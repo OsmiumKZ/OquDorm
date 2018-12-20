@@ -1,5 +1,7 @@
 package kz.osmium;
 
+import kz.osmium.util.MethodsHTTP;
+
 import static spark.Spark.*;
 
 public class Main {
@@ -18,7 +20,8 @@ public class Main {
         /* Разрешаю лок. серверу доступ к API */
         preferences();
 
-        get("/", ((request, response) -> "Hello! D:"));
+        /* Конфигурация API */
+        MethodsHTTP.config();
     }
 
     /**
