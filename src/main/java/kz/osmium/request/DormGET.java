@@ -46,7 +46,7 @@ public class DormGET {
 
                 response.status(400);
 
-                return e.getMessage();
+                return HttpStatus.getCode(400).getMessage();
             }
         }
 
@@ -67,7 +67,7 @@ public class DormGET {
 
             preparedStatement2.setInt(1, resultSet.getInt("name_id"));
 
-            ResultSet resultSet2 = preparedStatement.executeQuery();
+            ResultSet resultSet2 = preparedStatement2.executeQuery();
 
             while (resultSet2.next()) {
                 return resultSet2.getString("name_ru");
