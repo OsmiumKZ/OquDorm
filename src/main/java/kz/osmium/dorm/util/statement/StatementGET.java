@@ -27,6 +27,6 @@ public class StatementGET {
     }
 
     public static String getRequest(){
-        return "SELECT * FROM `requests` WHERE `requests`.`account.id`=?";
+        return "SELECT * FROM `requests` WHERE `requests`.`account_id`=?";
     }
 }
