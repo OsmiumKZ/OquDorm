@@ -63,7 +63,15 @@ public class DormGET {
         ResultSet resultSet = preparedStatement.executeQuery();
 
         while (resultSet.next()) {
-            return resultSet.getString("name_ru");
+            PreparedStatement preparedStatement2 = connection.prepareStatement(StatementGET.getName());
+
+            preparedStatement2.setInt(1, resultSet.getInt("name_id"));
+
+            ResultSet resultSet2 = preparedStatement.executeQuery();
+
+            while (resultSet2.next()) {
+                return resultSet2.getString("name_ru");
+            }
         }
 
         return "Null";
