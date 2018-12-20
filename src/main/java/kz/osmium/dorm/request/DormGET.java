@@ -17,7 +17,7 @@ import java.util.List;
 
 public class DormGET {
 
-    public static String getAuth(Request request, Response response) {
+    public static String getDB(Request request, Response response) {
 
         try (Connection connection = DBConnection.Dorm.getDB()) {
             PreparedStatement preparedStatement = connection.prepareStatement(StatementGET.getDormAll());
