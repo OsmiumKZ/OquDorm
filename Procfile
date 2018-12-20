@@ -1,0 +1,1 @@
+web: ./build/install/oqu-dorm/bin/oqu-dorm
