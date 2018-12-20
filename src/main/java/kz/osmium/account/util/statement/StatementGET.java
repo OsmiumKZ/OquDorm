@@ -1,4 +1,4 @@
-package kz.osmium.util.statement;
+package kz.osmium.account.util.statement;
 
 public class StatementGET {
 

@@ -1,9 +1,9 @@
-package kz.osmium.request;
+package kz.osmium.account.request;
 
 import com.google.gson.Gson;
 import kz.osmium.util.DBConnection;
-import kz.osmium.util.gson.Auth;
-import kz.osmium.util.statement.StatementGET;
+import kz.osmium.account.util.gson.Auth;
+import kz.osmium.account.util.statement.StatementGET;
 import org.eclipse.jetty.http.HttpStatus;
 import spark.Request;
 import spark.Response;
@@ -13,7 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DormGET {
+public class AccountGET {
 
     public static String getAuth(Request request, Response response) {
 
@@ -36,7 +36,6 @@ public class DormGET {
                             getName(resultSet.getInt("gender_id"), StatementGET.getGender(), connection),
                             resultSet.getLong("iin")
                     );
-
 
                     response.status(200);
 

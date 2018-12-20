@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package kz.osmium.util.gson;
+package kz.osmium.account.util.gson;
 
 import com.google.gson.annotations.SerializedName;
 
