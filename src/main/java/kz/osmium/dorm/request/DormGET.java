@@ -5,12 +5,15 @@ import kz.osmium.dorm.util.gson.*;
 import kz.osmium.dorm.util.statement.StatementGET;
 import kz.osmium.util.DBConnection;
 import org.eclipse.jetty.http.HttpStatus;
+import spark.Request;
 import spark.Response;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DormGET {
 
@@ -121,6 +124,72 @@ public class DormGET {
             response.status(400);
 
             return HttpStatus.getCode(400).getMessage();
+        }
+    }
+
+    public static String getRequestAccount(Request request, Response response) {
+
+        try (Connection connection = DBConnection.Dorm.getDB()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(StatementGET.getRequestAccount());
+
+            preparedStatement.setInt(1, Integer.parseInt(request.params(":id")));
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+
+                response.status(200);
+
+                return new Gson().toJson(
+                        new kz.osmium.dorm.util.gson.Request(
+                                resultSet.getInt("id"),
+                                resultSet.getInt("account_id"),
+                                resultSet.getInt("room_id"),
+                                resultSet.getInt("status"),
+                                resultSet.getInt("month"),
+                                resultSet.getString("date_send")
+                        )
+                );
+            }
+
+            response.status(400);
+
+            return HttpStatus.getCode(400).getMessage();
+        } catch (SQLException e) {
+
+            response.status(409);
+
+            return HttpStatus.getCode(409).getMessage();
+        }
+    }
+
+    public static String getRequestList(Request request, Response response) {
+
+        try (Connection connection = DBConnection.Dorm.getDB()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(StatementGET.getRequestList());
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<kz.osmium.dorm.util.gson.Request> list = new ArrayList<>();
+
+            while (resultSet.next())
+                list.add(
+                        new kz.osmium.dorm.util.gson.Request(
+                                resultSet.getInt("id"),
+                                resultSet.getInt("account_id"),
+                                resultSet.getInt("room_id"),
+                                resultSet.getInt("status"),
+                                resultSet.getInt("month"),
+                                resultSet.getString("date_send")
+                        )
+                );
+
+            response.status(200);
+
+            return new Gson().toJson(list);
+        } catch (SQLException e) {
+
+            response.status(409);
+
+            return HttpStatus.getCode(409).getMessage();
         }
     }
 }

@@ -21,7 +21,7 @@ public class DormPOST {
                     request.queryParams("date_send") != null) {
 
                 try (Connection connection = DBConnection.Dorm.getDB()) {
-                    PreparedStatement preparedStatement = connection.prepareStatement(StatementGET.getRequest());
+                    PreparedStatement preparedStatement = connection.prepareStatement(StatementGET.getRequestAccount());
 
                     preparedStatement.setInt(1, Integer.parseInt(request.queryParams("account_id")));
 

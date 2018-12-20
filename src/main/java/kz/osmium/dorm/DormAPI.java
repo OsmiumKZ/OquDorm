@@ -9,7 +9,7 @@ import static spark.Spark.*;
 
 public class DormAPI {
 
-    public static void addAPI(){
+    public static void addAPI() {
 
         getAPI();
         postAPI();
@@ -32,6 +32,34 @@ public class DormAPI {
                             }
                         }
                 ));
+
+        path("/api", () ->
+                path("/request", () -> {
+                            get("/list", "application/json", (request, response) -> {
+                                        if (DomainHTTP.getDorm(request.host()))
+                                            return DormGET.getRequestList(request, response);
+                                        else {
+
+                                            response.status(404);
+
+                                            return HttpStatus.getCode(404).getMessage();
+                                        }
+                                    }
+                            );
+                            get("/id/:id", "application/json", (request, response) -> {
+                                        if (DomainHTTP.getDorm(request.host()))
+                                            return DormGET.getRequestAccount(request, response);
+                                        else {
+
+                                            response.status(404);
+
+                                            return HttpStatus.getCode(404).getMessage();
+                                        }
+                                    }
+                            );
+                        }
+                )
+        );
     }
 
     /**

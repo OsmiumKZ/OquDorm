@@ -26,7 +26,11 @@ public class StatementGET {
         return "SELECT * FROM `rooms`";
     }
 
-    public static String getRequest(){
+    public static String getRequestAccount(){
         return "SELECT * FROM `requests` WHERE `requests`.`account_id`=?";
+    }
+
+    public static String getRequestList(){
+        return "SELECT * FROM `requests` WHERE `requests`.`status`=0";
     }
 }
