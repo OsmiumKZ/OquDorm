@@ -10,4 +10,10 @@ public class StatementPUT {
                 "`requests`.`date_send`= ? " +
                 "WHERE `requests`.`account_id`=?";
     }
+
+    public static String putRequestStatus() {
+        return "UPDATE `requests` " +
+                "SET `requests`.`status`= ? " +
+                "WHERE `requests`.`account_id`=?";
+    }
 }
