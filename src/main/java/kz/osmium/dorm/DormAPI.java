@@ -1,13 +1,11 @@
 package kz.osmium.dorm;
 
-import kz.osmium.account.request.AccountGET;
 import kz.osmium.dorm.request.DormGET;
 import kz.osmium.dorm.request.DormPOST;
 import kz.osmium.util.DomainHTTP;
 import org.eclipse.jetty.http.HttpStatus;
 
-import static spark.Spark.get;
-import static spark.Spark.path;
+import static spark.Spark.*;
 
 public class DormAPI {
 
@@ -42,7 +40,7 @@ public class DormAPI {
     private static void postAPI() {
 
         path("/api", () ->
-                get("/request", "application/json", (request, response) -> {
+                post("/request", "application/json", (request, response) -> {
                             if (DomainHTTP.getDorm(request.host()))
                                 return DormPOST.postRequest(request, response);
                             else {
