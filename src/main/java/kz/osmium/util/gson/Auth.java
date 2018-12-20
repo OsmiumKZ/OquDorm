@@ -21,18 +21,18 @@ import com.google.gson.annotations.SerializedName;
 public class Auth {
     @SerializedName("id")
     private final int id;
-    @SerializedName("name_f_id")
-    private final int nameFId;
-    @SerializedName("name_l_id")
-    private final int nameLId;
-    @SerializedName("patronymic_id")
-    private final int patronymicId;
-    @SerializedName("gender_id")
-    private final int genderId;
+    @SerializedName("name_f")
+    private final String nameFId;
+    @SerializedName("name_l")
+    private final String nameLId;
+    @SerializedName("patronymic")
+    private final String patronymicId;
+    @SerializedName("gender")
+    private final String genderId;
     @SerializedName("iin")
     private final long iin;
 
-    public Auth(int id, int nameFId, int nameLId, int patronymicId, int genderId, long iin) {
+    public Auth(int id, String nameFId, String nameLId, String patronymicId, String genderId, long iin) {
         this.id = id;
         this.nameFId = nameFId;
         this.nameLId = nameLId;

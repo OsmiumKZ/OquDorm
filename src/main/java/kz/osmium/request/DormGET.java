@@ -19,7 +19,7 @@ public class DormGET {
 
         if (request.queryParams("iin") != null) {
 
-            try (Connection connection = DBConnection.KEU.getDB()){
+            try (Connection connection = DBConnection.KEU.getDB()) {
                 PreparedStatement preparedStatement = connection.prepareStatement(StatementGET.getAuth());
 
                 preparedStatement.setLong(1, Long.parseLong(request.queryParams("iin")));
@@ -30,12 +30,13 @@ public class DormGET {
 
                     Auth account = new Auth(
                             resultSet.getInt("id"),
-                            resultSet.getInt("name_f_id"),
-                            resultSet.getInt("name_l_id"),
-                            resultSet.getInt("patronymic_id"),
-                            resultSet.getInt("gender_id"),
+                            getName(resultSet.getInt("name_f_id"), StatementGET.getNameF(), connection),
+                            getName(resultSet.getInt("name_l_id"), StatementGET.getNameL(), connection),
+                            getName(resultSet.getInt("patronymic_id"), StatementGET.getPatronymic(), connection),
+                            getName(resultSet.getInt("gender_id"), StatementGET.getGender(), connection),
                             resultSet.getLong("iin")
                     );
+
 
                     response.status(200);
 
@@ -52,5 +53,19 @@ public class DormGET {
         response.status(204);
 
         return HttpStatus.getCode(204).getMessage();
+    }
+
+    private static String getName(int id, String statement, Connection connection) throws SQLException, NumberFormatException {
+        PreparedStatement preparedStatement = connection.prepareStatement(statement);
+
+        preparedStatement.setInt(1, id);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            return resultSet.getString("name_ru");
+        }
+
+        return "Null";
     }
 }
