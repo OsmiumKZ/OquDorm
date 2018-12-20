@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import kz.osmium.dorm.util.gson.*;
 import kz.osmium.dorm.util.statement.StatementGET;
 import kz.osmium.util.DBConnection;
+import org.eclipse.jetty.http.HttpStatus;
 import spark.Response;
 
 import java.sql.Connection;
@@ -119,7 +120,7 @@ public class DormGET {
 
             response.status(400);
 
-            return e.getMessage();
+            return HttpStatus.getCode(400).getMessage();
         }
     }
 }

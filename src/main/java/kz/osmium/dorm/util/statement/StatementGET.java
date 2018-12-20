@@ -15,7 +15,7 @@ public class StatementGET {
     }
 
     public static String getNames(){
-        return "SELECT * FROM `names`";
+        return "SELECT * FROM `name`";
     }
 
     public static String getRestrooms(){
