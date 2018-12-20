@@ -25,7 +25,9 @@ public class DormPOST {
 
                     preparedStatement.setInt(1, Integer.parseInt(request.queryParams("account_id")));
 
-                    if (preparedStatement.executeQuery().next()) {
+                    ResultSet resultSet = preparedStatement.executeQuery();
+
+                    while (resultSet.next()) {
                         PreparedStatement preparedStatement2 = connection.prepareStatement(StatementPUT.putRequest());
 
                         preparedStatement2.setInt(1, Integer.parseInt(request.queryParams("room_id")));
@@ -45,7 +47,7 @@ public class DormPOST {
 
                         return new Gson().toJson(
                                 new kz.osmium.dorm.util.gson.Request(
-                                        preparedStatement.executeQuery().getInt("id"),
+                                        resultSet.getInt("id"),
                                         Integer.parseInt(request.queryParams("account_id")),
                                         Integer.parseInt(request.queryParams("room_id")),
                                         0,
