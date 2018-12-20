@@ -58,25 +58,25 @@ public class DormGET {
                                 )
                         );
 
-            preparedStatement = connection.prepareStatement(StatementGET.getNames());
-            resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next())
-                dormAll.getNames()
-                        .add(
-                                new Name(
-                                        resultSet.getInt("id"),
-                                        resultSet.getString("name_ru"),
-                                        resultSet.getString("name_ru_genetive"),
-                                        resultSet.getString("name_ru_dative"),
-                                        resultSet.getString("name_kz"),
-                                        resultSet.getString("name_kz_genetive"),
-                                        resultSet.getString("name_kz_dative"),
-                                        resultSet.getString("name_en"),
-                                        resultSet.getString("name_en_genetive"),
-                                        resultSet.getString("name_en_dative")
-                                )
-                        );
+//            preparedStatement = connection.prepareStatement(StatementGET.getNames());
+//            resultSet = preparedStatement.executeQuery();
+//
+//            while (resultSet.next())
+//                dormAll.getNames()
+//                        .add(
+//                                new Name(
+//                                        resultSet.getInt("id"),
+//                                        resultSet.getString("name_ru"),
+//                                        resultSet.getString("name_ru_genetive"),
+//                                        resultSet.getString("name_ru_dative"),
+//                                        resultSet.getString("name_kz"),
+//                                        resultSet.getString("name_kz_genetive"),
+//                                        resultSet.getString("name_kz_dative"),
+//                                        resultSet.getString("name_en"),
+//                                        resultSet.getString("name_en_genetive"),
+//                                        resultSet.getString("name_en_dative")
+//                                )
+//                        );
 
             preparedStatement = connection.prepareStatement(StatementGET.getRestrooms());
             resultSet = preparedStatement.executeQuery();
