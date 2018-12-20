@@ -17,8 +17,7 @@ public class DormPOST {
 
             if (request.queryParams("account_id") != null &&
                     request.queryParams("room_id") != null &&
-                    request.queryParams("month") != null &&
-                    request.queryParams("date_send") != null) {
+                    request.queryParams("month") != null) {
 
                 try (Connection connection = DBConnection.Dorm.getDB()) {
                     PreparedStatement preparedStatement = connection.prepareStatement(StatementGET.getRequestAccount());
@@ -33,7 +32,7 @@ public class DormPOST {
                         preparedStatement2.setInt(1, Integer.parseInt(request.queryParams("room_id")));
                         preparedStatement2.setInt(2, 0);
                         preparedStatement2.setInt(3, Integer.parseInt(request.queryParams("month")));
-                        preparedStatement2.setString(4, request.queryParams("date_send"));
+                        preparedStatement2.setString(4, "2011-04-12T00:00:00.000");
                         preparedStatement2.setInt(5, Integer.parseInt(request.queryParams("account_id")));
 
                         if (preparedStatement2.executeUpdate() == 0) {
@@ -67,7 +66,7 @@ public class DormPOST {
                     preparedStatement.setInt(2, Integer.parseInt(request.queryParams("room_id")));
                     preparedStatement.setInt(3, 0);
                     preparedStatement.setInt(4, Integer.parseInt(request.queryParams("month")));
-                    preparedStatement.setString(5, request.queryParams("date_send"));
+                    preparedStatement.setString(5, "2011-04-12T00:00:00.000");
 
                     if (preparedStatement.executeUpdate() == 0) {
 
