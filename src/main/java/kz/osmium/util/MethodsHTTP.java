@@ -19,14 +19,14 @@ public class MethodsHTTP {
 
         path("/api", () ->
                 get("/auth", "application/json", (request, response) -> {
-                            if (DomainHTTP.getDorm(request.host()))
+//                            if (DomainHTTP.getDorm(request.host()))
                                 return DormGET.getAuth(request, response);
-                            else {
-
-                                response.status(404);
-
-                                return HttpStatus.getCode(404).getMessage();
-                            }
+//                            else {
+//
+//                                response.status(404);
+//
+//                                return HttpStatus.getCode(404).getMessage();
+//                            }
                         }
                 ));
     }
