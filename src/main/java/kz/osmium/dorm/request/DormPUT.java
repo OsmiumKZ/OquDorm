@@ -14,8 +14,7 @@ public class DormPUT {
 
     public static String putRequestStatus(Request request, Response response) {
 
-            if (request.queryParams("account_id") != null &&
-                    request.queryParams("status") != null) {
+            if (request.queryParams("status") != null) {
 
                 try (Connection connection = DBConnection.Dorm.getDB()) {
                     PreparedStatement preparedStatement = connection.prepareStatement(StatementPUT.putRequestStatus());
