@@ -13,7 +13,8 @@ public class StatementPUT {
 
     public static String putRequestStatus() {
         return "UPDATE `requests` " +
-                "SET `requests`.`status`= ? " +
+                "SET `requests`.`status`= ?, " +
+                "`requests`.`date_send`= ? " +
                 "WHERE `requests`.`account_id`=?";
     }
 }
