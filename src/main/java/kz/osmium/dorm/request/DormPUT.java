@@ -17,34 +17,34 @@ public class DormPUT {
 
     public static String putRequestStatus(Request request, Response response) {
 
-            if (request.queryParams("status") != null) {
+        if (request.queryParams("status") != null) {
 
-                try (Connection connection = DBConnection.Dorm.getDB()) {
-                    PreparedStatement preparedStatement = connection.prepareStatement(StatementPUT.putRequestStatus());
+            try (Connection connection = DBConnection.Dorm.getDB()) {
+                PreparedStatement preparedStatement = connection.prepareStatement(StatementPUT.putRequestStatus());
 
-                    preparedStatement.setInt(1, Integer.parseInt(request.params(":id")));
-                    preparedStatement.setInt(2, Integer.parseInt(request.queryParams("status")));
-                    preparedStatement.setString(3, "2011-04-12T00:00:00.000");
-                    preparedStatement.executeUpdate();
+                preparedStatement.setInt(1, Integer.parseInt(request.queryParams("status")));
+                preparedStatement.setString(2, "2011-04-12T00:00:00.000");
+                preparedStatement.setInt(3, Integer.parseInt(request.params(":id")));
+                preparedStatement.executeUpdate();
 
-                    response.status(200);
+                response.status(200);
 
-                    Map<String, String> map = new HashMap<>();
+                Map<String, String> map = new HashMap<>();
 
-                    map.put("date_send", "2011-04-12T00:00:00.000");
+                map.put("date_send", "2011-04-12T00:00:00.000");
 
-                    return new Gson().toJson(map);
-                } catch (SQLException | NumberFormatException e) {
+                return new Gson().toJson(map);
+            } catch (SQLException | NumberFormatException e) {
 
-                    response.status(409);
+                response.status(409);
 
-                    return HttpStatus.getCode(409).getMessage();
-                }
-            } else {
-
-                response.status(204);
-
-                return HttpStatus.getCode(204).getMessage();
+                return HttpStatus.getCode(409).getMessage();
             }
+        } else {
+
+            response.status(204);
+
+            return HttpStatus.getCode(204).getMessage();
+        }
     }
 }
