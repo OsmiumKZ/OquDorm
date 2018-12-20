@@ -51,7 +51,7 @@ public class DormPOST {
                                         Integer.parseInt(request.queryParams("room_id")),
                                         0,
                                         Integer.parseInt(request.queryParams("month")),
-                                        request.queryParams("date_send")
+                                        "2011-04-12T00:00:00.000"
                                 )
                         );
                     }
@@ -87,7 +87,7 @@ public class DormPOST {
                                             Integer.parseInt(request.queryParams("room_id")),
                                             0,
                                             Integer.parseInt(request.queryParams("month")),
-                                            request.queryParams("date_send")
+                                            "2011-04-12T00:00:00.000"
                                     )
                             );
                         } else {
