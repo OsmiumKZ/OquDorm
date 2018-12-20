@@ -23,7 +23,7 @@ public class DormAPI {
         path("/api", () ->
                 get("/db", "application/json", (request, response) -> {
                             if (DomainHTTP.getDorm(request.host()))
-                                return DormGET.getDB(request, response);
+                                return DormGET.getDB(response);
                             else {
 
                                 response.status(404);
