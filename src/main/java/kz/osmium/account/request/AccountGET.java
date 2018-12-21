@@ -1,6 +1,7 @@
 package kz.osmium.account.request;
 
 import com.google.gson.Gson;
+import kz.osmium.account.util.gson.Account;
 import kz.osmium.util.DBConnection;
 import kz.osmium.account.util.gson.Auth;
 import kz.osmium.account.util.statement.StatementGET;
@@ -52,6 +53,41 @@ public class AccountGET {
         response.status(204);
 
         return HttpStatus.getCode(204).getMessage();
+    }
+
+    public static String getAccount(Request request, Response response) {
+
+            try (Connection connection = DBConnection.KEU.getDB()) {
+                PreparedStatement preparedStatement = connection.prepareStatement(StatementGET.getAccount());
+
+                preparedStatement.setInt(1, Integer.parseInt(request.params(":id")));
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+
+                    Account account = new Account(
+                            resultSet.getInt("id"),
+                            resultSet.getString("name_ru_name_f"),
+                            resultSet.getString("name_ru_name_l"),
+                            resultSet.getString("name_ru_patronymic"),
+                            resultSet.getString("name_ru_gender")
+                    );
+
+                    response.status(200);
+
+                    return new Gson().toJson(account);
+                }
+
+                response.status(400);
+
+                return HttpStatus.getCode(400).getMessage();
+            } catch (SQLException | NumberFormatException e) {
+
+                response.status(400);
+
+                return HttpStatus.getCode(400).getMessage();
+            }
     }
 
     private static String getName(int id, String statement, Connection connection) throws SQLException, NumberFormatException {

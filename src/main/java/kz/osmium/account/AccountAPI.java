@@ -9,7 +9,7 @@ import static spark.Spark.path;
 
 public class AccountAPI {
 
-    public static void addAPI(){
+    public static void addAPI() {
 
         getAPI();
     }
@@ -31,5 +31,21 @@ public class AccountAPI {
                             }
                         }
                 ));
+
+        path("/api", () ->
+                path("/account", () ->
+                        get("/id/:id", "application/json", (request, response) -> {
+                                    if (DomainHTTP.getDorm(request.host()))
+                                        return AccountGET.getAccount(request, response);
+                                    else {
+
+                                        response.status(404);
+
+                                        return HttpStatus.getCode(404).getMessage();
+                                    }
+                                }
+                        )
+                )
+        );
     }
 }
