@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import kz.osmium.account.util.gson.Account;
 import kz.osmium.util.DBConnection;
 import kz.osmium.account.util.gson.Auth;
-import kz.osmium.account.util.statement.StatementGET;
+import kz.osmium.account.util.statement.StatementAccountGET;
 import org.eclipse.jetty.http.HttpStatus;
 import spark.Request;
 import spark.Response;
@@ -21,7 +21,7 @@ public class AccountGET {
         if (request.queryParams("iin") != null) {
 
             try (Connection connection = DBConnection.KEU.getDB()) {
-                PreparedStatement preparedStatement = connection.prepareStatement(StatementGET.getAuth());
+                PreparedStatement preparedStatement = connection.prepareStatement(StatementAccountGET.getAuth());
 
                 preparedStatement.setLong(1, Long.parseLong(request.queryParams("iin")));
 
@@ -57,7 +57,7 @@ public class AccountGET {
     public static String getAccount(Request request, Response response) {
 
         try (Connection connection = DBConnection.KEU.getDB()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(StatementGET.getAccount());
+            PreparedStatement preparedStatement = connection.prepareStatement(StatementAccountGET.getAccount());
 
             preparedStatement.setInt(1, Integer.parseInt(request.params(":id")));
 

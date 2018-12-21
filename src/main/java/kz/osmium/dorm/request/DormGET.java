@@ -2,8 +2,9 @@ package kz.osmium.dorm.request;
 
 import com.google.gson.Gson;
 import kz.osmium.account.util.gson.Account;
+import kz.osmium.account.util.statement.StatementAccountGET;
 import kz.osmium.dorm.util.gson.*;
-import kz.osmium.dorm.util.statement.StatementGET;
+import kz.osmium.dorm.util.statement.StatementDormGET;
 import kz.osmium.util.DBConnection;
 import org.eclipse.jetty.http.HttpStatus;
 import spark.Request;
@@ -23,7 +24,7 @@ public class DormGET {
         try (Connection connection = DBConnection.Dorm.getDB()) {
             DormAll dormAll = new DormAll();
 
-            PreparedStatement preparedStatement = connection.prepareStatement(StatementGET.getDorms());
+            PreparedStatement preparedStatement = connection.prepareStatement(StatementDormGET.getDorms());
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next())
@@ -35,7 +36,7 @@ public class DormGET {
                                 )
                         );
 
-            preparedStatement = connection.prepareStatement(StatementGET.getFloors());
+            preparedStatement = connection.prepareStatement(StatementDormGET.getFloors());
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next())
@@ -48,7 +49,7 @@ public class DormGET {
                                 )
                         );
 
-            preparedStatement = connection.prepareStatement(StatementGET.getKitchens());
+            preparedStatement = connection.prepareStatement(StatementDormGET.getKitchens());
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next())
@@ -63,7 +64,7 @@ public class DormGET {
                                 )
                         );
 
-            preparedStatement = connection.prepareStatement(StatementGET.getNames());
+            preparedStatement = connection.prepareStatement(StatementDormGET.getNames());
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next())
@@ -83,7 +84,7 @@ public class DormGET {
                                 )
                         );
 
-            preparedStatement = connection.prepareStatement(StatementGET.getRestrooms());
+            preparedStatement = connection.prepareStatement(StatementDormGET.getRestrooms());
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next())
@@ -99,7 +100,7 @@ public class DormGET {
                                 )
                         );
 
-            preparedStatement = connection.prepareStatement(StatementGET.getRooms());
+            preparedStatement = connection.prepareStatement(StatementDormGET.getRooms());
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next())
@@ -131,7 +132,7 @@ public class DormGET {
     public static String getRequestAccount(Request request, Response response) {
 
         try (Connection connection = DBConnection.Dorm.getDB()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(StatementGET.getRequestAccount());
+            PreparedStatement preparedStatement = connection.prepareStatement(StatementDormGET.getRequestAccount());
 
             preparedStatement.setInt(1, Integer.parseInt(request.params(":id")));
 
@@ -167,12 +168,12 @@ public class DormGET {
     public static String getRequestList(Request request, Response response) {
 
         try (Connection connection = DBConnection.Dorm.getDB(); Connection connection2 = DBConnection.KEU.getDB()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(StatementGET.getRequestList());
+            PreparedStatement preparedStatement = connection.prepareStatement(StatementDormGET.getRequestList());
             ResultSet resultSet = preparedStatement.executeQuery();
             List<RequestAll> list = new ArrayList<>();
 
             while (resultSet.next()) {
-                PreparedStatement preparedStatement2 = connection2.prepareStatement(kz.osmium.account.util.statement.StatementGET.getAccount());
+                PreparedStatement preparedStatement2 = connection2.prepareStatement(StatementAccountGET.getAccount());
 
                 preparedStatement2.setInt(1, resultSet.getInt("account_id"));
 

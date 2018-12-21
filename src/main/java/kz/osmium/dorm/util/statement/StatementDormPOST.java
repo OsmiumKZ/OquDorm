@@ -1,6 +1,6 @@
 package kz.osmium.dorm.util.statement;
 
-public class StatementPOST {
+public class StatementDormPOST {
 
     public static String postRequests() {
         return "INSERT INTO `requests` " +

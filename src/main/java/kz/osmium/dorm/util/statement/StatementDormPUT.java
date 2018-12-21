@@ -1,6 +1,6 @@
 package kz.osmium.dorm.util.statement;
 
-public class StatementPUT {
+public class StatementDormPUT {
 
     public static String putRequest() {
         return "UPDATE `requests` " +

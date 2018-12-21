@@ -1,6 +1,6 @@
 package kz.osmium.account.util.statement;
 
-public class StatementGET {
+public class StatementAccountGET {
 
     public static String getAuth() {
         return "SELECT `accounts`.`id`, `accounts`.`name_f_id`, `accounts`.`name_l_id`, `accounts`.`patronymic_id`, `accounts`.`gender_id`, `accounts`.`iin`, \n" +

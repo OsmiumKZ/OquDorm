@@ -1,6 +1,6 @@
 package kz.osmium.dorm.util.statement;
 
-public class StatementGET {
+public class StatementDormGET {
 
     public static String getDorms(){
         return "SELECT * FROM `dorms`";
