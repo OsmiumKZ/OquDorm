@@ -166,42 +166,35 @@ public class DormGET {
 
     public static String getRequestList(Request request, Response response) {
 
-        try (Connection connection = DBConnection.Dorm.getDB()) {
+        try (Connection connection = DBConnection.Dorm.getDB(); Connection connection2 = DBConnection.KEU.getDB()) {
             PreparedStatement preparedStatement = connection.prepareStatement(StatementGET.getRequestList());
             ResultSet resultSet = preparedStatement.executeQuery();
             List<RequestAll> list = new ArrayList<>();
 
             while (resultSet.next()) {
-                try (Connection connection2 = DBConnection.Dorm.getDB()) {
-                    PreparedStatement preparedStatement2 = connection2.prepareStatement(kz.osmium.account.util.statement.StatementGET.getAccount());
+                PreparedStatement preparedStatement2 = connection2.prepareStatement(kz.osmium.account.util.statement.StatementGET.getAccount());
 
-                    preparedStatement2.setInt(1, resultSet.getInt("account_id"));
+                preparedStatement2.setInt(1, resultSet.getInt("account_id"));
 
-                    ResultSet resultSet2 = preparedStatement2.executeQuery();
+                ResultSet resultSet2 = preparedStatement2.executeQuery();
 
-                    while (resultSet2.next())
-                        list.add(
-                                new RequestAll(
-                                        resultSet.getInt("id"),
-                                        new Account(
-                                                resultSet2.getInt("id"),
-                                                resultSet2.getString("name_ru_name_f"),
-                                                resultSet2.getString("name_ru_name_l"),
-                                                resultSet2.getString("name_ru_patronymic"),
-                                                resultSet2.getString("name_ru_gender")
-                                        ),
-                                        resultSet.getInt("room_id"),
-                                        resultSet.getInt("status"),
-                                        resultSet.getInt("month"),
-                                        resultSet.getString("date_send")
-                                )
-                        );
-                } catch (SQLException e) {
-
-                    response.status(409);
-
-                    return HttpStatus.getCode(409).getMessage();
-                }
+                while (resultSet2.next())
+                    list.add(
+                            new RequestAll(
+                                    resultSet.getInt("id"),
+                                    new Account(
+                                            resultSet2.getInt("id"),
+                                            resultSet2.getString("name_ru_name_f"),
+                                            resultSet2.getString("name_ru_name_l"),
+                                            resultSet2.getString("name_ru_patronymic"),
+                                            resultSet2.getString("name_ru_gender")
+                                    ),
+                                    resultSet.getInt("room_id"),
+                                    resultSet.getInt("status"),
+                                    resultSet.getInt("month"),
+                                    resultSet.getString("date_send")
+                            )
+                    );
             }
 
             response.status(200);
