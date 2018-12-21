@@ -22,7 +22,7 @@ public class DormPOST {
                     request.queryParams("month") != null) {
 
                 try (Connection connection = DBConnection.Dorm.getDB()) {
-                    String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss k").format(new Date());
+                    String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
                     PreparedStatement preparedStatement = connection.prepareStatement(StatementDormGET.getRequestAccount());
 
                     preparedStatement.setInt(1, Integer.parseInt(request.queryParams("account_id")));

@@ -50,13 +50,13 @@
           <entry key="Procfile" value="8" />
           <entry key="dummy" value="41" />
           <entry key="gradle" value="18" />
-          <entry key="java" value="2494" />
+          <entry key="java" value="2495" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="18" />
-          <entry key="JAVA" value="2494" />
+          <entry key="JAVA" value="2495" />
           <entry key="PLAIN_TEXT" value="49" />
         </counts>
       </usages-collector>
@@ -79,8 +79,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormPUT.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+            <state relative-caret-position="252">
+              <caret line="24" column="95" lean-forward="true" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="95" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -536,14 +536,14 @@
         <option value="$PROJECT_DIR$/src/main/java/kz/osmium/account/util/statement/StatementGET.java" />
         <option value="$PROJECT_DIR$/src/main/java/kz/osmium/account/request/AccountGET.java" />
         <option value="$PROJECT_DIR$/src/main/java/kz/osmium/account/util/statement/StatementAccountGET.java" />
-        <option value="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormPUT.java" />
         <option value="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormPOST.java" />
+        <option value="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormPUT.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="84" />
-    <option name="y" value="27" />
+    <option name="x" value="537" />
+    <option name="y" value="69" />
     <option name="width" value="1583" />
     <option name="height" value="944" />
   </component>
@@ -767,7 +767,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="84" y="27" width="1583" height="944" extended-state="0" />
+    <frame x="537" y="69" width="1583" height="944" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20156556" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1056,8 +1056,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormPUT.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+        <state relative-caret-position="252">
+          <caret line="24" column="95" lean-forward="true" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="95" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
