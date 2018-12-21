@@ -1,6 +1,7 @@
 package kz.osmium.dorm.request;
 
 import com.google.gson.Gson;
+import kz.osmium.account.util.gson.Account;
 import kz.osmium.dorm.util.gson.*;
 import kz.osmium.dorm.util.statement.StatementGET;
 import kz.osmium.util.DBConnection;
@@ -168,19 +169,33 @@ public class DormGET {
         try (Connection connection = DBConnection.Dorm.getDB()) {
             PreparedStatement preparedStatement = connection.prepareStatement(StatementGET.getRequestList());
             ResultSet resultSet = preparedStatement.executeQuery();
-            List<kz.osmium.dorm.util.gson.Request> list = new ArrayList<>();
+            List<RequestAll> list = new ArrayList<>();
 
-            while (resultSet.next())
-                list.add(
-                        new kz.osmium.dorm.util.gson.Request(
-                                resultSet.getInt("id"),
-                                resultSet.getInt("account_id"),
-                                resultSet.getInt("room_id"),
-                                resultSet.getInt("status"),
-                                resultSet.getInt("month"),
-                                resultSet.getString("date_send")
-                        )
-                );
+            while (resultSet.next()){
+                PreparedStatement preparedStatement2 = connection.prepareStatement(kz.osmium.account.util.statement.StatementGET.getAccount());
+
+                preparedStatement2.setInt(1, resultSet.getInt("account_id"));
+
+                ResultSet resultSet2 = preparedStatement2.executeQuery();
+
+                while (resultSet2.next())
+                    list.add(
+                            new RequestAll(
+                                    resultSet.getInt("id"),
+                                    new Account(
+                                            resultSet2.getInt("id"),
+                                            resultSet2.getString("name_ru_name_f"),
+                                            resultSet2.getString("name_ru_name_l"),
+                                            resultSet2.getString("name_ru_patronymic"),
+                                            resultSet2.getString("name_ru_gender")
+                                    ),
+                                    resultSet.getInt("room_id"),
+                                    resultSet.getInt("status"),
+                                    resultSet.getInt("month"),
+                                    resultSet.getString("date_send")
+                            )
+                    );
+            }
 
             response.status(200);
 
