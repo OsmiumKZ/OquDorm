@@ -22,22 +22,22 @@ public class Auth {
     @SerializedName("id")
     private final int id;
     @SerializedName("name_f")
-    private final String nameFId;
+    private final String nameF;
     @SerializedName("name_l")
-    private final String nameLId;
+    private final String nameL;
     @SerializedName("patronymic")
-    private final String patronymicId;
+    private final String patronymic;
     @SerializedName("gender")
-    private final String genderId;
+    private final String gender;
     @SerializedName("iin")
     private final long iin;
 
-    public Auth(int id, String nameFId, String nameLId, String patronymicId, String genderId, long iin) {
+    public Auth(int id, String nameF, String nameL, String patronymic, String gender, long iin) {
         this.id = id;
-        this.nameFId = nameFId;
-        this.nameLId = nameLId;
-        this.patronymicId = patronymicId;
-        this.genderId = genderId;
+        this.nameF = nameF;
+        this.nameL = nameL;
+        this.patronymic = patronymic;
+        this.gender = gender;
         this.iin = iin;
     }
 }
