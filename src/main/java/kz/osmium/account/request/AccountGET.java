@@ -27,14 +27,13 @@ public class AccountGET {
 
                 ResultSet resultSet = preparedStatement.executeQuery();
 
-                while (resultSet.next()) {
-
+                if (resultSet.next()) {
                     Auth account = new Auth(
                             resultSet.getInt("id"),
-                            getName(resultSet.getInt("name_f_id"), StatementGET.getNameF(), connection),
-                            getName(resultSet.getInt("name_l_id"), StatementGET.getNameL(), connection),
-                            getName(resultSet.getInt("patronymic_id"), StatementGET.getPatronymic(), connection),
-                            getName(resultSet.getInt("gender_id"), StatementGET.getGender(), connection),
+                            resultSet.getString("name_ru_name_f"),
+                            resultSet.getString("name_ru_name_l"),
+                            resultSet.getString("name_ru_patronymic"),
+                            resultSet.getString("name_ru_gender"),
                             resultSet.getLong("iin")
                     );
 
@@ -57,58 +56,35 @@ public class AccountGET {
 
     public static String getAccount(Request request, Response response) {
 
-            try (Connection connection = DBConnection.KEU.getDB()) {
-                PreparedStatement preparedStatement = connection.prepareStatement(StatementGET.getAccount());
+        try (Connection connection = DBConnection.KEU.getDB()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(StatementGET.getAccount());
 
-                preparedStatement.setInt(1, Integer.parseInt(request.params(":id")));
+            preparedStatement.setInt(1, Integer.parseInt(request.params(":id")));
 
-                ResultSet resultSet = preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-                while (resultSet.next()) {
+            if (resultSet.next()) {
+                Account account = new Account(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name_ru_name_f"),
+                        resultSet.getString("name_ru_name_l"),
+                        resultSet.getString("name_ru_patronymic"),
+                        resultSet.getString("name_ru_gender")
+                );
 
-                    Account account = new Account(
-                            resultSet.getInt("id"),
-                            resultSet.getString("name_ru_name_f"),
-                            resultSet.getString("name_ru_name_l"),
-                            resultSet.getString("name_ru_patronymic"),
-                            resultSet.getString("name_ru_gender")
-                    );
+                response.status(200);
 
-                    response.status(200);
-
-                    return new Gson().toJson(account);
-                }
-
-                response.status(400);
-
-                return HttpStatus.getCode(400).getMessage();
-            } catch (SQLException | NumberFormatException e) {
-
-                response.status(400);
-
-                return HttpStatus.getCode(400).getMessage();
+                return new Gson().toJson(account);
             }
-    }
 
-    private static String getName(int id, String statement, Connection connection) throws SQLException, NumberFormatException {
-        PreparedStatement preparedStatement = connection.prepareStatement(statement);
+            response.status(400);
 
-        preparedStatement.setInt(1, id);
+            return HttpStatus.getCode(400).getMessage();
+        } catch (SQLException | NumberFormatException e) {
 
-        ResultSet resultSet = preparedStatement.executeQuery();
+            response.status(400);
 
-        while (resultSet.next()) {
-            PreparedStatement preparedStatement2 = connection.prepareStatement(StatementGET.getName());
-
-            preparedStatement2.setInt(1, resultSet.getInt("name_id"));
-
-            ResultSet resultSet2 = preparedStatement2.executeQuery();
-
-            while (resultSet2.next()) {
-                return resultSet2.getString("name_ru");
-            }
+            return HttpStatus.getCode(400).getMessage();
         }
-
-        return "Null";
     }
 }
