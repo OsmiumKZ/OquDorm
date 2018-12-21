@@ -137,7 +137,7 @@ public class DormGET {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
 
                 response.status(200);
 
@@ -171,30 +171,37 @@ public class DormGET {
             ResultSet resultSet = preparedStatement.executeQuery();
             List<RequestAll> list = new ArrayList<>();
 
-            while (resultSet.next()){
-                PreparedStatement preparedStatement2 = connection.prepareStatement(kz.osmium.account.util.statement.StatementGET.getAccount());
+            while (resultSet.next()) {
+                try (Connection connection2 = DBConnection.Dorm.getDB()) {
+                    PreparedStatement preparedStatement2 = connection2.prepareStatement(kz.osmium.account.util.statement.StatementGET.getAccount());
 
-                preparedStatement2.setInt(1, 1);
+                    preparedStatement2.setInt(1, resultSet.getInt("account_id"));
 
-                ResultSet resultSet2 = preparedStatement2.executeQuery();
+                    ResultSet resultSet2 = preparedStatement2.executeQuery();
 
-                while (resultSet2.next())
-                    list.add(
-                            new RequestAll(
-                                    resultSet.getInt("id"),
-                                    new Account(
-                                            resultSet2.getInt("id"),
-                                            resultSet2.getString("name_ru_name_f"),
-                                            resultSet2.getString("name_ru_name_l"),
-                                            resultSet2.getString("name_ru_patronymic"),
-                                            resultSet2.getString("name_ru_gender")
-                                    ),
-                                    resultSet.getInt("room_id"),
-                                    resultSet.getInt("status"),
-                                    resultSet.getInt("month"),
-                                    resultSet.getString("date_send")
-                            )
-                    );
+                    while (resultSet2.next())
+                        list.add(
+                                new RequestAll(
+                                        resultSet.getInt("id"),
+                                        new Account(
+                                                resultSet2.getInt("id"),
+                                                resultSet2.getString("name_ru_name_f"),
+                                                resultSet2.getString("name_ru_name_l"),
+                                                resultSet2.getString("name_ru_patronymic"),
+                                                resultSet2.getString("name_ru_gender")
+                                        ),
+                                        resultSet.getInt("room_id"),
+                                        resultSet.getInt("status"),
+                                        resultSet.getInt("month"),
+                                        resultSet.getString("date_send")
+                                )
+                        );
+                } catch (SQLException e) {
+
+                    response.status(409);
+
+                    return HttpStatus.getCode(409).getMessage();
+                }
             }
 
             response.status(200);
@@ -204,7 +211,7 @@ public class DormGET {
 
             response.status(409);
 
-            return e.getMessage();
+            return HttpStatus.getCode(409).getMessage();
         }
     }
 }
