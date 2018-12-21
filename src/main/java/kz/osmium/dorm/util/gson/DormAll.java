@@ -14,7 +14,7 @@ public class DormAll {
     private List<Kitchen> kitchens = new ArrayList<>();
     @SerializedName("names")
     private List<Name> names = new ArrayList<>();
-    @SerializedName("reports")
+    @SerializedName("restrooms")
     private List<Restroom> restroom = new ArrayList<>();
     @SerializedName("rooms")
     private List<Room> rooms = new ArrayList<>();
