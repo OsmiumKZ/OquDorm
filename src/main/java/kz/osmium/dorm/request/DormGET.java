@@ -178,23 +178,23 @@ public class DormGET {
 
                 ResultSet resultSet2 = preparedStatement2.executeQuery();
 
-                while (resultSet2.next())
-                    list.add(
-                            new RequestAll(
-                                    resultSet.getInt("id"),
-                                    new Account(
-                                            resultSet2.getInt("id"),
-                                            resultSet2.getString("name_ru_name_f"),
-                                            resultSet2.getString("name_ru_name_l"),
-                                            resultSet2.getString("name_ru_patronymic"),
-                                            resultSet2.getString("name_ru_gender")
-                                    ),
-                                    resultSet.getInt("room_id"),
-                                    resultSet.getInt("status"),
-                                    resultSet.getInt("month"),
-                                    resultSet.getString("date_send")
-                            )
-                    );
+//                while (resultSet2.next())
+//                    list.add(
+//                            new RequestAll(
+//                                    resultSet.getInt("id"),
+//                                    new Account(
+//                                            resultSet2.getInt("id"),
+//                                            resultSet2.getString("name_ru_name_f"),
+//                                            resultSet2.getString("name_ru_name_l"),
+//                                            resultSet2.getString("name_ru_patronymic"),
+//                                            resultSet2.getString("name_ru_gender")
+//                                    ),
+//                                    resultSet.getInt("room_id"),
+//                                    resultSet.getInt("status"),
+//                                    resultSet.getInt("month"),
+//                                    resultSet.getString("date_send")
+//                            )
+//                    );
             }
 
             response.status(200);
