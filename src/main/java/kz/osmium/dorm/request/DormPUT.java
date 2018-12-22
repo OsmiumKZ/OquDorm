@@ -42,7 +42,7 @@ public class DormPUT {
 
                     preparedStatement.setInt(1, Integer.parseInt(request.params(":id")));
                     preparedStatement.setInt(2, 0);
-                    preparedStatement.executeQuery();
+                    preparedStatement.executeUpdate();
 
                     try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
