@@ -164,9 +164,9 @@ public class DormPUT {
 
                     preparedStatement.setString(1, "2017-12-22 15:42:36");
                     preparedStatement.setString(2, "2019-12-22 15:42:36");
-                    preparedStatement.setInt(2, roomId);
-                    preparedStatement.setInt(2, accountId);
-                    preparedStatement.setInt(2, Integer.parseInt(request.params(":id")));
+                    preparedStatement.setInt(3, roomId);
+                    preparedStatement.setInt(4, accountId);
+                    preparedStatement.setInt(5, Integer.parseInt(request.params(":id")));
                     preparedStatement.executeUpdate();
 
                     try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
