@@ -59,6 +59,7 @@ public class DormPOST {
                                         Integer.parseInt(request.queryParams("room_id")),
                                         0,
                                         Integer.parseInt(request.queryParams("month")),
+                                        request.queryParams("email"),
                                         date
                                 )
                         );
@@ -100,6 +101,7 @@ public class DormPOST {
                                             Integer.parseInt(request.queryParams("room_id")),
                                             0,
                                             Integer.parseInt(request.queryParams("month")),
+                                            request.queryParams("email"),
                                             date
                                     )
                             );
