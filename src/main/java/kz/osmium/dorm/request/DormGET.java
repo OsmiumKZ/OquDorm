@@ -250,7 +250,7 @@ public class DormGET {
 
             response.status(409);
 
-            return HttpStatus.getCode(409).getMessage();
+            return e.getMessage();
         }
     }
 }
