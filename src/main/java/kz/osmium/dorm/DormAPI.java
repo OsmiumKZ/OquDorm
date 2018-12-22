@@ -22,46 +22,57 @@ public class DormAPI {
      */
     private static void getAPI() {
 
-        path("/api", () ->
-                get("/db", "application/json", (request, response) -> {
-                            if (DomainHTTP.getDorm(request.host()))
-                                return DormGET.getDB(response);
-                            else {
+        path("/api", () -> {
+            get("/db", "application/json", (request, response) -> {
+                        if (DomainHTTP.getDorm(request.host()))
+                            return DormGET.getDB(response);
+                        else {
 
-                                response.status(404);
+                            response.status(404);
 
-                                return HttpStatus.getCode(404).getMessage();
-                            }
+                            return HttpStatus.getCode(404).getMessage();
                         }
-                ));
+                    }
+            );
 
-        path("/api", () ->
-                path("/request", () -> {
-                            get("/list", "application/json", (request, response) -> {
-                                        if (DomainHTTP.getDorm(request.host()))
-                                            return DormGET.getRequestList(request, response);
-                                        else {
+            path("/request", () -> {
+                        get("/list", "application/json", (request, response) -> {
+                                    if (DomainHTTP.getDorm(request.host()))
+                                        return DormGET.getRequestList(request, response);
+                                    else {
 
-                                            response.status(404);
+                                        response.status(404);
 
-                                            return HttpStatus.getCode(404).getMessage();
-                                        }
+                                        return HttpStatus.getCode(404).getMessage();
                                     }
-                            );
-                            get("/id/:id", "application/json", (request, response) -> {
-                                        if (DomainHTTP.getDorm(request.host()))
-                                            return DormGET.getRequestAccount(request, response);
-                                        else {
+                                }
+                        );
+                        get("/id/:id", "application/json", (request, response) -> {
+                                    if (DomainHTTP.getDorm(request.host()))
+                                        return DormGET.getRequestAccount(request, response);
+                                    else {
 
-                                            response.status(404);
+                                        response.status(404);
 
-                                            return HttpStatus.getCode(404).getMessage();
-                                        }
+                                        return HttpStatus.getCode(404).getMessage();
                                     }
-                            );
+                                }
+                        );
+                    }
+            );
+
+            get("/resident", "application/json", (request, response) -> {
+                        if (DomainHTTP.getDorm(request.host()))
+                            return DormGET.getResident(request, response);
+                        else {
+
+                            response.status(404);
+
+                            return HttpStatus.getCode(404).getMessage();
                         }
-                )
-        );
+                    }
+            );
+        });
     }
 
     /**

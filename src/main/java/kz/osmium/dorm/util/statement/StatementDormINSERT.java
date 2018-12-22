@@ -13,4 +13,10 @@ public class StatementDormINSERT {
                 "(`account_id`, `status`) " +
                 "VALUE (?, ?)";
     }
+
+    public static String insertResident() {
+        return "INSERT INTO `residents` " +
+                "(`date_before`, `date_after`, `room_id`, `account_id`, `report_id`) " +
+                "VALUE (?, ?, ?, ?, ?)";
+    }
 }

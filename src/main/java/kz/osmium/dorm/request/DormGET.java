@@ -210,4 +210,47 @@ public class DormGET {
             return HttpStatus.getCode(409).getMessage();
         }
     }
+
+    public static String getResident(Request request, Response response) {
+
+        try (Connection connection = DBConnection.Dorm.getDB(); Connection connection2 = DBConnection.KEU.getDB()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(StatementDormSELECT.selectRestrooms());
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<Resident> list = new ArrayList<>();
+
+            while (resultSet.next()) {
+                PreparedStatement preparedStatement2 = connection2.prepareStatement(StatementAccountSELECT.selectAccount());
+
+                preparedStatement2.setInt(1, resultSet.getInt("account_id"));
+
+                ResultSet resultSet2 = preparedStatement2.executeQuery();
+
+                while (resultSet2.next())
+                    list.add(
+                            new Resident(
+                                    resultSet.getInt("id"),
+                                    resultSet.getString("date_before"),
+                                    resultSet.getString("date_after"),
+                                    resultSet.getInt("room_id"),
+                                    new Account(
+                                            resultSet2.getInt("id"),
+                                            resultSet2.getString("name_ru_name_f"),
+                                            resultSet2.getString("name_ru_name_l"),
+                                            resultSet2.getString("name_ru_patronymic"),
+                                            resultSet2.getString("name_ru_gender")
+                                    )
+                            )
+                    );
+            }
+
+            response.status(200);
+
+            return new Gson().toJson(list);
+        } catch (SQLException e) {
+
+            response.status(409);
+
+            return HttpStatus.getCode(409).getMessage();
+        }
+    }
 }

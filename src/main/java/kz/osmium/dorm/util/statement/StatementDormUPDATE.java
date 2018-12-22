@@ -18,4 +18,17 @@ public class StatementDormUPDATE {
                 "`requests`.`date_send`= ? " +
                 "WHERE `requests`.`account_id`=?";
     }
+
+    public static String updateReportStatus() {
+        return "UPDATE `reports` " +
+                "SET `reports`.`status`= ? " +
+                "WHERE `reports`.`id`=?";
+    }
+
+    public static String updateReportStatusFinale() {
+        return "UPDATE `reports` " +
+                "SET `reports`.`status`= ?, " +
+                "`reports`.`admin`= ? " +
+                "WHERE `reports`.`id`=?";
+    }
 }
