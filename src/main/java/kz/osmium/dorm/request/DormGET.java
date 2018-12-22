@@ -138,7 +138,7 @@ public class DormGET {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
+            if (resultSet.next()) {
 
                 response.status(200);
 

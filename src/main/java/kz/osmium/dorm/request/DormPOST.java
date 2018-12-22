@@ -39,9 +39,9 @@ public class DormPOST {
                         preparedStatement2.setInt(6, Integer.parseInt(request.queryParams("account_id")));
 
                         if (request.queryParams("email") != null)
-                            preparedStatement.setString(4, request.queryParams("email"));
+                            preparedStatement2.setString(4, request.queryParams("email"));
                         else
-                            preparedStatement.setNull(4, Types.VARCHAR);
+                            preparedStatement2.setNull(4, Types.VARCHAR);
 
                         if (preparedStatement2.executeUpdate() == 0) {
 
