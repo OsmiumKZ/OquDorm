@@ -7,6 +7,7 @@ public class StatementDormPUT {
                 "SET `requests`.`room_id`= ?, " +
                 "`requests`.`status`= ?, " +
                 "`requests`.`month`= ?, " +
+                "`requests`.`email`= ?, " +
                 "`requests`.`date_send`= ? " +
                 "WHERE `requests`.`account_id`=?";
     }

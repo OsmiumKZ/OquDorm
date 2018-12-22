@@ -35,8 +35,13 @@ public class DormPOST {
                         preparedStatement2.setInt(1, Integer.parseInt(request.queryParams("room_id")));
                         preparedStatement2.setInt(2, 0);
                         preparedStatement2.setInt(3, Integer.parseInt(request.queryParams("month")));
-                        preparedStatement2.setString(4, date);
-                        preparedStatement2.setInt(5, Integer.parseInt(request.queryParams("account_id")));
+                        preparedStatement2.setString(5, date);
+                        preparedStatement2.setInt(6, Integer.parseInt(request.queryParams("account_id")));
+
+                        if (request.queryParams("email") != null)
+                            preparedStatement.setString(4, request.queryParams("email"));
+                        else
+                            preparedStatement.setNull(4, Types.VARCHAR);
 
                         if (preparedStatement2.executeUpdate() == 0) {
 
@@ -69,7 +74,12 @@ public class DormPOST {
                     preparedStatement.setInt(2, Integer.parseInt(request.queryParams("room_id")));
                     preparedStatement.setInt(3, 0);
                     preparedStatement.setInt(4, Integer.parseInt(request.queryParams("month")));
-                    preparedStatement.setString(5, date);
+                    preparedStatement.setString(6, date);
+
+                    if (request.queryParams("email") != null)
+                        preparedStatement.setString(5, request.queryParams("email"));
+                    else
+                        preparedStatement.setNull(5, Types.VARCHAR);
 
                     if (preparedStatement.executeUpdate() == 0) {
 
