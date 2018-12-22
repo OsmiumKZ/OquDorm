@@ -72,6 +72,32 @@ public class DormAPI {
                         }
                     }
             );
+
+            path("/report", () ->{
+                get("/all", "application/json", (request, response) -> {
+                            if (DomainHTTP.getDorm(request.host()))
+                                return DormGET.getReportAll(request, response);
+                            else {
+
+                                response.status(404);
+
+                                return HttpStatus.getCode(404).getMessage();
+                            }
+                        }
+                );
+
+                get("/active", "application/json", (request, response) -> {
+                            if (DomainHTTP.getDorm(request.host()))
+                                return DormGET.getReportActive(request, response);
+                            else {
+
+                                response.status(404);
+
+                                return HttpStatus.getCode(404).getMessage();
+                            }
+                        }
+                );
+            });
         });
     }
 

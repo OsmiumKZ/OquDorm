@@ -37,4 +37,12 @@ public class StatementDormSELECT {
     public static String selectResident(){
         return "SELECT * FROM `residents`";
     }
+
+    public static String selectReportAll(){
+        return "SELECT * FROM `reports`";
+    }
+
+    public static String selectReportActive(){
+        return "SELECT * FROM `reports` WHERE `reports`.`status`=1 OR `reports`.`status`=3";
+    }
 }

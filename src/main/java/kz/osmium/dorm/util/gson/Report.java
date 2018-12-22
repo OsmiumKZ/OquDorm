@@ -1,20 +1,21 @@
 package kz.osmium.dorm.util.gson;
 
 import com.google.gson.annotations.SerializedName;
+import kz.osmium.account.util.gson.Account;
 
 public class Report {
     @SerializedName("id")
     private final int id;
-    @SerializedName("account_id")
-    private final int accountId;
+    @SerializedName("account")
+    private final Account account;
     @SerializedName("admin")
     private final String admin;
     @SerializedName("status")
     private final int status;
 
-    public Report(int id, int accountId, String admin, int status) {
+    public Report(int id, Account account, String admin, int status) {
         this.id = id;
-        this.accountId = accountId;
+        this.account = account;
         this.admin = admin;
         this.status = status;
     }

@@ -253,4 +253,55 @@ public class DormGET {
             return e.getMessage();
         }
     }
+
+    public static String getReportAll(Request request, Response response) {
+
+        return getReport(request, response);
+    }
+
+    public static String getReportActive(Request request, Response response) {
+
+        return getReport(request, response);
+    }
+
+    private static String getReport(Request request, Response response){
+        try (Connection connection = DBConnection.Dorm.getDB(); Connection connection2 = DBConnection.KEU.getDB()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(StatementDormSELECT.selectReportAll());
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<Report> list = new ArrayList<>();
+
+            while (resultSet.next()) {
+                PreparedStatement preparedStatement2 = connection2.prepareStatement(StatementAccountSELECT.selectAccount());
+
+                preparedStatement2.setInt(1, resultSet.getInt("account_id"));
+
+                ResultSet resultSet2 = preparedStatement2.executeQuery();
+
+                while (resultSet2.next())
+                    list.add(
+                            new Report(
+                                    resultSet.getInt("id"),
+                                    new Account(
+                                            resultSet2.getInt("id"),
+                                            resultSet2.getString("name_ru_name_f"),
+                                            resultSet2.getString("name_ru_name_l"),
+                                            resultSet2.getString("name_ru_patronymic"),
+                                            resultSet2.getString("name_ru_gender")
+                                    ),
+                                    resultSet.getString("admin"),
+                                    resultSet.getInt("status")
+                            )
+                    );
+            }
+
+            response.status(200);
+
+            return new Gson().toJson(list);
+        } catch (SQLException e) {
+
+            response.status(409);
+
+            return e.getMessage();
+        }
+    }
 }
