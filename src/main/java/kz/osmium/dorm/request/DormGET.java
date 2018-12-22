@@ -149,6 +149,7 @@ public class DormGET {
                                 resultSet.getInt("room_id"),
                                 resultSet.getInt("status"),
                                 resultSet.getInt("month"),
+                                resultSet.getString("email"),
                                 resultSet.getString("date_send")
                         )
                 );
