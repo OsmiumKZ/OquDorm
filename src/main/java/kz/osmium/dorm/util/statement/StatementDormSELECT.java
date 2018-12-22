@@ -49,4 +49,8 @@ public class StatementDormSELECT {
     public static String selectReportAccount(){
         return "SELECT * FROM `reports` WHERE `reports`.`account_id`=?";
     }
+
+    public static String selectReportID(){
+        return "SELECT * FROM `reports` WHERE `reports`.`id`=?";
+    }
 }

@@ -21,14 +21,16 @@ public class StatementDormUPDATE {
 
     public static String updateReportStatus() {
         return "UPDATE `reports` " +
-                "SET `reports`.`status`= ? " +
+                "SET `reports`.`status`= ?, " +
+                "`reports`.`date_send`= ? " +
                 "WHERE `reports`.`id`=?";
     }
 
     public static String updateReportStatusFinale() {
         return "UPDATE `reports` " +
                 "SET `reports`.`status`= ?, " +
-                "`reports`.`admin`= ? " +
+                "`reports`.`admin`= ?, " +
+                "`reports`.`date_send`= ? " +
                 "WHERE `reports`.`id`=?";
     }
 }

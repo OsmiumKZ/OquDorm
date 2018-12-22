@@ -137,22 +137,30 @@ public class DormAPI {
      */
     private static void putAPI() {
 
-        path("/api", () ->
-                path("/request", () ->
-                        path("/id", () ->
-                                put("/:id", "application/json", (request, response) -> {
-                                            if (DomainHTTP.getDorm(request.host()))
-                                                return DormPUT.putRequestStatus(request, response);
-                                            else {
+        path("/api", () -> {
+                    put("/request/id/:id", "application/json", (request, response) -> {
+                                if (DomainHTTP.getDorm(request.host()))
+                                    return DormPUT.putRequestStatus(request, response);
+                                else {
 
-                                                response.status(404);
+                                    response.status(404);
 
-                                                return HttpStatus.getCode(404).getMessage();
-                                            }
-                                        }
-                                )
-                        )
-                )
+                                    return HttpStatus.getCode(404).getMessage();
+                                }
+                            }
+                    );
+                    put("/report/id/:id", "application/json", (request, response) -> {
+                                if (DomainHTTP.getDorm(request.host()))
+                                    return DormPUT.putReportStatus(request, response);
+                                else {
+
+                                    response.status(404);
+
+                                    return HttpStatus.getCode(404).getMessage();
+                                }
+                            }
+                    );
+                }
         );
     }
 }
