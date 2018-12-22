@@ -264,9 +264,18 @@ public class DormGET {
         return getReport(request, response, StatementDormSELECT.selectReportActive());
     }
 
-    private static String getReport(Request request, Response response, String sql){
+    public static String getReportAccount(Request request, Response response) {
+
+        return getReport(request, response, StatementDormSELECT.selectReportAccount());
+    }
+
+    private static String getReport(Request request, Response response, String sql) {
         try (Connection connection = DBConnection.Dorm.getDB(); Connection connection2 = DBConnection.KEU.getDB()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            if (request.params(":id") != null)
+                preparedStatement.setInt(1, Integer.parseInt(request.params(":id")));
+
             ResultSet resultSet = preparedStatement.executeQuery();
             List<Report> list = new ArrayList<>();
 

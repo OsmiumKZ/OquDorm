@@ -97,6 +97,18 @@ public class DormAPI {
                             }
                         }
                 );
+
+                get("/id/:id", "application/json", (request, response) -> {
+                            if (DomainHTTP.getDorm(request.host()))
+                                return DormGET.getReportAccount(request, response);
+                            else {
+
+                                response.status(404);
+
+                                return HttpStatus.getCode(404).getMessage();
+                            }
+                        }
+                );
             });
         });
     }
