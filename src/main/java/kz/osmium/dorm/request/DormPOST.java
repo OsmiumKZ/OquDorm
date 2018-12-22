@@ -1,9 +1,9 @@
 package kz.osmium.dorm.request;
 
 import com.google.gson.Gson;
-import kz.osmium.dorm.util.statement.StatementDormGET;
-import kz.osmium.dorm.util.statement.StatementDormPOST;
-import kz.osmium.dorm.util.statement.StatementDormPUT;
+import kz.osmium.dorm.util.statement.StatementDormSELECT;
+import kz.osmium.dorm.util.statement.StatementDormINSERT;
+import kz.osmium.dorm.util.statement.StatementDormUPDATE;
 import kz.osmium.util.DBConnection;
 import org.eclipse.jetty.http.HttpStatus;
 import spark.Request;
@@ -23,14 +23,14 @@ public class DormPOST {
 
                 try (Connection connection = DBConnection.Dorm.getDB()) {
                     String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-                    PreparedStatement preparedStatement = connection.prepareStatement(StatementDormGET.getRequestAccount());
+                    PreparedStatement preparedStatement = connection.prepareStatement(StatementDormSELECT.selectRequestAccount());
 
                     preparedStatement.setInt(1, Integer.parseInt(request.queryParams("account_id")));
 
                     ResultSet resultSet = preparedStatement.executeQuery();
 
                     if (resultSet.next()) {
-                        PreparedStatement preparedStatement2 = connection.prepareStatement(StatementDormPUT.putRequest());
+                        PreparedStatement preparedStatement2 = connection.prepareStatement(StatementDormUPDATE.updateRequest());
 
                         preparedStatement2.setInt(1, Integer.parseInt(request.queryParams("room_id")));
                         preparedStatement2.setInt(2, 0);
@@ -67,7 +67,7 @@ public class DormPOST {
 
                     preparedStatement = connection
                             .prepareStatement(
-                                    StatementDormPOST.postRequests(),
+                                    StatementDormINSERT.insertRequests(),
                                     Statement.RETURN_GENERATED_KEYS
                             );
 

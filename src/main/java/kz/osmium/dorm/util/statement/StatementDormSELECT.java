@@ -1,36 +1,36 @@
 package kz.osmium.dorm.util.statement;
 
-public class StatementDormGET {
+public class StatementDormSELECT {
 
-    public static String getDorms(){
+    public static String selectDorms(){
         return "SELECT * FROM `dorms`";
     }
 
-    public static String getFloors(){
+    public static String selectFloors(){
         return "SELECT * FROM `floors`";
     }
 
-    public static String getKitchens(){
+    public static String selectKitchens(){
         return "SELECT * FROM `kitchens`";
     }
 
-    public static String getNames(){
+    public static String selectNames(){
         return "SELECT * FROM `name`";
     }
 
-    public static String getRestrooms(){
+    public static String selectRestrooms(){
         return "SELECT * FROM `restrooms`";
     }
 
-    public static String getRooms(){
+    public static String selectRooms(){
         return "SELECT * FROM `rooms`";
     }
 
-    public static String getRequestAccount(){
+    public static String selectRequestAccount(){
         return "SELECT * FROM `requests` WHERE `requests`.`account_id`=?";
     }
 
-    public static String getRequestList(){
+    public static String selectRequestList(){
         return "SELECT * FROM `requests` WHERE `requests`.`status`=0";
     }
 }

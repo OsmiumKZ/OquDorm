@@ -1,8 +1,8 @@
 package kz.osmium.account.util.statement;
 
-public class StatementAccountGET {
+public class StatementAccountSELECT {
 
-    public static String getAuth() {
+    public static String selectAuth() {
         return "SELECT `accounts`.`id`, `accounts`.`name_f_id`, `accounts`.`name_l_id`, `accounts`.`patronymic_id`, `accounts`.`gender_id`, `accounts`.`iin`, \n" +
                 "`name_gender`.`name_ru` AS `name_ru_gender`, `name_gender`.`name_kz` AS `name_kz_gender`, `name_gender`.`name_en` AS `name_en_gender`, \n" +
                 "`name_name_f`.`name_ru` AS `name_ru_name_f`, `name_name_f`.`name_kz` AS `name_kz_name_f`, `name_name_f`.`name_en` AS `name_en_name_f`, \n" +
@@ -20,7 +20,7 @@ public class StatementAccountGET {
                 "WHERE `accounts`.iin=?";
     }
 
-    public static String getAccount() {
+    public static String selectAccount() {
         return "SELECT `accounts`.`id`, `accounts`.`name_f_id`, `accounts`.`name_l_id`, `accounts`.`patronymic_id`, `accounts`.`gender_id`, \n" +
                 "`name_gender`.`name_ru` AS `name_ru_gender`, `name_gender`.`name_kz` AS `name_kz_gender`, `name_gender`.`name_en` AS `name_en_gender`, \n" +
                 "`name_name_f`.`name_ru` AS `name_ru_name_f`, `name_name_f`.`name_kz` AS `name_kz_name_f`, `name_name_f`.`name_en` AS `name_en_name_f`, \n" +

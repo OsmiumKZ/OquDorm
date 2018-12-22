@@ -1,8 +1,8 @@
 package kz.osmium.dorm.util.statement;
 
-public class StatementDormPUT {
+public class StatementDormUPDATE {
 
-    public static String putRequest() {
+    public static String updateRequest() {
         return "UPDATE `requests` " +
                 "SET `requests`.`room_id`= ?, " +
                 "`requests`.`status`= ?, " +
@@ -12,7 +12,7 @@ public class StatementDormPUT {
                 "WHERE `requests`.`account_id`=?";
     }
 
-    public static String putRequestStatus() {
+    public static String updateRequestStatus() {
         return "UPDATE `requests` " +
                 "SET `requests`.`status`= ?, " +
                 "`requests`.`date_send`= ? " +

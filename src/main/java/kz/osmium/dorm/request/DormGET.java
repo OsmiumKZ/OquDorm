@@ -2,9 +2,9 @@ package kz.osmium.dorm.request;
 
 import com.google.gson.Gson;
 import kz.osmium.account.util.gson.Account;
-import kz.osmium.account.util.statement.StatementAccountGET;
+import kz.osmium.account.util.statement.StatementAccountSELECT;
 import kz.osmium.dorm.util.gson.*;
-import kz.osmium.dorm.util.statement.StatementDormGET;
+import kz.osmium.dorm.util.statement.StatementDormSELECT;
 import kz.osmium.util.DBConnection;
 import org.eclipse.jetty.http.HttpStatus;
 import spark.Request;
@@ -24,7 +24,7 @@ public class DormGET {
         try (Connection connection = DBConnection.Dorm.getDB()) {
             DormAll dormAll = new DormAll();
 
-            PreparedStatement preparedStatement = connection.prepareStatement(StatementDormGET.getDorms());
+            PreparedStatement preparedStatement = connection.prepareStatement(StatementDormSELECT.selectDorms());
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next())
@@ -36,7 +36,7 @@ public class DormGET {
                                 )
                         );
 
-            preparedStatement = connection.prepareStatement(StatementDormGET.getFloors());
+            preparedStatement = connection.prepareStatement(StatementDormSELECT.selectFloors());
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next())
@@ -49,7 +49,7 @@ public class DormGET {
                                 )
                         );
 
-            preparedStatement = connection.prepareStatement(StatementDormGET.getKitchens());
+            preparedStatement = connection.prepareStatement(StatementDormSELECT.selectKitchens());
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next())
@@ -64,7 +64,7 @@ public class DormGET {
                                 )
                         );
 
-            preparedStatement = connection.prepareStatement(StatementDormGET.getNames());
+            preparedStatement = connection.prepareStatement(StatementDormSELECT.selectNames());
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next())
@@ -84,7 +84,7 @@ public class DormGET {
                                 )
                         );
 
-            preparedStatement = connection.prepareStatement(StatementDormGET.getRestrooms());
+            preparedStatement = connection.prepareStatement(StatementDormSELECT.selectRestrooms());
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next())
@@ -100,7 +100,7 @@ public class DormGET {
                                 )
                         );
 
-            preparedStatement = connection.prepareStatement(StatementDormGET.getRooms());
+            preparedStatement = connection.prepareStatement(StatementDormSELECT.selectRooms());
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next())
@@ -132,7 +132,7 @@ public class DormGET {
     public static String getRequestAccount(Request request, Response response) {
 
         try (Connection connection = DBConnection.Dorm.getDB()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(StatementDormGET.getRequestAccount());
+            PreparedStatement preparedStatement = connection.prepareStatement(StatementDormSELECT.selectRequestAccount());
 
             preparedStatement.setInt(1, Integer.parseInt(request.params(":id")));
 
@@ -169,12 +169,12 @@ public class DormGET {
     public static String getRequestList(Request request, Response response) {
 
         try (Connection connection = DBConnection.Dorm.getDB(); Connection connection2 = DBConnection.KEU.getDB()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(StatementDormGET.getRequestList());
+            PreparedStatement preparedStatement = connection.prepareStatement(StatementDormSELECT.selectRequestList());
             ResultSet resultSet = preparedStatement.executeQuery();
             List<RequestAll> list = new ArrayList<>();
 
             while (resultSet.next()) {
-                PreparedStatement preparedStatement2 = connection2.prepareStatement(StatementAccountGET.getAccount());
+                PreparedStatement preparedStatement2 = connection2.prepareStatement(StatementAccountSELECT.selectAccount());
 
                 preparedStatement2.setInt(1, resultSet.getInt("account_id"));
 
