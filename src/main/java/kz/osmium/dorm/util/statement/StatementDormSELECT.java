@@ -33,4 +33,8 @@ public class StatementDormSELECT {
     public static String selectRequestList(){
         return "SELECT * FROM `requests` WHERE `requests`.`status`=0";
     }
+
+    public static String selectResident(){
+        return "SELECT * FROM `residents`";
+    }
 }

@@ -214,7 +214,7 @@ public class DormGET {
     public static String getResident(Request request, Response response) {
 
         try (Connection connection = DBConnection.Dorm.getDB(); Connection connection2 = DBConnection.KEU.getDB()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(StatementDormSELECT.selectRestrooms());
+            PreparedStatement preparedStatement = connection.prepareStatement(StatementDormSELECT.selectResident());
             ResultSet resultSet = preparedStatement.executeQuery();
             List<Resident> list = new ArrayList<>();
 
