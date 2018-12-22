@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1eb311e-b2d3-4923-9775-2e9e26f3d7ed" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormGET.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormGET.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/statement/StatementDormSELECT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/statement/StatementDormSELECT.java" afterDir="false" />
-    </list>
+    <list default="true" id="a1eb311e-b2d3-4923-9775-2e9e26f3d7ed" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -37,14 +34,14 @@
           <entry key="class" value="5" />
           <entry key="gradle" value="2" />
           <entry key="gradlew" value="1" />
-          <entry key="java" value="161" />
+          <entry key="java" value="163" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="5" />
           <entry key="Groovy" value="2" />
-          <entry key="JAVA" value="161" />
+          <entry key="JAVA" value="163" />
           <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
@@ -53,13 +50,13 @@
           <entry key="Procfile" value="8" />
           <entry key="dummy" value="41" />
           <entry key="gradle" value="18" />
-          <entry key="java" value="3012" />
+          <entry key="java" value="3140" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="18" />
-          <entry key="JAVA" value="3012" />
+          <entry key="JAVA" value="3140" />
           <entry key="PLAIN_TEXT" value="49" />
         </counts>
       </usages-collector>
@@ -76,14 +73,38 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormGET.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="676">
-              <caret line="284" column="29" lean-forward="true" selection-start-line="284" selection-start-column="29" selection-end-line="284" selection-end-column="29" />
+            <state relative-caret-position="256">
+              <caret line="213" column="32" selection-start-line="213" selection-start-column="32" selection-end-line="213" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#getDB#0;class#DormGET#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/dorm/DormAPI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="188">
+              <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Report.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="616">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -550,14 +571,14 @@
         <option value="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormPOST.java" />
         <option value="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/RequestAll.java" />
         <option value="$PROJECT_DIR$/src/main/java/kz/osmium/account/util/statement/StatementAccountSELECT.java" />
-        <option value="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Report.java" />
         <option value="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormPUT.java" />
         <option value="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/statement/StatementDormUPDATE.java" />
         <option value="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/statement/StatementDormINSERT.java" />
         <option value="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Resident.java" />
-        <option value="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/DormAPI.java" />
         <option value="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/statement/StatementDormSELECT.java" />
+        <option value="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Report.java" />
         <option value="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormGET.java" />
+        <option value="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/DormAPI.java" />
       </list>
     </option>
   </component>
@@ -748,7 +769,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545499870032" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545500638802" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
@@ -788,9 +809,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="51" y="27" width="1869" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20670699" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20670699" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -804,7 +824,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.30601093" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.30601093" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Build" order="10" weight="0.8242424" />
@@ -1019,13 +1039,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Report.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormPOST.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -1074,18 +1087,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/dorm/DormAPI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="63" column="72" lean-forward="true" selection-start-line="63" selection-start-column="72" selection-end-line="63" selection-end-column="72" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#517#897#0" />
-            <element signature="e#979#2167#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Resident.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
@@ -1114,13 +1115,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Report.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormGET.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="676">
-          <caret line="284" column="29" lean-forward="true" selection-start-line="284" selection-start-column="29" selection-end-line="284" selection-end-column="29" />
+        <state relative-caret-position="256">
+          <caret line="213" column="32" selection-start-line="213" selection-start-column="32" selection-end-line="213" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#getDB#0;class#DormGET#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/dorm/DormAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import kz.osmium.account.util.gson.Account;
+import kz.osmium.account.util.statement.StatementAccountSELECT;
 import kz.osmium.dorm.util.gson.Report;
 import kz.osmium.dorm.util.statement.StatementDormINSERT;
 import kz.osmium.dorm.util.statement.StatementDormUPDATE;
@@ -24,7 +26,7 @@ public class DormPUT {
 
         if (request.queryParams("status") != null) {
 
-            try (Connection connection = DBConnection.Dorm.getDB()) {
+            try (Connection connection = DBConnection.Dorm.getDB(); Connection connection2 = DBConnection.KEU.getDB()) {
                 String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
                 PreparedStatement preparedStatement = connection.prepareStatement(StatementDormUPDATE.updateRequestStatus());
 
@@ -46,21 +48,40 @@ public class DormPUT {
 
                     try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
+                            PreparedStatement preparedStatement2 = connection2.prepareStatement(StatementAccountSELECT.selectAccount());
 
-                            response.status(201);
+                            preparedStatement2.setInt(1, Integer.parseInt(request.params(":id")));
 
-                            JsonObject jsonObject = gson.toJsonTree(
-                                    new Report(
-                                            Math.toIntExact(generatedKeys.getLong(1)),
-                                            Integer.parseInt(request.params(":id")),
-                                            null,
-                                            0
-                                    )
-                            ).getAsJsonObject();
+                            ResultSet resultSet2 = preparedStatement2.executeQuery();
 
-                            jsonObject.addProperty("date_send", date);
+                            if (resultSet2.next()) {
 
-                            return jsonObject.toString();
+                                response.status(201);
+
+                                JsonObject jsonObject = gson.toJsonTree(
+                                        new Report(
+                                                Math.toIntExact(generatedKeys.getLong(1)),
+                                                new Account(
+                                                        resultSet2.getInt("id"),
+                                                        resultSet2.getString("name_ru_name_f"),
+                                                        resultSet2.getString("name_ru_name_l"),
+                                                        resultSet2.getString("name_ru_patronymic"),
+                                                        resultSet2.getString("name_ru_gender")
+                                                ),
+                                                null,
+                                                0
+                                        )
+                                ).getAsJsonObject();
+
+                                jsonObject.addProperty("date_send", date);
+
+                                return jsonObject.toString();
+                            } else {
+
+                                response.status(500);
+
+                                return HttpStatus.getCode(500).getMessage();
+                            }
                         } else {
 
                             response.status(500);

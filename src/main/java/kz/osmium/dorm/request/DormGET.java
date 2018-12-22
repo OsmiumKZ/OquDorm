@@ -225,7 +225,7 @@ public class DormGET {
 
                 ResultSet resultSet2 = preparedStatement2.executeQuery();
 
-                while (resultSet2.next())
+                if (resultSet2.next())
                     list.add(
                             new Resident(
                                     resultSet.getInt("id"),
