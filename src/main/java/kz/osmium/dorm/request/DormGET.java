@@ -256,17 +256,17 @@ public class DormGET {
 
     public static String getReportAll(Request request, Response response) {
 
-        return getReport(request, response);
+        return getReport(request, response, StatementDormSELECT.selectReportAll());
     }
 
     public static String getReportActive(Request request, Response response) {
 
-        return getReport(request, response);
+        return getReport(request, response, StatementDormSELECT.selectReportActive());
     }
 
-    private static String getReport(Request request, Response response){
+    private static String getReport(Request request, Response response, String sql){
         try (Connection connection = DBConnection.Dorm.getDB(); Connection connection2 = DBConnection.KEU.getDB()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(StatementDormSELECT.selectReportAll());
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
             List<Report> list = new ArrayList<>();
 
