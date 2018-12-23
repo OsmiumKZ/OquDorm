@@ -2,6 +2,7 @@ package kz.osmium.dorm.util.statement;
 
 public class StatementDormUPDATE {
 
+    /* Обновить заявление студента */
     public static String updateRequest() {
         return "UPDATE `requests` " +
                 "SET `requests`.`room_id`= ?, " +
@@ -12,6 +13,7 @@ public class StatementDormUPDATE {
                 "WHERE `requests`.`account_id`=?";
     }
 
+    /* Обновить заявление студента */
     public static String updateRequestStatus() {
         return "UPDATE `requests` " +
                 "SET `requests`.`status`= ?, " +
@@ -19,6 +21,7 @@ public class StatementDormUPDATE {
                 "WHERE `requests`.`account_id`=?";
     }
 
+    /* Обновить отчет по ID */
     public static String updateReportStatus() {
         return "UPDATE `reports` " +
                 "SET `reports`.`status`= ?, " +
@@ -26,6 +29,7 @@ public class StatementDormUPDATE {
                 "WHERE `reports`.`id`=?";
     }
 
+    /* Обновить отчеты по ID */
     public static String updateReportStatusFinale() {
         return "UPDATE `reports` " +
                 "SET `reports`.`status`= ?, " +

@@ -71,7 +71,8 @@ public class DormPUT {
                                                         resultSet2.getString("name_ru_gender")
                                                 ),
                                                 null,
-                                                0
+                                                0,
+                                                date
                                         )
                                 ).getAsJsonObject();
 

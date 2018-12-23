@@ -4,14 +4,24 @@ import com.google.gson.annotations.SerializedName;
 import kz.osmium.account.util.gson.Account;
 
 public class Resident {
+
+    /* Индивидуальный номер */
     @SerializedName("id")
     private final int id;
+
+    /* Когда студент был заселен */
     @SerializedName("date_before")
     private final String dateBefore;
+
+    /* Когда время проживания в общежития кончится */
     @SerializedName("date_after")
     private final String dateAfter;
+
+    /* ID комнаты */
     @SerializedName("room_id")
     private final int roomId;
+
+    /* Объект аккаунта */
     @SerializedName("account")
     private final Account account;
 

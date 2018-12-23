@@ -23,6 +23,12 @@ public class DormAPI {
     private static void getAPI() {
 
         path("/api", () -> {
+
+            /*
+             * Получение всех данных из БД Dorm. Только общедоступная информация.
+             *
+             * https://*.example.com/api/db
+             */
             get("/db", "application/json", (request, response) -> {
                         if (DomainHTTP.getDorm(request.host()))
                             return DormGET.getDB(response);
@@ -36,6 +42,12 @@ public class DormAPI {
             );
 
             path("/request", () -> {
+
+                        /*
+                         * Получение списка всех активных заявлений для администратора.
+                         *
+                         * https://*.example.com/api/request/list
+                         */
                         get("/list", "application/json", (request, response) -> {
                                     if (DomainHTTP.getDorm(request.host()))
                                         return DormGET.getRequestList(request, response);
@@ -47,6 +59,12 @@ public class DormAPI {
                                     }
                                 }
                         );
+
+                        /*
+                         * Получение заявления для студента.
+                         *
+                         * https://*.example.com/api/request/id/{:id}
+                         */
                         get("/id/:id", "application/json", (request, response) -> {
                                     if (DomainHTTP.getDorm(request.host()))
                                         return DormGET.getRequestAccount(request, response);
@@ -61,6 +79,11 @@ public class DormAPI {
                     }
             );
 
+            /*
+             * Получить список всех заселенных и когда-то бывших заселенных.
+             *
+             * https://*.example.com/api/resident
+             */
             get("/resident", "application/json", (request, response) -> {
                         if (DomainHTTP.getDorm(request.host()))
                             return DormGET.getResident(request, response);
@@ -73,7 +96,13 @@ public class DormAPI {
                     }
             );
 
-            path("/report", () ->{
+            path("/report", () -> {
+
+                /*
+                 * Получить все отчеты.
+                 *
+                 * https://*.example.com/api/report/all
+                 */
                 get("/all", "application/json", (request, response) -> {
                             if (DomainHTTP.getDorm(request.host()))
                                 return DormGET.getReportAll(request, response);
@@ -86,6 +115,11 @@ public class DormAPI {
                         }
                 );
 
+                /*
+                 * Получить отчеты активные для принятия решения администрации.
+                 *
+                 * https://*.example.com/api/report/active
+                 */
                 get("/active", "application/json", (request, response) -> {
                             if (DomainHTTP.getDorm(request.host()))
                                 return DormGET.getReportActive(request, response);
@@ -98,6 +132,11 @@ public class DormAPI {
                         }
                 );
 
+                /*
+                 * Получить отчеты для аккаунта.
+                 *
+                 * https://*.example.com/api/report/id/{:id}
+                 */
                 get("/id/:id", "application/json", (request, response) -> {
                             if (DomainHTTP.getDorm(request.host()))
                                 return DormGET.getReportAccount(request, response);
@@ -118,6 +157,15 @@ public class DormAPI {
      */
     private static void postAPI() {
 
+        /*
+         * Создать новое заявление на бронирование комнаты.
+         *
+         * https://*.example.com/api/request
+         * & account_id = <Integer>
+         * & room_id = <Integer>
+         * & month = <Integer>
+         * [-] & email = <String>
+         */
         path("/api", () ->
                 post("/request", "application/json", (request, response) -> {
                             if (DomainHTTP.getDorm(request.host()))
@@ -138,6 +186,13 @@ public class DormAPI {
     private static void putAPI() {
 
         path("/api", () -> {
+
+                    /*
+                     * Изменить статус заявления по ID студента.
+                     *
+                     * https://*.example.com/api/request/id/{:id}
+                     * & status = <Integer>
+                     */
                     put("/request/id/:id", "application/json", (request, response) -> {
                                 if (DomainHTTP.getDorm(request.host()))
                                     return DormPUT.putRequestStatus(request, response);
@@ -149,6 +204,13 @@ public class DormAPI {
                                 }
                             }
                     );
+
+                    /*
+                     * Изменение статуса отчета по ID отчета.
+                     *
+                     * https://*.example.com/api/report/id/{:id}
+                     * & status = <Integer>
+                     */
                     put("/report/id/:id", "application/json", (request, response) -> {
                                 if (DomainHTTP.getDorm(request.host()))
                                     return DormPUT.putReportStatus(request, response);

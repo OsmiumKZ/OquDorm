@@ -4,18 +4,32 @@ import com.google.gson.annotations.SerializedName;
 import kz.osmium.account.util.gson.Account;
 
 public class RequestAll {
+
+    /* Индивидуальный номер */
     @SerializedName("id")
     private final int id;
+
+    /* Объект аккаунта */
     @SerializedName("account")
     private Account account;
+
+    /* ID комнаты */
     @SerializedName("room_id")
     private final int roomId;
+
+    /* Статуст выполнения */
     @SerializedName("status")
     private final int status;
+
+    /* На сколько месяцев идет бронь комнаты */
     @SerializedName("month")
     private final int month;
+
+    /* Электронная почта студента, по которой можно уведомлять */
     @SerializedName("email")
     private final String email;
+
+    /* Дата обновления */
     @SerializedName("date_send")
     private final String dateSend;
 

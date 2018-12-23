@@ -298,7 +298,8 @@ public class DormGET {
                                             resultSet2.getString("name_ru_gender")
                                     ),
                                     resultSet.getString("admin"),
-                                    resultSet.getInt("status")
+                                    resultSet.getInt("status"),
+                                    resultSet.getString("date_send")
                             )
                     );
             }

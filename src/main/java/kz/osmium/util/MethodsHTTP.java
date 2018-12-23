@@ -5,6 +5,9 @@ import kz.osmium.dorm.DormAPI;
 
 public class MethodsHTTP {
 
+    /**
+     * Конфигурация API на WebSocket'е
+     */
     public static void config() {
 
         AccountAPI.addAPI();
