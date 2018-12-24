@@ -46,7 +46,7 @@ public class DormPUT {
 
                     preparedStatement.setInt(1, Integer.parseInt(request.params(":id")));
                     preparedStatement.setInt(2, 0);
-                    preparedStatement.setInt(3, date);
+                    preparedStatement.setString(3, date);
                     preparedStatement.executeUpdate();
 
                     try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
