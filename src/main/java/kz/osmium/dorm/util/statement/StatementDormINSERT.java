@@ -12,8 +12,8 @@ public class StatementDormINSERT {
     /* Создание отчета */
     public static String insertReports() {
         return "INSERT INTO `reports` " +
-                "(`account_id`, `status`) " +
-                "VALUE (?, ?)";
+                "(`account_id`, `status`, `date_send`) " +
+                "VALUE (?, ?, ?)";
     }
 
     /* Создание заселенного */
