@@ -5,7 +5,7 @@ public class StatementDormINSERT {
     /* Создание заявки */
     public static String insertRequests() {
         return "INSERT INTO `requests` " +
-                "(`account_id`, `room_id`, `status`, `month`, `email`, `date_send`) " +
+                "(`account_id`, `room_id`, `status`, `booking_period`, `email`, `date_send`) " +
                 "VALUE (?, ?, ?, ?, ?, ?)";
     }
 
@@ -19,7 +19,7 @@ public class StatementDormINSERT {
     /* Создание заселенного */
     public static String insertResident() {
         return "INSERT INTO `residents` " +
-                "(`date_before`, `date_after`, `room_id`, `account_id`, `report_id`) " +
+                "(`check_in`, `check_out`, `room_id`, `account_id`, `report_id`) " +
                 "VALUE (?, ?, ?, ?, ?)";
     }
 }

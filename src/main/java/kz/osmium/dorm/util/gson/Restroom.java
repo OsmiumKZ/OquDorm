@@ -13,27 +13,27 @@ public class Restroom {
     private final int nameId;
 
     /* Количество уборных */
-    @SerializedName("restroom")
-    private final int restroom;
+    @SerializedName("toilet_amount")
+    private final int toiletAmount;
 
     /* Количество душей */
-    @SerializedName("shower")
-    private final int shower;
+    @SerializedName("shower_amount")
+    private final int showerAmount;
 
     /* Количество раковин */
-    @SerializedName("sink")
-    private final int sink;
+    @SerializedName("sink_amount")
+    private final int sinkAmount;
 
     /* ID этажей */
     @SerializedName("floor_id")
     private final int floorId;
 
-    public Restroom(int id, int nameId, int restroom, int shower, int sink, int floorId) {
+    public Restroom(int id, int nameId, int toiletAmount, int showerAmount, int sinkAmount, int floorId) {
         this.id = id;
         this.nameId = nameId;
-        this.restroom = restroom;
-        this.shower = shower;
-        this.sink = sink;
+        this.toiletAmount = toiletAmount;
+        this.showerAmount = showerAmount;
+        this.sinkAmount = sinkAmount;
         this.floorId = floorId;
     }
 }

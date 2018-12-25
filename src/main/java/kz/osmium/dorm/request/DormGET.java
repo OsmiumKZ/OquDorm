@@ -58,8 +58,8 @@ public class DormGET {
                                 new Kitchen(
                                         resultSet.getInt("id"),
                                         resultSet.getInt("name_id"),
-                                        resultSet.getInt("plate"),
-                                        resultSet.getInt("sink"),
+                                        resultSet.getInt("plate_amount"),
+                                        resultSet.getInt("sink_amount"),
                                         resultSet.getInt("floor_id")
                                 )
                         );
@@ -93,9 +93,9 @@ public class DormGET {
                                 new Restroom(
                                         resultSet.getInt("id"),
                                         resultSet.getInt("name_id"),
-                                        resultSet.getInt("restroom"),
-                                        resultSet.getInt("shower"),
-                                        resultSet.getInt("sink"),
+                                        resultSet.getInt("toilet_amount"),
+                                        resultSet.getInt("shower_amount"),
+                                        resultSet.getInt("sink_amount"),
                                         resultSet.getInt("floor_id")
                                 )
                         );
@@ -111,9 +111,9 @@ public class DormGET {
                                         resultSet.getInt("name_id"),
                                         resultSet.getInt("max"),
                                         resultSet.getInt("floor_id"),
-                                        resultSet.getInt("nightstand"),
-                                        resultSet.getInt("chiffonier"),
-                                        resultSet.getInt("shelf"),
+                                        resultSet.getInt("nightstand_amount"),
+                                        resultSet.getInt("chiffonier_amount"),
+                                        resultSet.getInt("shelf_amount"),
                                         resultSet.getInt("wifi")
                                 )
                         );
@@ -134,7 +134,7 @@ public class DormGET {
         try (Connection connection = DBConnection.Dorm.getDB()) {
             PreparedStatement preparedStatement = connection.prepareStatement(StatementDormSELECT.selectRequestAccount());
 
-            preparedStatement.setInt(1, Integer.parseInt(request.params(":id")));
+            preparedStatement.setInt(1, Integer.parseInt(request.queryParams("id")));
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -148,7 +148,7 @@ public class DormGET {
                                 resultSet.getInt("account_id"),
                                 resultSet.getInt("room_id"),
                                 resultSet.getInt("status"),
-                                resultSet.getInt("month"),
+                                resultSet.getInt("booking_period"),
                                 resultSet.getString("email"),
                                 resultSet.getString("date_send")
                         )
@@ -193,7 +193,7 @@ public class DormGET {
                                     ),
                                     resultSet.getInt("room_id"),
                                     resultSet.getInt("status"),
-                                    resultSet.getInt("month"),
+                                    resultSet.getInt("booking_period"),
                                     resultSet.getString("email"),
                                     resultSet.getString("date_send")
                             )
@@ -229,8 +229,8 @@ public class DormGET {
                     list.add(
                             new Resident(
                                     resultSet.getInt("id"),
-                                    resultSet.getString("date_before"),
-                                    resultSet.getString("date_after"),
+                                    resultSet.getString("check_in"),
+                                    resultSet.getString("check_out"),
                                     resultSet.getInt("room_id"),
                                     new Account(
                                             resultSet2.getInt("id"),
@@ -274,7 +274,7 @@ public class DormGET {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             if (request.params(":id") != null)
-                preparedStatement.setInt(1, Integer.parseInt(request.params(":id")));
+                preparedStatement.setInt(1, Integer.parseInt(request.queryParams("id")));
 
             ResultSet resultSet = preparedStatement.executeQuery();
             List<Report> list = new ArrayList<>();

@@ -7,7 +7,7 @@ public class StatementDormUPDATE {
         return "UPDATE `requests` " +
                 "SET `requests`.`room_id`= ?, " +
                 "`requests`.`status`= ?, " +
-                "`requests`.`month`= ?, " +
+                "`requests`.`booking_period`= ?, " +
                 "`requests`.`email`= ?, " +
                 "`requests`.`date_send`= ? " +
                 "WHERE `requests`.`account_id`=?";

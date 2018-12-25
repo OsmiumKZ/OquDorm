@@ -63,9 +63,10 @@ public class DormAPI {
                         /*
                          * Получение заявления для студента.
                          *
-                         * https://*.example.com/api/request/id/{:id}
+                         * https://*.example.com/api/request
+                         * & id = <Integer>
                          */
-                        get("/id/:id", "application/json", (request, response) -> {
+                        get("application/json", (request, response) -> {
                                     if (DomainHTTP.getDorm(request.host()))
                                         return DormGET.getRequestAccount(request, response);
                                     else {
@@ -135,9 +136,10 @@ public class DormAPI {
                 /*
                  * Получить отчеты для аккаунта.
                  *
-                 * https://*.example.com/api/report/id/{:id}
+                 * https://*.example.com/api/report
+                 * & id = <Integer>
                  */
-                get("/id/:id", "application/json", (request, response) -> {
+                get("application/json", (request, response) -> {
                             if (DomainHTTP.getDorm(request.host()))
                                 return DormGET.getReportAccount(request, response);
                             else {
@@ -163,7 +165,7 @@ public class DormAPI {
          * https://*.example.com/api/request
          * & account_id = <Integer>
          * & room_id = <Integer>
-         * & month = <Integer>
+         * & booking_period = <Integer>
          * [-] & email = <String>
          */
         path("/api", () ->
@@ -190,10 +192,11 @@ public class DormAPI {
                     /*
                      * Изменить статус заявления по ID студента.
                      *
-                     * https://*.example.com/api/request/id/{:id}
+                     * https://*.example.com/api/request
+                     * & id = <Integer>
                      * & status = <Integer>
                      */
-                    put("/request/id/:id", "application/json", (request, response) -> {
+                    put("/request", "application/json", (request, response) -> {
                                 if (DomainHTTP.getDorm(request.host()))
                                     return DormPUT.putRequestStatus(request, response);
                                 else {
@@ -208,10 +211,11 @@ public class DormAPI {
                     /*
                      * Изменение статуса отчета по ID отчета.
                      *
-                     * https://*.example.com/api/report/id/{:id}
+                     * https://*.example.com/api/report
+                     * & id = <Integer>
                      * & status = <Integer>
                      */
-                    put("/report/id/:id", "application/json", (request, response) -> {
+                    put("/report", "application/json", (request, response) -> {
                                 if (DomainHTTP.getDorm(request.host()))
                                     return DormPUT.putReportStatus(request, response);
                                 else {

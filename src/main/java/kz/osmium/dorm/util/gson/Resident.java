@@ -10,12 +10,12 @@ public class Resident {
     private final int id;
 
     /* Когда студент был заселен */
-    @SerializedName("date_before")
-    private final String dateBefore;
+    @SerializedName("check_in")
+    private final String checkIn;
 
     /* Когда время проживания в общежития кончится */
-    @SerializedName("date_after")
-    private final String dateAfter;
+    @SerializedName("check_out")
+    private final String checkOut;
 
     /* ID комнаты */
     @SerializedName("room_id")
@@ -25,10 +25,10 @@ public class Resident {
     @SerializedName("account")
     private final Account account;
 
-    public Resident(int id, String dateBefore, String dateAfter, int roomId, Account account) {
+    public Resident(int id, String checkIn, String checkOut, int roomId, Account account) {
         this.id = id;
-        this.dateBefore = dateBefore;
-        this.dateAfter = dateAfter;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
         this.roomId = roomId;
         this.account = account;
     }

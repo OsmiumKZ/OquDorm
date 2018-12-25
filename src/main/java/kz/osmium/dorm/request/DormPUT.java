@@ -2,7 +2,6 @@ package kz.osmium.dorm.request;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import kz.osmium.account.util.gson.Account;
 import kz.osmium.account.util.statement.StatementAccountSELECT;
@@ -34,7 +33,7 @@ public class DormPUT {
 
                 preparedStatement.setInt(1, Integer.parseInt(request.queryParams("status")));
                 preparedStatement.setString(2, date);
-                preparedStatement.setInt(3, Integer.parseInt(request.params(":id")));
+                preparedStatement.setInt(3, Integer.parseInt(request.queryParams("id")));
                 preparedStatement.executeUpdate();
 
                 if (Integer.parseInt(request.queryParams("status")) == 2) {
@@ -44,7 +43,7 @@ public class DormPUT {
                             Statement.RETURN_GENERATED_KEYS
                     );
 
-                    preparedStatement.setInt(1, Integer.parseInt(request.params(":id")));
+                    preparedStatement.setInt(1, Integer.parseInt(request.queryParams("id")));
                     preparedStatement.setInt(2, 0);
                     preparedStatement.setString(3, date);
                     preparedStatement.executeUpdate();
@@ -53,7 +52,7 @@ public class DormPUT {
                         if (generatedKeys.next()) {
                             PreparedStatement preparedStatement2 = connection2.prepareStatement(StatementAccountSELECT.selectAccount());
 
-                            preparedStatement2.setInt(1, Integer.parseInt(request.params(":id")));
+                            preparedStatement2.setInt(1, Integer.parseInt(request.queryParams("id")));
 
                             ResultSet resultSet2 = preparedStatement2.executeQuery();
 
@@ -134,12 +133,12 @@ public class DormPUT {
                     preparedStatement.setInt(1, Integer.parseInt(request.queryParams("status")));
                     preparedStatement.setString(2, "http://example.com");
                     preparedStatement.setString(3, date);
-                    preparedStatement.setInt(4, Integer.parseInt(request.params(":id")));
+                    preparedStatement.setInt(4, Integer.parseInt(request.queryParams("id")));
                     preparedStatement.executeUpdate();
 
                     preparedStatement = connection.prepareStatement(StatementDormSELECT.selectReportID());
 
-                    preparedStatement.setInt(1, Integer.parseInt(request.params(":id")));
+                    preparedStatement.setInt(1, Integer.parseInt(request.queryParams("id")));
 
                     ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -153,7 +152,7 @@ public class DormPUT {
 
                         if (resultSet2.next()) {
                             roomId = resultSet2.getInt("room_id");
-                            month = resultSet2.getInt("month");
+                            month = resultSet2.getInt("booking_period");
                             email = resultSet2.getString("email");
                         }
                     }
@@ -168,7 +167,7 @@ public class DormPUT {
                     preparedStatement.setString(2, "2019-12-22 15:42:36");
                     preparedStatement.setInt(3, roomId);
                     preparedStatement.setInt(4, accountId);
-                    preparedStatement.setInt(5, Integer.parseInt(request.params(":id")));
+                    preparedStatement.setInt(5, Integer.parseInt(request.queryParams("id")));
                     preparedStatement.executeUpdate();
 
                     try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
@@ -220,7 +219,7 @@ public class DormPUT {
 
                     preparedStatement.setInt(1, Integer.parseInt(request.queryParams("status")));
                     preparedStatement.setString(2, date);
-                    preparedStatement.setInt(3, Integer.parseInt(request.params(":id")));
+                    preparedStatement.setInt(3, Integer.parseInt(request.queryParams("id")));
                     preparedStatement.executeUpdate();
 
                     if (true) {

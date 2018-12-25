@@ -21,8 +21,8 @@ public class Request {
     private final int status;
 
     /* На сколько месяцев идет бронь комнаты */
-    @SerializedName("month")
-    private final int month;
+    @SerializedName("booking_period")
+    private final int bookingPeriod;
 
     /* Электронная почта студента, по которой можно уведомлять */
     @SerializedName("email")
@@ -32,12 +32,12 @@ public class Request {
     @SerializedName("date_send")
     private final String dateSend;
 
-    public Request(int id, int accountId, int roomId, int status, int month, String email, String dateSend) {
+    public Request(int id, int accountId, int roomId, int status, int bookingPeriod, String email, String dateSend) {
         this.id = id;
         this.accountId = accountId;
         this.roomId = roomId;
         this.status = status;
-        this.month = month;
+        this.bookingPeriod = bookingPeriod;
         this.email = email;
         this.dateSend = dateSend;
     }

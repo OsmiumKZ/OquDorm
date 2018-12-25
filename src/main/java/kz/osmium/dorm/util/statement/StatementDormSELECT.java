@@ -18,7 +18,7 @@ public class StatementDormSELECT {
 
     /* Прочитать все названия */
     public static String selectNames(){
-        return "SELECT * FROM `name`";
+        return "SELECT * FROM `names`";
     }
 
     /* Прочитать все уборные */

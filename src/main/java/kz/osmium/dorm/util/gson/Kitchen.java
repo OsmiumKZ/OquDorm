@@ -13,22 +13,22 @@ public class Kitchen {
     private final int nameId;
 
     /* Количество плит */
-    @SerializedName("plate")
-    private final int plate;
+    @SerializedName("plate_amount")
+    private final int plateAmount;
 
     /* Количество раковин */
-    @SerializedName("sink")
-    private final int sink;
+    @SerializedName("sink_amount")
+    private final int sinkAmount;
 
     /* ID этажа */
     @SerializedName("floor_id")
     private final int floorId;
 
-    public Kitchen(int id, int nameId, int plate, int sink, int floorId) {
+    public Kitchen(int id, int nameId, int plateAmount, int sinkAmount, int floorId) {
         this.id = id;
         this.nameId = nameId;
-        this.plate = plate;
-        this.sink = sink;
+        this.plateAmount = plateAmount;
+        this.sinkAmount = sinkAmount;
         this.floorId = floorId;
     }
 }

@@ -19,7 +19,7 @@ public class DormPOST {
 
             if (request.queryParams("account_id") != null &&
                     request.queryParams("room_id") != null &&
-                    request.queryParams("month") != null) {
+                    request.queryParams("booking_period") != null) {
 
                 try (Connection connection = DBConnection.Dorm.getDB()) {
                     String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
@@ -34,7 +34,7 @@ public class DormPOST {
 
                         preparedStatement2.setInt(1, Integer.parseInt(request.queryParams("room_id")));
                         preparedStatement2.setInt(2, 0);
-                        preparedStatement2.setInt(3, Integer.parseInt(request.queryParams("month")));
+                        preparedStatement2.setInt(3, Integer.parseInt(request.queryParams("booking_period")));
                         preparedStatement2.setString(5, date);
                         preparedStatement2.setInt(6, Integer.parseInt(request.queryParams("account_id")));
 
@@ -58,7 +58,7 @@ public class DormPOST {
                                         Integer.parseInt(request.queryParams("account_id")),
                                         Integer.parseInt(request.queryParams("room_id")),
                                         0,
-                                        Integer.parseInt(request.queryParams("month")),
+                                        Integer.parseInt(request.queryParams("booking_period")),
                                         request.queryParams("email"),
                                         date
                                 )
@@ -74,7 +74,7 @@ public class DormPOST {
                     preparedStatement.setInt(1, Integer.parseInt(request.queryParams("account_id")));
                     preparedStatement.setInt(2, Integer.parseInt(request.queryParams("room_id")));
                     preparedStatement.setInt(3, 0);
-                    preparedStatement.setInt(4, Integer.parseInt(request.queryParams("month")));
+                    preparedStatement.setInt(4, Integer.parseInt(request.queryParams("booking_period")));
                     preparedStatement.setString(6, date);
 
                     if (request.queryParams("email") != null)
@@ -100,7 +100,7 @@ public class DormPOST {
                                             Integer.parseInt(request.queryParams("account_id")),
                                             Integer.parseInt(request.queryParams("room_id")),
                                             0,
-                                            Integer.parseInt(request.queryParams("month")),
+                                            Integer.parseInt(request.queryParams("booking_period")),
                                             request.queryParams("email"),
                                             date
                                     )
