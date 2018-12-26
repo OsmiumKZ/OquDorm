@@ -101,9 +101,9 @@ public class AccountGET {
             if (resultSet.next())
                 return new AccountShort(
                         resultSet.getInt(DataConfig.DB_ACCOUNT_SHORT_ID),
-                        resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + DataConfig.DB_ACCOUNT_SHORT_NAME_F),
-                        resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + DataConfig.DB_ACCOUNT_SHORT_NAME_L),
-                        resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + DataConfig.DB_ACCOUNT_SHORT_PATRONYMIC),
+                        resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" + DataConfig.DB_ACCOUNT_SHORT_NAME_F),
+                        resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" + DataConfig.DB_ACCOUNT_SHORT_NAME_L),
+                        resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" + DataConfig.DB_ACCOUNT_SHORT_PATRONYMIC),
                         resultSet.getString(DataConfig.DB_ACCOUNT_SHORT_GENDER)
                 );
 

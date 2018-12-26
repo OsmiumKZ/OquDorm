@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1eb311e-b2d3-4923-9775-2e9e26f3d7ed" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="a1eb311e-b2d3-4923-9775-2e9e26f3d7ed" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -20,6 +18,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/account/request/AccountGET.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="613">
+              <caret line="108" lean-forward="true" selection-start-line="108" selection-end-line="108" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/util/DataConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1732">
+              <caret line="95" lean-forward="true" selection-start-line="95" selection-end-line="95" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/dorm/DormAPI.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -32,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormGET.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="65">
-              <caret line="169" lean-forward="true" selection-start-line="168" selection-start-column="27" selection-end-line="169" />
+            <state relative-caret-position="827">
+              <caret line="213" column="50" selection-start-line="213" selection-start-column="50" selection-end-line="213" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -109,12 +125,12 @@
         <option value="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormPUT.java" />
         <option value="$PROJECT_DIR$/src/main/java/kz/osmium/account/util/gson/Auth.java" />
         <option value="$PROJECT_DIR$/src/main/java/kz/osmium/account/AccountAPI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/kz/osmium/util/DataConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/kz/osmium/account/util/gson/Account.java" />
         <option value="$PROJECT_DIR$/src/main/java/kz/osmium/account/util/gson/AccountShort.java" />
-        <option value="$PROJECT_DIR$/src/main/java/kz/osmium/account/request/AccountGET.java" />
         <option value="$PROJECT_DIR$/src/main/java/kz/osmium/account/util/statement/StatementAccountSELECT.java" />
         <option value="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormGET.java" />
+        <option value="$PROJECT_DIR$/src/main/java/kz/osmium/account/request/AccountGET.java" />
+        <option value="$PROJECT_DIR$/src/main/java/kz/osmium/util/DataConfig.java" />
       </list>
     </option>
   </component>
@@ -345,9 +361,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="63" y="27" width="1857" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1765357" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1765357" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -361,7 +376,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.31133112" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.15298088" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.32896176" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Build" order="10" weight="0.8242424" />
@@ -637,23 +652,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/account/util/statement/StatementAccountSELECT.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/account/util/gson/AccountShort.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="29" column="36" lean-forward="true" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/account/util/gson/Account.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-147">
@@ -685,17 +683,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/util/DataConfig.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/account/util/gson/AccountShort.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="88" column="48" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="48" />
+        <state relative-caret-position="329">
+          <caret line="33" column="11" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/account/request/AccountGET.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/account/util/statement/StatementAccountSELECT.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-76">
-          <caret line="80" column="33" lean-forward="true" selection-start-line="80" selection-start-column="33" selection-end-line="80" selection-end-column="33" />
+        <state relative-caret-position="154">
+          <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/util/DataConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1732">
+          <caret line="95" lean-forward="true" selection-start-line="95" selection-end-line="95" />
         </state>
       </provider>
     </entry>
@@ -711,11 +719,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormGET.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="169" lean-forward="true" selection-start-line="168" selection-start-column="27" selection-end-line="169" />
+        <state relative-caret-position="827">
+          <caret line="213" column="50" selection-start-line="213" selection-start-column="50" selection-end-line="213" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/account/request/AccountGET.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="613">
+          <caret line="108" lean-forward="true" selection-start-line="108" selection-end-line="108" />
         </state>
       </provider>
     </entry>
