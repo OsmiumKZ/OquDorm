@@ -100,4 +100,8 @@ public class DataConfig {
     public static final String DB_ACCOUNT_AUTH_PATRONYMIC = "patronymic";
     public static final String DB_ACCOUNT_AUTH_GENDER = "gender";
     public static final String DB_ACCOUNT_AUTH_UIN = "uin";
+
+    public static final String DB_ACCOUNT_NAME_RU = "name_ru";
+    public static final String DB_ACCOUNT_NAME_KZ = "name_kz";
+    public static final String DB_ACCOUNT_NAME_EN = "name_en";
 }
