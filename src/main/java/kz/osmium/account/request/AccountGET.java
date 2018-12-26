@@ -104,7 +104,7 @@ public class AccountGET {
                         resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" + DataConfig.DB_ACCOUNT_SHORT_NAME_F),
                         resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" + DataConfig.DB_ACCOUNT_SHORT_NAME_L),
                         resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" + DataConfig.DB_ACCOUNT_SHORT_PATRONYMIC),
-                        resultSet.getString(DataConfig.DB_ACCOUNT_SHORT_GENDER)
+                        resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" + DataConfig.DB_ACCOUNT_SHORT_GENDER)
                 );
 
             throw new SQLException();
