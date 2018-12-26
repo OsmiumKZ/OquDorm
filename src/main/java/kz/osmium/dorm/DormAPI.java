@@ -64,7 +64,7 @@ public class DormAPI {
                          * Получение заявления для студента.
                          *
                          * https://*.example.com/api/request
-                         * & id = <Integer>
+                         * & account = <Integer>
                          */
                         get("application/json", (request, response) -> {
                                     if (DomainHTTP.getDorm(request.host()))
@@ -137,7 +137,7 @@ public class DormAPI {
                  * Получить отчеты для аккаунта.
                  *
                  * https://*.example.com/api/report
-                 * & id = <Integer>
+                 * & account = <Integer>
                  */
                 get("application/json", (request, response) -> {
                             if (DomainHTTP.getDorm(request.host()))
@@ -163,9 +163,9 @@ public class DormAPI {
          * Создать новое заявление на бронирование комнаты.
          *
          * https://*.example.com/api/request
-         * & account_id = <Integer>
-         * & room_id = <Integer>
-         * & booking_period = <Integer>
+         * & account = <Integer>
+         * & room = <Integer>
+         * & period = <Integer>
          * [-] & email = <String>
          */
         path("/api", () ->
@@ -193,7 +193,7 @@ public class DormAPI {
                      * Изменить статус заявления по ID студента.
                      *
                      * https://*.example.com/api/request
-                     * & id = <Integer>
+                     * & account = <Integer>
                      * & status = <Integer>
                      */
                     put("/request", "application/json", (request, response) -> {

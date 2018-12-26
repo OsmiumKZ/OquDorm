@@ -1,19 +1,20 @@
 package kz.osmium.dorm.util.gson;
 
 import com.google.gson.annotations.SerializedName;
+import kz.osmium.util.DataConfig;
 
 public class Floor {
 
     /* Индивидуальный номер */
-    @SerializedName("id")
+    @SerializedName(DataConfig.DB_DORM_FLOOR_ID)
     private final int id;
 
     /* Номер этажа */
-    @SerializedName("number")
+    @SerializedName(DataConfig.DB_DORM_FLOOR_NUMBER)
     private final int number;
 
     /* ID общежития */
-    @SerializedName("dorm_id")
+    @SerializedName(DataConfig.DB_DORM_FLOOR_DORM_ID)
     private final int dorm_id;
 
     public Floor(int id, int number, int dorm_id) {

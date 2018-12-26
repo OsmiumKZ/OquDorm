@@ -1,11 +1,11 @@
 package kz.osmium.dorm.request;
 
 import com.google.gson.Gson;
-import kz.osmium.account.util.gson.Account;
-import kz.osmium.account.util.statement.StatementAccountSELECT;
+import kz.osmium.account.request.AccountGET;
 import kz.osmium.dorm.util.gson.*;
 import kz.osmium.dorm.util.statement.StatementDormSELECT;
 import kz.osmium.util.DBConnection;
+import kz.osmium.util.DataConfig;
 import org.eclipse.jetty.http.HttpStatus;
 import spark.Request;
 import spark.Response;
@@ -22,99 +22,99 @@ public class DormGET {
     public static String getDB(Response response) {
 
         try (Connection connection = DBConnection.Dorm.getDB()) {
-            DormAll dormAll = new DormAll();
+            DataBase dormAll = new DataBase();
 
-            PreparedStatement preparedStatement = connection.prepareStatement(StatementDormSELECT.selectDorms());
-            ResultSet resultSet = preparedStatement.executeQuery();
+            PreparedStatement statement = connection.prepareStatement(StatementDormSELECT.selectDorms());
+            ResultSet result = statement.executeQuery();
 
-            while (resultSet.next())
+            while (result.next())
                 dormAll.getDorms()
                         .add(
                                 new Dorm(
-                                        resultSet.getInt("id"),
-                                        resultSet.getInt("name_id")
+                                        result.getInt(DataConfig.DB_DORM_DORM_ID),
+                                        result.getInt(DataConfig.DB_DORM_DORM_NAME_ID)
                                 )
                         );
 
-            preparedStatement = connection.prepareStatement(StatementDormSELECT.selectFloors());
-            resultSet = preparedStatement.executeQuery();
+            statement = connection.prepareStatement(StatementDormSELECT.selectFloors());
+            result = statement.executeQuery();
 
-            while (resultSet.next())
+            while (result.next())
                 dormAll.getFloors()
                         .add(
                                 new Floor(
-                                        resultSet.getInt("id"),
-                                        resultSet.getInt("number"),
-                                        resultSet.getInt("dorm_id")
+                                        result.getInt(DataConfig.DB_DORM_FLOOR_ID),
+                                        result.getInt(DataConfig.DB_DORM_FLOOR_NUMBER),
+                                        result.getInt(DataConfig.DB_DORM_FLOOR_DORM_ID)
                                 )
                         );
 
-            preparedStatement = connection.prepareStatement(StatementDormSELECT.selectKitchens());
-            resultSet = preparedStatement.executeQuery();
+            statement = connection.prepareStatement(StatementDormSELECT.selectKitchens());
+            result = statement.executeQuery();
 
-            while (resultSet.next())
+            while (result.next())
                 dormAll.getKitchens()
                         .add(
                                 new Kitchen(
-                                        resultSet.getInt("id"),
-                                        resultSet.getInt("name_id"),
-                                        resultSet.getInt("plate_amount"),
-                                        resultSet.getInt("sink_amount"),
-                                        resultSet.getInt("floor_id")
+                                        result.getInt(DataConfig.DB_DORM_KITCHEN_ID),
+                                        result.getInt(DataConfig.DB_DORM_KITCHEN_NAME_ID),
+                                        result.getInt(DataConfig.DB_DORM_KITCHEN_PLATE_AMOUNT),
+                                        result.getInt(DataConfig.DB_DORM_KITCHEN_SINK_AMOUNT),
+                                        result.getInt(DataConfig.DB_DORM_KITCHEN_FLOOR_ID)
                                 )
                         );
 
-            preparedStatement = connection.prepareStatement(StatementDormSELECT.selectNames());
-            resultSet = preparedStatement.executeQuery();
+            statement = connection.prepareStatement(StatementDormSELECT.selectNames());
+            result = statement.executeQuery();
 
-            while (resultSet.next())
+            while (result.next())
                 dormAll.getNames()
                         .add(
                                 new Name(
-                                        resultSet.getInt("id"),
-                                        resultSet.getString("name_ru"),
-                                        resultSet.getString("name_ru_genetive"),
-                                        resultSet.getString("name_ru_dative"),
-                                        resultSet.getString("name_kz"),
-                                        resultSet.getString("name_kz_genetive"),
-                                        resultSet.getString("name_kz_dative"),
-                                        resultSet.getString("name_en"),
-                                        resultSet.getString("name_en_genetive"),
-                                        resultSet.getString("name_en_dative")
+                                        result.getInt(DataConfig.DB_DORM_NAME_ID),
+                                        result.getString(DataConfig.DB_DORM_NAME_RU),
+                                        result.getString(DataConfig.DB_DORM_NAME_RU_GENITIVE),
+                                        result.getString(DataConfig.DB_DORM_NAME_RU_DATIVE),
+                                        result.getString(DataConfig.DB_DORM_NAME_KZ),
+                                        result.getString(DataConfig.DB_DORM_NAME_KZ_GENITIVE),
+                                        result.getString(DataConfig.DB_DORM_NAME_KZ_DATIVE),
+                                        result.getString(DataConfig.DB_DORM_NAME_EN),
+                                        result.getString(DataConfig.DB_DORM_NAME_EN_GENITIVE),
+                                        result.getString(DataConfig.DB_DORM_NAME_EN_DATIVE)
                                 )
                         );
 
-            preparedStatement = connection.prepareStatement(StatementDormSELECT.selectRestrooms());
-            resultSet = preparedStatement.executeQuery();
+            statement = connection.prepareStatement(StatementDormSELECT.selectRestrooms());
+            result = statement.executeQuery();
 
-            while (resultSet.next())
+            while (result.next())
                 dormAll.getRestroom()
                         .add(
                                 new Restroom(
-                                        resultSet.getInt("id"),
-                                        resultSet.getInt("name_id"),
-                                        resultSet.getInt("toilet_amount"),
-                                        resultSet.getInt("shower_amount"),
-                                        resultSet.getInt("sink_amount"),
-                                        resultSet.getInt("floor_id")
+                                        result.getInt(DataConfig.DB_DORM_RESTROOM_ID),
+                                        result.getInt(DataConfig.DB_DORM_RESTROOM_NAME_ID),
+                                        result.getInt(DataConfig.DB_DORM_RESTROOM_TOILET_AMOUNT),
+                                        result.getInt(DataConfig.DB_DORM_RESTROOM_SHOWER_AMOUNT),
+                                        result.getInt(DataConfig.DB_DORM_RESTROOM_SINK_AMOUNT),
+                                        result.getInt(DataConfig.DB_DORM_RESTROOM_FLOOR_ID)
                                 )
                         );
 
-            preparedStatement = connection.prepareStatement(StatementDormSELECT.selectRooms());
-            resultSet = preparedStatement.executeQuery();
+            statement = connection.prepareStatement(StatementDormSELECT.selectRooms());
+            result = statement.executeQuery();
 
-            while (resultSet.next())
+            while (result.next())
                 dormAll.getRooms()
                         .add(
                                 new Room(
-                                        resultSet.getInt("id"),
-                                        resultSet.getInt("name_id"),
-                                        resultSet.getInt("max"),
-                                        resultSet.getInt("floor_id"),
-                                        resultSet.getInt("nightstand_amount"),
-                                        resultSet.getInt("chiffonier_amount"),
-                                        resultSet.getInt("shelf_amount"),
-                                        resultSet.getInt("wifi")
+                                        result.getInt(DataConfig.DB_DORM_ROOM_ID),
+                                        result.getInt(DataConfig.DB_DORM_ROOM_NAME_ID),
+                                        result.getInt(DataConfig.DB_DORM_ROOM_MAX),
+                                        result.getInt(DataConfig.DB_DORM_ROOM_FLOOR_ID),
+                                        result.getInt(DataConfig.DB_DORM_ROOM_NIGHTSTAND_AMOUNT),
+                                        result.getInt(DataConfig.DB_DORM_ROOM_CHIFFONIER_AMOUNT),
+                                        result.getInt(DataConfig.DB_DORM_ROOM_SHELF_AMOUNT),
+                                        result.getInt(DataConfig.DB_DORM_ROOM_WIFI)
                                 )
                         );
 
@@ -132,25 +132,25 @@ public class DormGET {
     public static String getRequestAccount(Request request, Response response) {
 
         try (Connection connection = DBConnection.Dorm.getDB()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(StatementDormSELECT.selectRequestAccount());
+            PreparedStatement statement = connection.prepareStatement(StatementDormSELECT.selectRequestAccount());
 
-            preparedStatement.setInt(1, Integer.parseInt(request.queryParams("id")));
+            statement.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT)));
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            ResultSet result = statement.executeQuery();
 
-            if (resultSet.next()) {
+            if (result.next()) {
 
                 response.status(200);
 
                 return new Gson().toJson(
-                        new kz.osmium.dorm.util.gson.Request(
-                                resultSet.getInt("id"),
-                                resultSet.getInt("account_id"),
-                                resultSet.getInt("room_id"),
-                                resultSet.getInt("status"),
-                                resultSet.getInt("booking_period"),
-                                resultSet.getString("email"),
-                                resultSet.getString("date_send")
+                        new Requests(
+                                result.getInt(DataConfig.DB_DORM_REQUEST_ID),
+                                AccountGET.getAccountShortInfo(result.getInt(DataConfig.DB_DORM_REQUEST_ACCOUNT_ID)),
+                                result.getInt(DataConfig.DB_DORM_REQUEST_ROOM_ID),
+                                result.getInt(DataConfig.DB_DORM_REQUEST_STATUS),
+                                result.getInt(DataConfig.DB_DORM_REQUEST_BOOKING_PERIOD),
+                                result.getString(DataConfig.DB_DORM_REQUEST_EMAIL),
+                                result.getString(DataConfig.DB_DORM_REQUEST_DATE_SEND)
                         )
                 );
             }
@@ -168,37 +168,23 @@ public class DormGET {
 
     public static String getRequestList(Request request, Response response) {
 
-        try (Connection connection = DBConnection.Dorm.getDB(); Connection connection2 = DBConnection.KEU.getDB()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(StatementDormSELECT.selectRequestList());
-            ResultSet resultSet = preparedStatement.executeQuery();
-            List<RequestAll> list = new ArrayList<>();
+        try (Connection connection = DBConnection.Dorm.getDB()) {
+            PreparedStatement statement = connection.prepareStatement(StatementDormSELECT.selectRequestList());
+            ResultSet result = statement.executeQuery();
+            List<Requests> list = new ArrayList<>();
 
-            while (resultSet.next()) {
-                PreparedStatement preparedStatement2 = connection2.prepareStatement(StatementAccountSELECT.selectAccount());
-
-                preparedStatement2.setInt(1, resultSet.getInt("account_id"));
-
-                ResultSet resultSet2 = preparedStatement2.executeQuery();
-
-                while (resultSet2.next())
-                    list.add(
-                            new RequestAll(
-                                    resultSet.getInt("id"),
-                                    new Account(
-                                            resultSet2.getInt("id"),
-                                            resultSet2.getString("name_ru_name_f"),
-                                            resultSet2.getString("name_ru_name_l"),
-                                            resultSet2.getString("name_ru_patronymic"),
-                                            resultSet2.getString("name_ru_gender")
-                                    ),
-                                    resultSet.getInt("room_id"),
-                                    resultSet.getInt("status"),
-                                    resultSet.getInt("booking_period"),
-                                    resultSet.getString("email"),
-                                    resultSet.getString("date_send")
-                            )
-                    );
-            }
+            while (result.next())
+                list.add(
+                        new Requests(
+                                result.getInt(DataConfig.DB_DORM_REQUEST_ID),
+                                AccountGET.getAccountShortInfo(result.getInt(DataConfig.DB_DORM_REQUEST_ACCOUNT_ID)),
+                                result.getInt(DataConfig.DB_DORM_REQUEST_ROOM_ID),
+                                result.getInt(DataConfig.DB_DORM_REQUEST_STATUS),
+                                result.getInt(DataConfig.DB_DORM_REQUEST_BOOKING_PERIOD),
+                                result.getString(DataConfig.DB_DORM_REQUEST_EMAIL),
+                                result.getString(DataConfig.DB_DORM_REQUEST_DATE_SEND)
+                        )
+                );
 
             response.status(200);
 
@@ -213,35 +199,21 @@ public class DormGET {
 
     public static String getResident(Request request, Response response) {
 
-        try (Connection connection = DBConnection.Dorm.getDB(); Connection connection2 = DBConnection.KEU.getDB()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(StatementDormSELECT.selectResident());
-            ResultSet resultSet = preparedStatement.executeQuery();
+        try (Connection connection = DBConnection.Dorm.getDB()) {
+            PreparedStatement statement = connection.prepareStatement(StatementDormSELECT.selectResident());
+            ResultSet result = statement.executeQuery();
             List<Resident> list = new ArrayList<>();
 
-            while (resultSet.next()) {
-                PreparedStatement preparedStatement2 = connection2.prepareStatement(StatementAccountSELECT.selectAccount());
-
-                preparedStatement2.setInt(1, resultSet.getInt("account_id"));
-
-                ResultSet resultSet2 = preparedStatement2.executeQuery();
-
-                if (resultSet2.next())
-                    list.add(
-                            new Resident(
-                                    resultSet.getInt("id"),
-                                    resultSet.getString("check_in"),
-                                    resultSet.getString("check_out"),
-                                    resultSet.getInt("room_id"),
-                                    new Account(
-                                            resultSet2.getInt("id"),
-                                            resultSet2.getString("name_ru_name_f"),
-                                            resultSet2.getString("name_ru_name_l"),
-                                            resultSet2.getString("name_ru_patronymic"),
-                                            resultSet2.getString("name_ru_gender")
-                                    )
-                            )
-                    );
-            }
+            while (result.next())
+                list.add(
+                        new Resident(
+                                result.getInt(DataConfig.DB_DORM_RESIDENT_ID),
+                                result.getString(DataConfig.DB_DORM_RESIDENT_CHECK_IN),
+                                result.getString(DataConfig.DB_DORM_RESIDENT_CHECK_OUT),
+                                result.getInt(DataConfig.DB_DORM_RESIDENT_ROOM_ID),
+                                AccountGET.getAccountShortInfo(result.getInt(DataConfig.DB_DORM_RESIDENT_ACCOUNT_ID))
+                        )
+                );
 
             response.status(200);
 
@@ -270,39 +242,26 @@ public class DormGET {
     }
 
     private static String getReport(Request request, Response response, String sql) {
-        try (Connection connection = DBConnection.Dorm.getDB(); Connection connection2 = DBConnection.KEU.getDB()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            if (request.params(":id") != null)
-                preparedStatement.setInt(1, Integer.parseInt(request.queryParams("id")));
+        try (Connection connection = DBConnection.Dorm.getDB()) {
+            PreparedStatement statement = connection.prepareStatement(sql);
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            if (request.queryParams("id") != null)
+                statement.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_ACCOUNT)));
+
+            ResultSet result = statement.executeQuery();
             List<Report> list = new ArrayList<>();
 
-            while (resultSet.next()) {
-                PreparedStatement preparedStatement2 = connection2.prepareStatement(StatementAccountSELECT.selectAccount());
-
-                preparedStatement2.setInt(1, resultSet.getInt("account_id"));
-
-                ResultSet resultSet2 = preparedStatement2.executeQuery();
-
-                while (resultSet2.next())
-                    list.add(
-                            new Report(
-                                    resultSet.getInt("id"),
-                                    new Account(
-                                            resultSet2.getInt("id"),
-                                            resultSet2.getString("name_ru_name_f"),
-                                            resultSet2.getString("name_ru_name_l"),
-                                            resultSet2.getString("name_ru_patronymic"),
-                                            resultSet2.getString("name_ru_gender")
-                                    ),
-                                    resultSet.getString("admin"),
-                                    resultSet.getInt("status"),
-                                    resultSet.getString("date_send")
-                            )
-                    );
-            }
+            while (result.next())
+                list.add(
+                        new Report(
+                                result.getInt(DataConfig.DB_DORM_REPORT_ID),
+                                AccountGET.getAccountShortInfo(result.getInt(DataConfig.DB_DORM_REPORT_ACCOUNT_ID)),
+                                result.getString(DataConfig.DB_DORM_REPORT_ADMIN),
+                                result.getInt(DataConfig.DB_DORM_REPORT_STATUS),
+                                result.getString(DataConfig.DB_DORM_REPORT_DATE_SEND)
+                        )
+                );
 
             response.status(200);
 

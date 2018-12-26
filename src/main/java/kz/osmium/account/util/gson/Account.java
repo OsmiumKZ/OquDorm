@@ -17,17 +17,18 @@
 package kz.osmium.account.util.gson;
 
 import com.google.gson.annotations.SerializedName;
+import kz.osmium.util.DataConfig;
 
 public class Account {
-    @SerializedName("id")
+    @SerializedName(DataConfig.DB_ACCOUNT_ID)
     private final int id;
-    @SerializedName("name_f")
+    @SerializedName(DataConfig.DB_ACCOUNT_NAME_F)
     private final String nameF;
-    @SerializedName("name_l")
+    @SerializedName(DataConfig.DB_ACCOUNT_NAME_L)
     private final String nameL;
-    @SerializedName("patronymic")
+    @SerializedName(DataConfig.DB_ACCOUNT_PATRONYMIC)
     private final String patronymic;
-    @SerializedName("gender")
+    @SerializedName(DataConfig.DB_ACCOUNT_GENDER)
     private final String gender;
 
     public Account(int id, String nameF, String nameL, String patronymic, String gender) {

@@ -1,34 +1,35 @@
 package kz.osmium.dorm.util.gson;
 
 import com.google.gson.annotations.SerializedName;
+import kz.osmium.util.DataConfig;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DormAll {
+public class DataBase {
 
     /* Объект общежитий */
-    @SerializedName("dorms")
+    @SerializedName(DataConfig.DB_DORM_DORM)
     private List<Dorm> dorms = new ArrayList<>();
 
     /* Объект этажей */
-    @SerializedName("floors")
+    @SerializedName(DataConfig.DB_DORM_FLOOR)
     private List<Floor> floors = new ArrayList<>();
 
     /* Объект кухнь */
-    @SerializedName("kitchens")
+    @SerializedName(DataConfig.DB_DORM_KITCHEN)
     private List<Kitchen> kitchens = new ArrayList<>();
 
     /* Объект названий */
-    @SerializedName("names")
+    @SerializedName(DataConfig.DB_DORM_NAME)
     private List<Name> names = new ArrayList<>();
 
     /* Объект уборных */
-    @SerializedName("restrooms")
+    @SerializedName(DataConfig.DB_DORM_RESTROOM)
     private List<Restroom> restroom = new ArrayList<>();
 
     /* Объект комнат */
-    @SerializedName("rooms")
+    @SerializedName(DataConfig.DB_DORM_ROOM)
     private List<Room> rooms = new ArrayList<>();
 
     public List<Dorm> getDorms() {

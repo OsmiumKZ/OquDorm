@@ -1,47 +1,48 @@
 package kz.osmium.dorm.util.gson;
 
 import com.google.gson.annotations.SerializedName;
+import kz.osmium.util.DataConfig;
 
 public class Name {
 
     /* Индивидуальный номер */
-    @SerializedName("id")
+    @SerializedName(DataConfig.DB_DORM_NAME_ID)
     private final int id;
 
     /* Название на расском в именительном падиже */
-    @SerializedName("name_ru")
+    @SerializedName(DataConfig.DB_DORM_NAME_RU)
     private final String nameRu;
 
     /* Название на расском в радительном падиже */
-    @SerializedName("name_ru_genetive")
+    @SerializedName(DataConfig.DB_DORM_NAME_RU_GENITIVE)
     private final String nameRuGenetive;
 
     /* Название на расском в дательном падиже */
-    @SerializedName("name_ru_dative")
+    @SerializedName(DataConfig.DB_DORM_NAME_RU_DATIVE)
     private final String nameRuDative;
 
     /* Название на казахском в именительном падиже */
-    @SerializedName("name_kz")
+    @SerializedName(DataConfig.DB_DORM_NAME_KZ)
     private final String nameKz;
 
     /* Название на казахском в радительном падиже */
-    @SerializedName("name_kz_genetive")
+    @SerializedName(DataConfig.DB_DORM_NAME_KZ_GENITIVE)
     private final String nameKzGenetive;
 
     /* Название на казахском в дательном падиже */
-    @SerializedName("name_kz_dative")
+    @SerializedName(DataConfig.DB_DORM_NAME_KZ_DATIVE)
     private final String nameKzDative;
 
     /* Название на английском в именительном падиже */
-    @SerializedName("name_en")
+    @SerializedName(DataConfig.DB_DORM_NAME_EN)
     private final String nameEn;
 
     /* Название на английском в радительном падиже */
-    @SerializedName("name_en_genetive")
+    @SerializedName(DataConfig.DB_DORM_NAME_EN_GENITIVE)
     private final String nameEnGenetive;
 
     /* Название на английском в дательном падиже */
-    @SerializedName("name_en_dative")
+    @SerializedName(DataConfig.DB_DORM_NAME_EN_DATIVE)
     private final String nameEnDative;
 
     public Name(int id, String nameRu, String nameRuGenetive, String nameRuDative, String nameKz, String nameKzGenetive, String nameKzDative, String nameEn, String nameEnGenetive, String nameEnDative) {

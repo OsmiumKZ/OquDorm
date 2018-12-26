@@ -33,8 +33,7 @@ public class AccountAPI {
                 ));
 
         path("/api", () ->
-                path("/account", () ->
-                        get("/id/:id", "application/json", (request, response) -> {
+                        get("/account", "application/json", (request, response) -> {
                                     if (DomainHTTP.getDorm(request.host()))
                                         return AccountGET.getAccount(request, response);
                                     else {
@@ -45,7 +44,6 @@ public class AccountAPI {
                                     }
                                 }
                         )
-                )
         );
     }
 }

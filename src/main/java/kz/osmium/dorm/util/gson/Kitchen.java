@@ -1,27 +1,28 @@
 package kz.osmium.dorm.util.gson;
 
 import com.google.gson.annotations.SerializedName;
+import kz.osmium.util.DataConfig;
 
 public class Kitchen {
 
     /* Индивидуальный номер */
-    @SerializedName("id")
+    @SerializedName(DataConfig.DB_DORM_KITCHEN_ID)
     private final int id;
 
     /* Название по ID */
-    @SerializedName("name_id")
+    @SerializedName(DataConfig.DB_DORM_KITCHEN_NAME_ID)
     private final int nameId;
 
     /* Количество плит */
-    @SerializedName("plate_amount")
+    @SerializedName(DataConfig.DB_DORM_KITCHEN_PLATE_AMOUNT)
     private final int plateAmount;
 
     /* Количество раковин */
-    @SerializedName("sink_amount")
+    @SerializedName(DataConfig.DB_DORM_KITCHEN_SINK_AMOUNT)
     private final int sinkAmount;
 
     /* ID этажа */
-    @SerializedName("floor_id")
+    @SerializedName(DataConfig.DB_DORM_KITCHEN_FLOOR_ID)
     private final int floorId;
 
     public Kitchen(int id, int nameId, int plateAmount, int sinkAmount, int floorId) {

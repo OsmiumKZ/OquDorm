@@ -1,35 +1,41 @@
 package kz.osmium.dorm.util.gson;
 
 import com.google.gson.annotations.SerializedName;
-import kz.osmium.account.util.gson.Account;
+import kz.osmium.account.util.gson.AccountShort;
+import kz.osmium.util.DataConfig;
 
 public class Resident {
 
     /* Индивидуальный номер */
-    @SerializedName("id")
+    @SerializedName(DataConfig.DB_DORM_RESIDENT_ID)
     private final int id;
 
     /* Когда студент был заселен */
-    @SerializedName("check_in")
+    @SerializedName(DataConfig.DB_DORM_RESIDENT_CHECK_IN)
     private final String checkIn;
 
     /* Когда время проживания в общежития кончится */
-    @SerializedName("check_out")
+    @SerializedName(DataConfig.DB_DORM_RESIDENT_CHECK_OUT)
     private final String checkOut;
 
     /* ID комнаты */
-    @SerializedName("room_id")
+    @SerializedName(DataConfig.DB_DORM_RESIDENT_ROOM_ID)
     private final int roomId;
 
     /* Объект аккаунта */
-    @SerializedName("account")
-    private final Account account;
+    @SerializedName(DataConfig.DB_DORM_RESIDENT_ACCOUNT)
+    private final AccountShort account;
 
-    public Resident(int id, String checkIn, String checkOut, int roomId, Account account) {
+    /* Дата создания */
+    @SerializedName(DataConfig.DB_DORM_RESIDENT_DATE_CREATE)
+    private final String dateCreate;
+
+    public Resident(int id, String checkIn, String checkOut, int roomId, AccountShort account, String dateCreate) {
         this.id = id;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.roomId = roomId;
         this.account = account;
+        this.dateCreate = dateCreate;
     }
 }

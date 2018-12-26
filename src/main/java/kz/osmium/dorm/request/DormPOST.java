@@ -1,10 +1,13 @@
 package kz.osmium.dorm.request;
 
 import com.google.gson.Gson;
+import kz.osmium.account.request.AccountGET;
+import kz.osmium.dorm.util.gson.Requests;
 import kz.osmium.dorm.util.statement.StatementDormSELECT;
 import kz.osmium.dorm.util.statement.StatementDormINSERT;
 import kz.osmium.dorm.util.statement.StatementDormUPDATE;
 import kz.osmium.util.DBConnection;
+import kz.osmium.util.DataConfig;
 import org.eclipse.jetty.http.HttpStatus;
 import spark.Request;
 import spark.Response;
@@ -17,33 +20,33 @@ public class DormPOST {
 
     public static String postRequest(Request request, Response response) {
 
-            if (request.queryParams("account_id") != null &&
-                    request.queryParams("room_id") != null &&
-                    request.queryParams("booking_period") != null) {
+            if (request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT) != null &&
+                    request.queryParams(DataConfig.DB_DORM_REQUEST_ROOM) != null &&
+                    request.queryParams(DataConfig.DB_DORM_REQUEST_PERIOD) != null) {
 
                 try (Connection connection = DBConnection.Dorm.getDB()) {
-                    String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-                    PreparedStatement preparedStatement = connection.prepareStatement(StatementDormSELECT.selectRequestAccount());
+                    String date = new SimpleDateFormat(DataConfig.GLOBAL_DATE_FORMAT).format(new Date());
+                    PreparedStatement statement = connection.prepareStatement(StatementDormSELECT.selectRequestAccount());
 
-                    preparedStatement.setInt(1, Integer.parseInt(request.queryParams("account_id")));
+                    statement.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT)));
 
-                    ResultSet resultSet = preparedStatement.executeQuery();
+                    ResultSet result = statement.executeQuery();
 
-                    if (resultSet.next()) {
-                        PreparedStatement preparedStatement2 = connection.prepareStatement(StatementDormUPDATE.updateRequest());
+                    if (result.next()) {
+                        PreparedStatement statementTwo = connection.prepareStatement(StatementDormUPDATE.updateRequest());
 
-                        preparedStatement2.setInt(1, Integer.parseInt(request.queryParams("room_id")));
-                        preparedStatement2.setInt(2, 0);
-                        preparedStatement2.setInt(3, Integer.parseInt(request.queryParams("booking_period")));
-                        preparedStatement2.setString(5, date);
-                        preparedStatement2.setInt(6, Integer.parseInt(request.queryParams("account_id")));
+                        statementTwo.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ROOM)));
+                        statementTwo.setInt(2, DataConfig.DB_DORM_REQUEST_STATUS_VALUE);
+                        statementTwo.setInt(3, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_PERIOD)));
+                        statementTwo.setString(5, date);
+                        statementTwo.setInt(6, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT)));
 
-                        if (request.queryParams("email") != null)
-                            preparedStatement2.setString(4, request.queryParams("email"));
+                        if (request.queryParams(DataConfig.DB_DORM_REQUEST_EMAIL) != null)
+                            statementTwo.setString(4, request.queryParams(DataConfig.DB_DORM_REQUEST_EMAIL));
                         else
-                            preparedStatement2.setNull(4, Types.VARCHAR);
+                            statementTwo.setNull(4, Types.VARCHAR);
 
-                        if (preparedStatement2.executeUpdate() == 0) {
+                        if (statementTwo.executeUpdate() == 0) {
 
                             response.status(500);
 
@@ -53,55 +56,55 @@ public class DormPOST {
                         response.status(201);
 
                         return new Gson().toJson(
-                                new kz.osmium.dorm.util.gson.Request(
-                                        resultSet.getInt("id"),
-                                        Integer.parseInt(request.queryParams("account_id")),
-                                        Integer.parseInt(request.queryParams("room_id")),
-                                        0,
-                                        Integer.parseInt(request.queryParams("booking_period")),
-                                        request.queryParams("email"),
+                                new Requests(
+                                        result.getInt(DataConfig.DB_DORM_REQUEST_ID),
+                                        AccountGET.getAccountShortInfo(Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT))),
+                                        Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ROOM)),
+                                        DataConfig.DB_DORM_REQUEST_STATUS_VALUE,
+                                        Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_PERIOD)),
+                                        request.queryParams(DataConfig.DB_DORM_REQUEST_EMAIL),
                                         date
                                 )
                         );
                     }
 
-                    preparedStatement = connection
+                    statement = connection
                             .prepareStatement(
                                     StatementDormINSERT.insertRequests(),
                                     Statement.RETURN_GENERATED_KEYS
                             );
 
-                    preparedStatement.setInt(1, Integer.parseInt(request.queryParams("account_id")));
-                    preparedStatement.setInt(2, Integer.parseInt(request.queryParams("room_id")));
-                    preparedStatement.setInt(3, 0);
-                    preparedStatement.setInt(4, Integer.parseInt(request.queryParams("booking_period")));
-                    preparedStatement.setString(6, date);
+                    statement.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT)));
+                    statement.setInt(2, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ROOM)));
+                    statement.setInt(3, DataConfig.DB_DORM_REQUEST_STATUS_VALUE);
+                    statement.setInt(4, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_PERIOD)));
+                    statement.setString(6, date);
 
-                    if (request.queryParams("email") != null)
-                        preparedStatement.setString(5, request.queryParams("email"));
+                    if (request.queryParams(DataConfig.DB_DORM_REQUEST_EMAIL) != null)
+                        statement.setString(5, request.queryParams(DataConfig.DB_DORM_REQUEST_EMAIL));
                     else
-                        preparedStatement.setNull(5, Types.VARCHAR);
+                        statement.setNull(5, Types.VARCHAR);
 
-                    if (preparedStatement.executeUpdate() == 0) {
+                    if (statement.executeUpdate() == 0) {
 
                         response.status(500);
 
                         return HttpStatus.getCode(500).getMessage();
                     }
 
-                    try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                    try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
 
                             response.status(201);
 
                             return new Gson().toJson(
-                                    new kz.osmium.dorm.util.gson.Request(
+                                    new Requests(
                                             Math.toIntExact(generatedKeys.getLong(1)),
-                                            Integer.parseInt(request.queryParams("account_id")),
-                                            Integer.parseInt(request.queryParams("room_id")),
-                                            0,
-                                            Integer.parseInt(request.queryParams("booking_period")),
-                                            request.queryParams("email"),
+                                            AccountGET.getAccountShortInfo(Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT))),
+                                            Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ROOM)),
+                                            DataConfig.DB_DORM_REQUEST_STATUS_VALUE,
+                                            Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_PERIOD)),
+                                            request.queryParams(DataConfig.DB_DORM_REQUEST_EMAIL),
                                             date
                                     )
                             );

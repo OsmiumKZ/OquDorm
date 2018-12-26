@@ -3,14 +3,14 @@ package kz.osmium.dorm.request;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import kz.osmium.account.util.gson.Account;
-import kz.osmium.account.util.statement.StatementAccountSELECT;
+import kz.osmium.account.request.AccountGET;
 import kz.osmium.dorm.util.gson.Report;
 import kz.osmium.dorm.util.gson.Resident;
 import kz.osmium.dorm.util.statement.StatementDormINSERT;
 import kz.osmium.dorm.util.statement.StatementDormSELECT;
 import kz.osmium.dorm.util.statement.StatementDormUPDATE;
 import kz.osmium.util.DBConnection;
+import kz.osmium.util.DataConfig;
 import org.eclipse.jetty.http.HttpStatus;
 import spark.Request;
 import spark.Response;
@@ -25,66 +25,46 @@ public class DormPUT {
 
     public static String putRequestStatus(Request request, Response response) {
 
-        if (request.queryParams("status") != null) {
+        if (request.queryParams(DataConfig.DB_DORM_REQUEST_STATUS) != null) {
 
-            try (Connection connection = DBConnection.Dorm.getDB(); Connection connection2 = DBConnection.KEU.getDB()) {
-                String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-                PreparedStatement preparedStatement = connection.prepareStatement(StatementDormUPDATE.updateRequestStatus());
+            try (Connection connection = DBConnection.Dorm.getDB()) {
+                String date = new SimpleDateFormat(DataConfig.GLOBAL_DATE_FORMAT).format(new Date());
+                PreparedStatement statement = connection.prepareStatement(StatementDormUPDATE.updateRequestStatus());
 
-                preparedStatement.setInt(1, Integer.parseInt(request.queryParams("status")));
-                preparedStatement.setString(2, date);
-                preparedStatement.setInt(3, Integer.parseInt(request.queryParams("id")));
-                preparedStatement.executeUpdate();
+                statement.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_STATUS)));
+                statement.setString(2, date);
+                statement.setInt(3, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT)));
+                statement.executeUpdate();
 
-                if (Integer.parseInt(request.queryParams("status")) == 2) {
-                    Gson gson = new GsonBuilder().create();
-                    preparedStatement = connection.prepareStatement(
+                if (Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_STATUS)) == DataConfig.DB_DORM_REQUEST_STATUS_CREATE_REPORT) {
+                    statement = connection.prepareStatement(
                             StatementDormINSERT.insertReports(),
                             Statement.RETURN_GENERATED_KEYS
                     );
 
-                    preparedStatement.setInt(1, Integer.parseInt(request.queryParams("id")));
-                    preparedStatement.setInt(2, 0);
-                    preparedStatement.setString(3, date);
-                    preparedStatement.executeUpdate();
+                    statement.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT)));
+                    statement.setInt(2, DataConfig.DB_DORM_REPORT_STATUS_VALUE);
+                    statement.setString(3, date);
+                    statement.executeUpdate();
 
-                    try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                    try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
-                            PreparedStatement preparedStatement2 = connection2.prepareStatement(StatementAccountSELECT.selectAccount());
 
-                            preparedStatement2.setInt(1, Integer.parseInt(request.queryParams("id")));
+                            response.status(201);
 
-                            ResultSet resultSet2 = preparedStatement2.executeQuery();
+                            JsonObject jsonObject = new GsonBuilder().create().toJsonTree(
+                                    new Report(
+                                            Math.toIntExact(generatedKeys.getLong(1)),
+                                            AccountGET.getAccountShortInfo(Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT))),
+                                            null,
+                                            DataConfig.DB_DORM_REPORT_STATUS_VALUE,
+                                            date
+                                    )
+                            ).getAsJsonObject();
 
-                            if (resultSet2.next()) {
+                            jsonObject.addProperty(DataConfig.DB_DORM_REPORT_DATE_SEND, date);
 
-                                response.status(201);
-
-                                JsonObject jsonObject = gson.toJsonTree(
-                                        new Report(
-                                                Math.toIntExact(generatedKeys.getLong(1)),
-                                                new Account(
-                                                        resultSet2.getInt("id"),
-                                                        resultSet2.getString("name_ru_name_f"),
-                                                        resultSet2.getString("name_ru_name_l"),
-                                                        resultSet2.getString("name_ru_patronymic"),
-                                                        resultSet2.getString("name_ru_gender")
-                                                ),
-                                                null,
-                                                0,
-                                                date
-                                        )
-                                ).getAsJsonObject();
-
-                                jsonObject.addProperty("date_send", date);
-
-                                return jsonObject.toString();
-                            } else {
-
-                                response.status(500);
-
-                                return HttpStatus.getCode(500).getMessage();
-                            }
+                            return jsonObject.toString();
                         } else {
 
                             response.status(500);
@@ -98,7 +78,7 @@ public class DormPUT {
 
                     Map<String, String> map = new HashMap<>();
 
-                    map.put("date_send", date);
+                    map.put(DataConfig.DB_DORM_REQUEST_DATE_SEND, date);
 
                     return new Gson().toJson(map);
                 }
@@ -118,95 +98,73 @@ public class DormPUT {
 
     public static String putReportStatus(Request request, Response response) {
 
-        if (request.queryParams("status") != null) {
+        if (request.queryParams(DataConfig.DB_DORM_REPORT_STATUS) != null) {
 
-            try (Connection connection = DBConnection.Dorm.getDB(); Connection connection2 = DBConnection.KEU.getDB()) {
-                String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            try (Connection connection = DBConnection.Dorm.getDB()) {
+                String date = new SimpleDateFormat(DataConfig.GLOBAL_DATE_FORMAT).format(new Date());
 
-                if (Integer.parseInt(request.queryParams("status")) == 4) {
+                if (Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_STATUS)) == DataConfig.DB_DORM_REPORT_STATUS_CREATE_RESIDENT) {
                     int accountId = 0;
                     int roomId = 0;
                     int month = 0;
                     String email = "test@simple.com";
-                    PreparedStatement preparedStatement = connection.prepareStatement(StatementDormUPDATE.updateReportStatusFinale());
+                    PreparedStatement statement = connection.prepareStatement(StatementDormUPDATE.updateReportStatusFinale());
 
-                    preparedStatement.setInt(1, Integer.parseInt(request.queryParams("status")));
-                    preparedStatement.setString(2, "http://example.com");
-                    preparedStatement.setString(3, date);
-                    preparedStatement.setInt(4, Integer.parseInt(request.queryParams("id")));
-                    preparedStatement.executeUpdate();
+                    statement.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_STATUS)));
+                    statement.setString(2, "http://example.com");
+                    statement.setString(3, date);
+                    statement.setInt(4, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_ID)));
+                    statement.executeUpdate();
 
-                    preparedStatement = connection.prepareStatement(StatementDormSELECT.selectReportID());
+                    statement = connection.prepareStatement(StatementDormSELECT.selectReportID());
 
-                    preparedStatement.setInt(1, Integer.parseInt(request.queryParams("id")));
+                    statement.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_ID)));
 
-                    ResultSet resultSet = preparedStatement.executeQuery();
+                    ResultSet result = statement.executeQuery();
 
-                    if (resultSet.next()) {
-                        accountId = resultSet.getInt("account_id");
-                        PreparedStatement preparedStatement2 = connection.prepareStatement(StatementDormSELECT.selectRequestAccount());
+                    if (result.next())
+                        accountId = result.getInt(DataConfig.DB_DORM_REPORT_ACCOUNT_ID);
 
-                        preparedStatement2.setInt(1, accountId);
+                    statement = connection.prepareStatement(StatementDormSELECT.selectRequestAccount());
 
-                        ResultSet resultSet2 = preparedStatement2.executeQuery();
+                    statement.setInt(1, accountId);
 
-                        if (resultSet2.next()) {
-                            roomId = resultSet2.getInt("room_id");
-                            month = resultSet2.getInt("booking_period");
-                            email = resultSet2.getString("email");
-                        }
+                    result = statement.executeQuery();
+
+                    if (result.next()) {
+                        roomId = result.getInt(DataConfig.DB_DORM_REQUEST_ROOM_ID);
+                        month = result.getInt(DataConfig.DB_DORM_REQUEST_PERIOD);
+                        email = result.getString(DataConfig.DB_DORM_REQUEST_EMAIL);
                     }
 
                     Gson gson = new GsonBuilder().create();
-                    preparedStatement = connection.prepareStatement(
+                    statement = connection.prepareStatement(
                             StatementDormINSERT.insertResident(),
                             Statement.RETURN_GENERATED_KEYS
                     );
 
-                    preparedStatement.setString(1, "2017-12-22 15:42:36");
-                    preparedStatement.setString(2, "2019-12-22 15:42:36");
-                    preparedStatement.setInt(3, roomId);
-                    preparedStatement.setInt(4, accountId);
-                    preparedStatement.setInt(5, Integer.parseInt(request.queryParams("id")));
-                    preparedStatement.executeUpdate();
+                    statement.setString(1, "2017-12-22 15:42:36");
+                    statement.setString(2, "2019-12-22 15:42:36");
+                    statement.setInt(3, roomId);
+                    statement.setInt(4, accountId);
+                    statement.setInt(5, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_ID)));
+                    statement.executeUpdate();
 
-                    try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                    try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
-                            PreparedStatement preparedStatement2 = connection2.prepareStatement(StatementAccountSELECT.selectAccount());
 
-                            preparedStatement2.setInt(1, accountId);
+                            response.status(201);
 
-                            ResultSet resultSet2 = preparedStatement2.executeQuery();
-
-                            if (resultSet2.next()) {
-
-                                response.status(201);
-
-                                JsonObject jsonObject = gson.toJsonTree(
-                                        new Resident(
-                                                Math.toIntExact(generatedKeys.getLong(1)),
-                                                "2017-12-22 15:42:36",
-                                                "2019-12-22 15:42:36",
-                                                roomId,
-                                                new Account(
-                                                        resultSet2.getInt("id"),
-                                                        resultSet2.getString("name_ru_name_f"),
-                                                        resultSet2.getString("name_ru_name_l"),
-                                                        resultSet2.getString("name_ru_patronymic"),
-                                                        resultSet2.getString("name_ru_gender")
-                                                )
-                                        )
-                                ).getAsJsonObject();
-
-                                jsonObject.addProperty("date_send", date);
-
-                                return jsonObject.toString();
-                            } else {
-
-                                response.status(500);
-
-                                return HttpStatus.getCode(500).getMessage();
-                            }
+                            return new Gson().toJson(
+                                    new Resident(
+                                            Math.toIntExact(generatedKeys.getLong(1)),
+                                            "2017-12-22 15:42:36",
+                                            "2019-12-22 15:42:36",
+                                            roomId,
+                                            AccountGET.getAccountShortInfo(accountId),
+                                            date
+                                    )
+                            );
                         } else {
 
                             response.status(500);
@@ -215,12 +173,12 @@ public class DormPUT {
                         }
                     }
                 } else {
-                    PreparedStatement preparedStatement = connection.prepareStatement(StatementDormUPDATE.updateReportStatus());
+                    PreparedStatement statement = connection.prepareStatement(StatementDormUPDATE.updateReportStatus());
 
-                    preparedStatement.setInt(1, Integer.parseInt(request.queryParams("status")));
-                    preparedStatement.setString(2, date);
-                    preparedStatement.setInt(3, Integer.parseInt(request.queryParams("id")));
-                    preparedStatement.executeUpdate();
+                    statement.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_STATUS)));
+                    statement.setString(2, date);
+                    statement.setInt(3, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_ID)));
+                    statement.executeUpdate();
 
                     if (true) {
 
@@ -228,7 +186,7 @@ public class DormPUT {
 
                         Map<String, String> map = new HashMap<>();
 
-                        map.put("date_send", date);
+                        map.put(DataConfig.DB_DORM_REPORT_DATE_SEND, date);
 
                         return new Gson().toJson(map);
                     } else {
@@ -237,7 +195,7 @@ public class DormPUT {
 
                         Map<String, String> map = new HashMap<>();
 
-                        map.put("date_send", date);
+                        map.put(DataConfig.DB_DORM_REPORT_DATE_SEND, date);
 
                         return new Gson().toJson(map);
                     }

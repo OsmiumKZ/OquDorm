@@ -19,19 +19,19 @@ package kz.osmium.account.util.gson;
 import com.google.gson.annotations.SerializedName;
 import kz.osmium.util.DataConfig;
 
-public class Auth {
-    @SerializedName(DataConfig.DB_ACCOUNT_AUTH_ID)
+public class AccountShort {
+    @SerializedName(DataConfig.DB_ACCOUNT_SHORT_ID)
     private final int id;
-    @SerializedName(DataConfig.DB_ACCOUNT_AUTH_NAME_F)
+    @SerializedName(DataConfig.DB_ACCOUNT_SHORT_NAME_F)
     private final String nameF;
-    @SerializedName(DataConfig.DB_ACCOUNT_AUTH_NAME_L)
+    @SerializedName(DataConfig.DB_ACCOUNT_SHORT_NAME_L)
     private final String nameL;
-    @SerializedName(DataConfig.DB_ACCOUNT_AUTH_PATRONYMIC)
+    @SerializedName(DataConfig.DB_ACCOUNT_SHORT_PATRONYMIC)
     private final String patronymic;
-    @SerializedName(DataConfig.DB_ACCOUNT_AUTH_GENDER)
+    @SerializedName(DataConfig.DB_ACCOUNT_SHORT_GENDER)
     private final String gender;
 
-    public Auth(int id, String nameF, String nameL, String patronymic, String gender) {
+    public AccountShort(int id, String nameF, String nameL, String patronymic, String gender) {
         this.id = id;
         this.nameF = nameF;
         this.nameL = nameL;

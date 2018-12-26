@@ -1,39 +1,40 @@
 package kz.osmium.dorm.util.gson;
 
 import com.google.gson.annotations.SerializedName;
+import kz.osmium.util.DataConfig;
 
 public class Room {
 
     /* Индивидуальный номер */
-    @SerializedName("id")
+    @SerializedName(DataConfig.DB_DORM_ROOM_ID)
     private final int id;
 
     /* Название по ID */
-    @SerializedName("name_id")
+    @SerializedName(DataConfig.DB_DORM_ROOM_NAME_ID)
     private final int nameId;
 
     /* Максимальное количество мест для студентов */
-    @SerializedName("max")
+    @SerializedName(DataConfig.DB_DORM_ROOM_MAX)
     private final int max;
 
     /* ID этажа */
-    @SerializedName("floor_id")
+    @SerializedName(DataConfig.DB_DORM_ROOM_FLOOR_ID)
     private final int floorId;
 
     /* Количество тумбочек */
-    @SerializedName("nightstand_amount")
+    @SerializedName(DataConfig.DB_DORM_ROOM_NIGHTSTAND_AMOUNT)
     private final int nightstandAmount;
 
     /* Количество шифоньеров */
-    @SerializedName("chiffonier_amount")
+    @SerializedName(DataConfig.DB_DORM_ROOM_CHIFFONIER_AMOUNT)
     private final int chiffonierAmount;
 
     /* Количество полок */
-    @SerializedName("shelf_amount")
+    @SerializedName(DataConfig.DB_DORM_ROOM_SHELF_AMOUNT)
     private final int shelfAmount;
 
     /* Сигнал Wi-Fi */
-    @SerializedName("wifi")
+    @SerializedName(DataConfig.DB_DORM_ROOM_WIFI)
     private final int wifi;
 
     public Room(int id, int nameId, int max, int floorId, int nightstandAmount, int chiffonierAmount, int shelfAmount, int wifi) {
