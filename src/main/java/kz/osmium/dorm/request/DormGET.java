@@ -211,7 +211,8 @@ public class DormGET {
                                 result.getString(DataConfig.DB_DORM_RESIDENT_CHECK_IN),
                                 result.getString(DataConfig.DB_DORM_RESIDENT_CHECK_OUT),
                                 result.getInt(DataConfig.DB_DORM_RESIDENT_ROOM_ID),
-                                AccountGET.getAccountShortInfo(result.getInt(DataConfig.DB_DORM_RESIDENT_ACCOUNT_ID))
+                                AccountGET.getAccountShortInfo(result.getInt(DataConfig.DB_DORM_RESIDENT_ACCOUNT_ID)),
+                                result.getString(DataConfig.DB_DORM_RESIDENT_DATE_CREATE)
                         )
                 );
 

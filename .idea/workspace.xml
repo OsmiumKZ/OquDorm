@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1eb311e-b2d3-4923-9775-2e9e26f3d7ed" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/account/AccountAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/osmium/account/AccountAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/account/request/AccountGET.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/osmium/account/request/AccountGET.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/account/util/gson/Account.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/account/util/gson/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/osmium/account/util/gson/Auth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/account/util/statement/StatementAccountSELECT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/osmium/account/util/statement/StatementAccountSELECT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/DormAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/DormAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormGET.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormGET.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormPOST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormPOST.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormPUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/request/DormPUT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Dorm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Dorm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/DormAll.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/DataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Floor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Floor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Kitchen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Kitchen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Name.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Name.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Report.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Request.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/RequestAll.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Requests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Resident.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Resident.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Restroom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Restroom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/gson/Room.java" afterDir="false" />
-    </list>
+    <list default="true" id="a1eb311e-b2d3-4923-9775-2e9e26f3d7ed" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -61,14 +37,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/dorm/DormAPI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="195" column="44" lean-forward="true" selection-start-line="195" selection-start-column="44" selection-end-line="195" selection-end-column="44" />
+            <state relative-caret-position="-112">
+              <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/account/util/gson/Account.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/account/request/AccountGET.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2296">
+              <caret line="108" lean-forward="true" selection-start-line="108" selection-end-line="108" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/statement/StatementDormINSERT.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
         </entry>
@@ -334,7 +337,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545855136797" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545855147111" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -374,9 +377,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="63" y="27" width="1857" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17210847" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17210847" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -390,7 +392,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3054348" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3054348" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.32896176" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Build" order="10" weight="0.8242424" />
@@ -685,24 +687,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/statement/StatementDormINSERT.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/account/AccountAPI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="526">
           <caret line="35" column="37" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/account/util/gson/Account.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -730,13 +718,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/account/request/AccountGET.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="554">
-          <caret line="108" lean-forward="true" selection-start-line="108" selection-end-line="108" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/account/util/gson/AccountShort.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -747,13 +728,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/dorm/util/statement/StatementDormINSERT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/dorm/DormAPI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="195" column="44" lean-forward="true" selection-start-line="195" selection-start-column="44" selection-end-line="195" selection-end-column="44" />
+        <state relative-caret-position="-112">
+          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/account/util/gson/Account.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kz/osmium/account/request/AccountGET.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2296">
+          <caret line="108" lean-forward="true" selection-start-line="108" selection-end-line="108" />
         </state>
       </provider>
     </entry>
