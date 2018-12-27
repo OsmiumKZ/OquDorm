@@ -52,7 +52,7 @@ public class DormPOST {
 
                         response.status(500);
 
-                        return HttpStatus.getCode(500).getMessage() +" Test";
+                        return HttpStatus.getCode(500).getMessage();
                     }
 
                     response.status(201);
@@ -91,7 +91,7 @@ public class DormPOST {
 
                     response.status(500);
 
-                    return HttpStatus.getCode(500).getMessage();
+                    return HttpStatus.getCode(500).getMessage() + " One";
                 }
 
                 try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
@@ -114,7 +114,7 @@ public class DormPOST {
 
                         response.status(500);
 
-                        return HttpStatus.getCode(500).getMessage();
+                        return HttpStatus.getCode(500).getMessage()+" Two";
                     }
                 }
             } catch (SQLException | NumberFormatException e) {
