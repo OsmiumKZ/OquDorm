@@ -32,43 +32,43 @@ public class DormPOST {
 
                 statement.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT)));
 
-//                ResultSet result = statement.executeQuery();
-//
-//                if (result.next()) {
-//                    PreparedStatement statementTwo = connection.prepareStatement(StatementDormUPDATE.updateRequest());
-//
-//                    statementTwo.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ROOM)));
-//                    statementTwo.setInt(2, DataConfig.DB_DORM_REQUEST_STATUS_VALUE);
-//                    statementTwo.setInt(3, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_PERIOD)));
-//                    statementTwo.setString(5, date);
-//                    statementTwo.setInt(6, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT)));
-//
-//                    if (email != null)
-//                        statementTwo.setString(4, email);
-//                    else
-//                        statementTwo.setNull(4, Types.VARCHAR);
-//
-//                    if (statementTwo.executeUpdate() == 0) {
-//
-//                        response.status(500);
-//
-//                        return HttpStatus.getCode(500).getMessage();
-//                    }
-//
-//                    response.status(201);
-//
-//                    return new Gson().toJson(
-//                            new Requests(
-//                                    result.getInt(DataConfig.DB_DORM_REQUEST_ID),
-//                                    AccountGET.getAccountShortInfo(Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT))),
-//                                    Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ROOM)),
-//                                    DataConfig.DB_DORM_REQUEST_STATUS_VALUE,
-//                                    Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_PERIOD)),
-//                                    email,
-//                                    date
-//                            )
-//                    );
-//                }
+                ResultSet result = statement.executeQuery();
+
+                if (result.next()) {
+                    PreparedStatement statementTwo = connection.prepareStatement(StatementDormUPDATE.updateRequest());
+
+                    statementTwo.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ROOM)));
+                    statementTwo.setInt(2, DataConfig.DB_DORM_REQUEST_STATUS_VALUE);
+                    statementTwo.setInt(3, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_PERIOD)));
+                    statementTwo.setString(5, date);
+                    statementTwo.setInt(6, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT)));
+
+                    if (email != null)
+                        statementTwo.setString(4, email);
+                    else
+                        statementTwo.setNull(4, Types.VARCHAR);
+
+                    if (statementTwo.executeUpdate() == 0) {
+
+                        response.status(500);
+
+                        return HttpStatus.getCode(500).getMessage();
+                    }
+
+                    response.status(201);
+
+                    return new Gson().toJson(
+                            new Requests(
+                                    result.getInt(DataConfig.DB_DORM_REQUEST_ID),
+                                    AccountGET.getAccountShortInfo(Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT))),
+                                    Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ROOM)),
+                                    DataConfig.DB_DORM_REQUEST_STATUS_VALUE,
+                                    Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_PERIOD)),
+                                    email,
+                                    date
+                            )
+                    );
+                }
 
                 statement = connection
                         .prepareStatement(
@@ -89,7 +89,7 @@ public class DormPOST {
 
                 if (statement.executeUpdate() == 0) {
 
-                    response.status(501);
+                    response.status(500);
 
                     return HttpStatus.getCode(500).getMessage();
                 }
@@ -112,7 +112,7 @@ public class DormPOST {
                         );
                     } else {
 
-                        response.status(502);
+                        response.status(500);
 
                         return HttpStatus.getCode(500).getMessage();
                     }
