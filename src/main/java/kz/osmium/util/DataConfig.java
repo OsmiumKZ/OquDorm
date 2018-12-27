@@ -50,7 +50,7 @@ public class DataConfig {
     public static final String DB_DORM_REQUEST_ROOM = "room";
     public static final String DB_DORM_REQUEST_ROOM_ID = "room_id";
     public static final String DB_DORM_REQUEST_STATUS = "status";
-    public static final String DB_DORM_REQUEST_PERIOD = "booking_period";
+    public static final String DB_DORM_REQUEST_PERIOD = "period";
     public static final String DB_DORM_REQUEST_BOOKING_PERIOD = "booking_period";
     public static final String DB_DORM_REQUEST_EMAIL = "email";
     public static final String DB_DORM_REQUEST_DATE_SEND = "date_send";
