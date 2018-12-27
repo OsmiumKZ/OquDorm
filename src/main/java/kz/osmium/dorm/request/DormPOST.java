@@ -24,7 +24,7 @@ public class DormPOST {
         if (request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT) != null &&
                 request.queryParams(DataConfig.DB_DORM_REQUEST_ROOM) != null &&
                 request.queryParams(DataConfig.DB_DORM_REQUEST_PERIOD) != null) {
-            String email = CommonMethods.isValidEmailAddress(request.queryParams(DataConfig.DB_DORM_REQUEST_EMAIL)) ? request.queryParams(DataConfig.DB_DORM_REQUEST_EMAIL) : null;
+            String email = CommonMethods.isValidEmailAddress(request.queryParams(DataConfig.DB_DORM_REQUEST_EMAIL)) ? request.queryParams(DataConfig.DB_DORM_REQUEST_EMAIL) : "fr@gmail.com";
 
             try (Connection connection = DBConnection.Dorm.getDB()) {
                 String date = new SimpleDateFormat(DataConfig.GLOBAL_DATE_FORMAT).format(new Date());
