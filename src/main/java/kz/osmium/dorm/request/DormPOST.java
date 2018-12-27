@@ -89,7 +89,7 @@ public class DormPOST {
 
                 if (statement.executeUpdate() == 0) {
 
-                    response.status(500);
+                    response.status(501);
 
                     return HttpStatus.getCode(500).getMessage();
                 }
@@ -112,7 +112,7 @@ public class DormPOST {
                         );
                     } else {
 
-                        response.status(500);
+                        response.status(502);
 
                         return HttpStatus.getCode(500).getMessage();
                     }
