@@ -12,7 +12,7 @@ public class CommonMethods {
             InternetAddress emailAddr = new InternetAddress(email);
 
             emailAddr.validate();
-        } catch (AddressException ex) {
+        } catch (AddressException | NullPointerException ex) {
             result = false;
         }
 
