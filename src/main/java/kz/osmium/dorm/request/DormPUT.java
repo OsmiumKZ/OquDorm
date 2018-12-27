@@ -148,6 +148,7 @@ public class DormPUT {
                     statement.setInt(3, roomId);
                     statement.setInt(4, accountId);
                     statement.setInt(5, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_ID)));
+                    statement.setString(6, date);
                     statement.executeUpdate();
 
                     try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
@@ -162,6 +163,7 @@ public class DormPUT {
                                             "2019-12-22 15:42:36",
                                             roomId,
                                             AccountGET.getAccountShortInfo(accountId),
+                                            Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_ID)),
                                             date
                                     )
                             );

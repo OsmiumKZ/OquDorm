@@ -39,6 +39,8 @@ public class DataConfig {
     public static final String DB_DORM_REPORT_STATUS = "status";
     public static final String DB_DORM_REPORT_DATE_SEND = "date_send";
     public static final int DB_DORM_REPORT_STATUS_VALUE = 0;
+    public static final int DB_DORM_REPORT_STATUS_CHECK_ONE = 1;
+    public static final int DB_DORM_REPORT_STATUS_CHECK_TWO = 3;
     public static final int DB_DORM_REPORT_STATUS_CREATE_RESIDENT = 4;
 
     public static final String DB_DORM_REQUEST = "requests";
@@ -62,6 +64,7 @@ public class DataConfig {
     public static final String DB_DORM_RESIDENT_ROOM_ID = "room_id";
     public static final String DB_DORM_RESIDENT_ACCOUNT = "account";
     public static final String DB_DORM_RESIDENT_ACCOUNT_ID = "account_id";
+    public static final String DB_DORM_RESIDENT_REPORT_ID = "report_id";
     public static final String DB_DORM_RESIDENT_DATE_CREATE = "date_create";
 
     public static final String DB_DORM_RESTROOM = "restrooms";

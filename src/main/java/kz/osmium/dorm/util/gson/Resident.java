@@ -26,16 +26,21 @@ public class Resident {
     @SerializedName(DataConfig.DB_DORM_RESIDENT_ACCOUNT)
     private final AccountShort account;
 
+    /* ID отчета */
+    @SerializedName(DataConfig.DB_DORM_RESIDENT_REPORT_ID)
+    private final int reportId;
+
     /* Дата создания */
     @SerializedName(DataConfig.DB_DORM_RESIDENT_DATE_CREATE)
     private final String dateCreate;
 
-    public Resident(int id, String checkIn, String checkOut, int roomId, AccountShort account, String dateCreate) {
+    public Resident(int id, String checkIn, String checkOut, int roomId, AccountShort account, int reportId, String dateCreate) {
         this.id = id;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.roomId = roomId;
         this.account = account;
+        this.reportId = reportId;
         this.dateCreate = dateCreate;
     }
 }

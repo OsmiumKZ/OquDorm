@@ -212,6 +212,7 @@ public class DormGET {
                                 result.getString(DataConfig.DB_DORM_RESIDENT_CHECK_OUT),
                                 result.getInt(DataConfig.DB_DORM_RESIDENT_ROOM_ID),
                                 AccountGET.getAccountShortInfo(result.getInt(DataConfig.DB_DORM_RESIDENT_ACCOUNT_ID)),
+                                result.getInt(DataConfig.DB_DORM_RESIDENT_REPORT_ID),
                                 result.getString(DataConfig.DB_DORM_RESIDENT_DATE_CREATE)
                         )
                 );
@@ -247,7 +248,7 @@ public class DormGET {
         try (Connection connection = DBConnection.Dorm.getDB()) {
             PreparedStatement statement = connection.prepareStatement(sql);
 
-            if (request.queryParams("id") != null)
+            if (request.queryParams(DataConfig.DB_DORM_REPORT_ACCOUNT) != null)
                 statement.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_ACCOUNT)));
 
             ResultSet result = statement.executeQuery();
@@ -267,7 +268,7 @@ public class DormGET {
             response.status(200);
 
             return new Gson().toJson(list);
-        } catch (SQLException e) {
+        } catch (SQLException | NumberFormatException e) {
 
             response.status(409);
 
