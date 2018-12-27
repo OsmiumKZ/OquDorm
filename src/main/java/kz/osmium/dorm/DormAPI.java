@@ -174,7 +174,7 @@ public class DormAPI {
                                 return DormPOST.postRequest(request, response);
                             else {
 
-                                response.status(404);
+                                response.status(405);
 
                                 return HttpStatus.getCode(404).getMessage();
                             }
