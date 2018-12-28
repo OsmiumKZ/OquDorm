@@ -109,7 +109,7 @@ public class DormPUT {
 
                     response.status(409);
 
-                    return status + " " + statusQuery;
+                    return HttpStatus.getMessage(409);
                 }
 
                 DateTime date = new DateTime(new Date());

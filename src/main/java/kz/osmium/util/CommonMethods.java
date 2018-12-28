@@ -33,7 +33,8 @@ public class CommonMethods {
 
     public static boolean isValidStatus(int status, int statusQuery) {
 
-        return !((statusQuery == 5) ||
+        return !(((statusQuery == 5) &&
+                (statusQuery != status)) ||
                 ((statusQuery != status) &&
                         (statusQuery != 0) &&
                         (status != 5) &&
