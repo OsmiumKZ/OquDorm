@@ -29,10 +29,10 @@ public class DormPUT {
         if (request.queryParams(DataConfig.DB_DORM_REQUEST_STATUS) != null) {
 
             try (Connection connection = DBConnection.Dorm.getDB()) {
-                int status = getStatus(StatementDormSELECT.selectRequestAccount(), Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT_ID)));
+                int status = getStatus(StatementDormSELECT.selectRequestAccount(), Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT)));
                 int statusQuery = Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_STATUS));
 
-                if (true) {
+                if (isValidStatusRequest(status, statusQuery)) {
 
                 response.status(409);
 
