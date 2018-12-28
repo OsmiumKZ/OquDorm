@@ -9,6 +9,7 @@ import kz.osmium.dorm.util.gson.Resident;
 import kz.osmium.dorm.util.statement.StatementDormINSERT;
 import kz.osmium.dorm.util.statement.StatementDormSELECT;
 import kz.osmium.dorm.util.statement.StatementDormUPDATE;
+import kz.osmium.util.CommonMethods;
 import kz.osmium.util.DBConnection;
 import kz.osmium.util.DataConfig;
 import org.eclipse.jetty.http.HttpStatus;
@@ -17,7 +18,6 @@ import spark.Request;
 import spark.Response;
 
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +29,7 @@ public class DormPUT {
         if (request.queryParams(DataConfig.DB_DORM_REQUEST_STATUS) != null) {
 
             try (Connection connection = DBConnection.Dorm.getDB()) {
-                String date = new SimpleDateFormat(DataConfig.GLOBAL_DATE_FORMAT).format(new Date());
+                String date = CommonMethods.getDateText(new Date());
                 PreparedStatement statement = connection.prepareStatement(StatementDormUPDATE.updateRequestStatus());
 
                 statement.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_STATUS)));
@@ -102,7 +102,7 @@ public class DormPUT {
         if (request.queryParams(DataConfig.DB_DORM_REPORT_STATUS) != null) {
 
             try (Connection connection = DBConnection.Dorm.getDB()) {
-                String date = new SimpleDateFormat(DataConfig.GLOBAL_DATE_FORMAT).format(new Date());
+                DateTime date = new DateTime(new Date());
 
                 if (Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_STATUS)) == DataConfig.DB_DORM_REPORT_STATUS_CREATE_RESIDENT) {
                     int accountId = 0;
@@ -113,7 +113,7 @@ public class DormPUT {
 
                     statement.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_STATUS)));
                     statement.setString(2, "http://example.com");
-                    statement.setString(3, date);
+                    statement.setString(3, CommonMethods.getDateTimeText(date));
                     statement.setInt(4, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_ID)));
                     statement.executeUpdate();
 
@@ -139,7 +139,7 @@ public class DormPUT {
                     }
 
                     Gson gson = new GsonBuilder().create();
-                    DateTime dateTime = new DateTime(date).withTime(0, 0, 0, 0);
+                    DateTime dateTime = date.withTime(0, 0, 0, 0);
                     DateTime dateTimeDay = dateTime.plusDays(1);
                     DateTime dateTimeMonth = dateTime.plusMonths(1);
                     statement = connection.prepareStatement(
@@ -147,12 +147,12 @@ public class DormPUT {
                             Statement.RETURN_GENERATED_KEYS
                     );
 
-                    statement.setString(1, new SimpleDateFormat(DataConfig.GLOBAL_DATE_FORMAT).format(dateTimeDay.toDate()));
-                    statement.setString(2, new SimpleDateFormat(DataConfig.GLOBAL_DATE_FORMAT).format(dateTimeMonth.toDate()));
+                    statement.setString(1, CommonMethods.getDateTimeText(dateTimeDay));
+                    statement.setString(2, CommonMethods.getDateTimeText(dateTimeMonth));
                     statement.setInt(3, roomId);
                     statement.setInt(4, accountId);
                     statement.setInt(5, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_ID)));
-                    statement.setString(6, date);
+                    statement.setString(6, CommonMethods.getDateTimeText(date));
                     statement.executeUpdate();
 
                     try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
@@ -163,12 +163,12 @@ public class DormPUT {
                             return new Gson().toJson(
                                     new Resident(
                                             Math.toIntExact(generatedKeys.getLong(1)),
-                                            new SimpleDateFormat(DataConfig.GLOBAL_DATE_FORMAT).format(dateTimeDay.toDate()),
-                                            new SimpleDateFormat(DataConfig.GLOBAL_DATE_FORMAT).format(dateTimeMonth.toDate()),
+                                            CommonMethods.getDateTimeText(dateTimeDay),
+                                            CommonMethods.getDateTimeText(dateTimeMonth),
                                             roomId,
                                             AccountGET.getAccountShortInfo(accountId),
                                             Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_ID)),
-                                            date
+                                            CommonMethods.getDateTimeText(date)
                                     )
                             );
                         } else {
@@ -182,7 +182,7 @@ public class DormPUT {
                     PreparedStatement statement = connection.prepareStatement(StatementDormUPDATE.updateReportStatus());
 
                     statement.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_STATUS)));
-                    statement.setString(2, date);
+                    statement.setString(2, CommonMethods.getDateTimeText(date));
                     statement.setInt(3, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_ID)));
                     statement.executeUpdate();
 
@@ -192,7 +192,7 @@ public class DormPUT {
 
                         Map<String, String> map = new HashMap<>();
 
-                        map.put(DataConfig.DB_DORM_REPORT_DATE_SEND, date);
+                        map.put(DataConfig.DB_DORM_REPORT_DATE_SEND, CommonMethods.getDateTimeText(date));
 
                         return new Gson().toJson(map);
                     } else {
@@ -201,7 +201,7 @@ public class DormPUT {
 
                         Map<String, String> map = new HashMap<>();
 
-                        map.put(DataConfig.DB_DORM_REPORT_DATE_SEND, date);
+                        map.put(DataConfig.DB_DORM_REPORT_DATE_SEND, CommonMethods.getDateTimeText(date));
 
                         return new Gson().toJson(map);
                     }
