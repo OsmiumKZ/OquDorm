@@ -20,6 +20,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.2'
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.13'
     compile 'com.sun.mail:javax.mail:1.6.2'
+    compile 'joda-time:joda-time:2.10.1'
 }
 
 defaultTasks = ['clean']

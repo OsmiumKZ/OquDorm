@@ -12,6 +12,7 @@ import kz.osmium.dorm.util.statement.StatementDormUPDATE;
 import kz.osmium.util.DBConnection;
 import kz.osmium.util.DataConfig;
 import org.eclipse.jetty.http.HttpStatus;
+import org.joda.time.DateTime;
 import spark.Request;
 import spark.Response;
 
@@ -138,13 +139,16 @@ public class DormPUT {
                     }
 
                     Gson gson = new GsonBuilder().create();
+                    DateTime dateTime = new DateTime(date).withTime(0, 0, 0, 0);
+                    DateTime dateTimeDay = dateTime.plusDays(1);
+                    DateTime dateTimeMonth = dateTime.plusMonths(1);
                     statement = connection.prepareStatement(
                             StatementDormINSERT.insertResident(),
                             Statement.RETURN_GENERATED_KEYS
                     );
 
-                    statement.setString(1, "2017-12-22 15:42:36");
-                    statement.setString(2, "2019-12-22 15:42:36");
+                    statement.setString(1, new SimpleDateFormat(DataConfig.GLOBAL_DATE_FORMAT).format(dateTimeDay.toDate()));
+                    statement.setString(2, new SimpleDateFormat(DataConfig.GLOBAL_DATE_FORMAT).format(dateTimeMonth.toDate()));
                     statement.setInt(3, roomId);
                     statement.setInt(4, accountId);
                     statement.setInt(5, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_ID)));
@@ -159,8 +163,8 @@ public class DormPUT {
                             return new Gson().toJson(
                                     new Resident(
                                             Math.toIntExact(generatedKeys.getLong(1)),
-                                            "2017-12-22 15:42:36",
-                                            "2019-12-22 15:42:36",
+                                            new SimpleDateFormat(DataConfig.GLOBAL_DATE_FORMAT).format(dateTimeDay.toDate()),
+                                            new SimpleDateFormat(DataConfig.GLOBAL_DATE_FORMAT).format(dateTimeMonth.toDate()),
                                             roomId,
                                             AccountGET.getAccountShortInfo(accountId),
                                             Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_ID)),
