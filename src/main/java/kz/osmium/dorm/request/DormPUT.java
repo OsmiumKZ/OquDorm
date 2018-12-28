@@ -105,7 +105,7 @@ public class DormPUT {
                 int status = getStatus(StatementDormSELECT.selectReportID(), Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_ID)));
                 int statusQuery = Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_STATUS));
 
-                if (CommonMethods.isValidStatus(status, statusQuery)) {
+                if (!CommonMethods.isValidStatus(status, statusQuery)) {
 
                     response.status(409);
 
