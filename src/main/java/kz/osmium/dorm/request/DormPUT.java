@@ -134,7 +134,7 @@ public class DormPUT {
 
                     if (result.next()) {
                         roomId = result.getInt(DataConfig.DB_DORM_REQUEST_ROOM_ID);
-                        month = result.getInt(DataConfig.DB_DORM_REQUEST_PERIOD);
+                        month = result.getInt(DataConfig.DB_DORM_REQUEST_BOOKING_PERIOD);
                         email = result.getString(DataConfig.DB_DORM_REQUEST_EMAIL);
                     }
 
