@@ -34,9 +34,9 @@ public class DormPUT {
 
                 if (isValidStatusRequest(status, statusQuery)) {
 
-                response.status(409);
+                    response.status(409);
 
-                return status + " " + statusQuery;
+                    return status + " " + statusQuery;
                 }
 
                 String date = CommonMethods.getDateText(new Date());
@@ -258,7 +258,7 @@ public class DormPUT {
 
         return !(((status != 5) &&
                 (status != 4) &&
-                (status > 0)) &&
+                (statusQuery > 0)) &&
                 ((statusQuery == 5) ||
                         ((statusQuery != status) &&
                                 ((statusQuery + 1 == status) ||
