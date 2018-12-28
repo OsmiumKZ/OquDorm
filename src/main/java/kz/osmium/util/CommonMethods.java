@@ -35,6 +35,7 @@ public class CommonMethods {
 
         return !((statusQuery == 5) ||
                 ((statusQuery != status) &&
+                        (statusQuery != 0) &&
                         ((statusQuery + 1 == status) ||
                                 (statusQuery - 1 == status))));
     }
