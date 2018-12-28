@@ -246,13 +246,12 @@ public class DormPUT {
 
     private static boolean isValidStatusReport(int status, int statusQuery) {
 
-        return !(((statusQuery == 5) &&
-                (statusQuery != status)) ||
-                ((statusQuery != status) &&
-                        (statusQuery != 0) &&
-                        (status != 5) &&
-                        (status != 4) &&
-                        ((statusQuery + 1 == status) ||
-                                (statusQuery - 1 == status))));
+        return !(((status != 5) &&
+                (status != 4)) &&
+                ((statusQuery == 5) ||
+                        ((statusQuery != status) &&
+                                (statusQuery != 0) &&
+                                ((statusQuery + 1 == status) ||
+                                        (statusQuery - 1 == status)))));
     }
 }
