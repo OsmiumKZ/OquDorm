@@ -105,7 +105,7 @@ public class DormPUT {
                 int status = getStatus(StatementDormSELECT.selectReportID(), Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_ID)));
                 int statusQuery = Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_STATUS));
 
-                if (CommonMethods.isValidStatus(status, statusQuery)) {
+                if (isValidStatusReport(status, statusQuery)) {
 
                     response.status(409);
 
@@ -242,5 +242,17 @@ public class DormPUT {
             return result.getInt(4);
         else
             throw new SQLDataException();
+    }
+
+    private static boolean isValidStatusReport(int status, int statusQuery) {
+
+        return !(((statusQuery == 5) &&
+                (statusQuery != status)) ||
+                ((statusQuery != status) &&
+                        (statusQuery != 0) &&
+                        (status != 5) &&
+                        (status != 4) &&
+                        ((statusQuery + 1 == status) ||
+                                (statusQuery - 1 == status))));
     }
 }
