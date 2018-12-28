@@ -30,4 +30,12 @@ public class CommonMethods {
     public static String getDateTimeText(DateTime dateTime){
         return new SimpleDateFormat(DataConfig.GLOBAL_DATE_FORMAT).format(dateTime.toDate());
     }
+
+    public static boolean isValidStatus(int status, int statusQuery){
+
+        return !((statusQuery == 5) ||
+                ((statusQuery != status) &&
+                        ((statusQuery + 1 == status) ||
+                                (statusQuery - 1 == status))));
+    }
 }

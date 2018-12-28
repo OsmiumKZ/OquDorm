@@ -102,16 +102,26 @@ public class DormPUT {
         if (request.queryParams(DataConfig.DB_DORM_REPORT_STATUS) != null) {
 
             try (Connection connection = DBConnection.Dorm.getDB()) {
+                int status = getStatus(StatementDormSELECT.selectReportID(), Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_ID)));
+                int statusQuery = Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_STATUS));
+
+                if (CommonMethods.isValidStatus(status, statusQuery)){
+
+                    response.status(409);
+
+                    return HttpStatus.getMessage(409);
+                }
+
                 DateTime date = new DateTime(new Date());
 
-                if (Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_STATUS)) == DataConfig.DB_DORM_REPORT_STATUS_CREATE_RESIDENT) {
+                if (statusQuery == DataConfig.DB_DORM_REPORT_STATUS_CREATE_RESIDENT) {
                     int accountId = 0;
                     int roomId = 0;
                     int month = 0;
                     String email = "test@simple.com";
                     PreparedStatement statement = connection.prepareStatement(StatementDormUPDATE.updateReportStatusFinale());
 
-                    statement.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_STATUS)));
+                    statement.setInt(1, statusQuery);
                     statement.setString(2, "http://example.com");
                     statement.setString(3, CommonMethods.getDateTimeText(date));
                     statement.setInt(4, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_ID)));
@@ -181,7 +191,7 @@ public class DormPUT {
                 } else {
                     PreparedStatement statement = connection.prepareStatement(StatementDormUPDATE.updateReportStatus());
 
-                    statement.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_STATUS)));
+                    statement.setInt(1, statusQuery);
                     statement.setString(2, CommonMethods.getDateTimeText(date));
                     statement.setInt(3, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REPORT_ID)));
                     statement.executeUpdate();
@@ -218,5 +228,14 @@ public class DormPUT {
 
             return HttpStatus.getCode(204).getMessage();
         }
+    }
+
+    private static int getStatus(String sql, int id) throws SQLException, NumberFormatException {
+        Connection connection = DBConnection.Dorm.getDB();
+        PreparedStatement statement = connection.prepareStatement(sql);
+
+        statement.setInt(1, id);
+
+        return statement.executeQuery().getInt(1);
     }
 }
