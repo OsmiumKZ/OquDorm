@@ -272,6 +272,6 @@ public class DormPUT {
                 (((status == 0) &&
                         (statusQuery != 2)) ||
                         (((status == 1) &&
-                                (statusQuery == 4)))));
+                                (statusQuery == 2)))));
     }
 }
