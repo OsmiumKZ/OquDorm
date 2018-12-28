@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import kz.osmium.account.request.AccountGET;
 import kz.osmium.dorm.util.gson.*;
 import kz.osmium.dorm.util.statement.StatementDormSELECT;
+import kz.osmium.util.CommonMethods;
 import kz.osmium.util.DBConnection;
 import kz.osmium.util.DataConfig;
 import org.eclipse.jetty.http.HttpStatus;
@@ -15,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DormGET {
@@ -201,6 +203,40 @@ public class DormGET {
 
         try (Connection connection = DBConnection.Dorm.getDB()) {
             PreparedStatement statement = connection.prepareStatement(StatementDormSELECT.selectResident());
+            ResultSet result = statement.executeQuery();
+            List<Resident> list = new ArrayList<>();
+
+            while (result.next())
+                list.add(
+                        new Resident(
+                                result.getInt(DataConfig.DB_DORM_RESIDENT_ID),
+                                result.getString(DataConfig.DB_DORM_RESIDENT_CHECK_IN),
+                                result.getString(DataConfig.DB_DORM_RESIDENT_CHECK_OUT),
+                                result.getInt(DataConfig.DB_DORM_RESIDENT_ROOM_ID),
+                                AccountGET.getAccountShortInfo(result.getInt(DataConfig.DB_DORM_RESIDENT_ACCOUNT_ID)),
+                                result.getInt(DataConfig.DB_DORM_RESIDENT_REPORT_ID),
+                                result.getString(DataConfig.DB_DORM_RESIDENT_DATE_CREATE)
+                        )
+                );
+
+            response.status(200);
+
+            return new Gson().toJson(list);
+        } catch (SQLException e) {
+
+            response.status(409);
+
+            return e.getMessage();
+        }
+    }
+
+    public static String getResidentActive(Request request, Response response) {
+
+        try (Connection connection = DBConnection.Dorm.getDB()) {
+            PreparedStatement statement = connection.prepareStatement(StatementDormSELECT.selectResidentActive());
+
+            statement.setString(1, CommonMethods.getDateText(new Date()));
+
             ResultSet result = statement.executeQuery();
             List<Resident> list = new ArrayList<>();
 
