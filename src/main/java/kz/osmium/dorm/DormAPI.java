@@ -97,6 +97,23 @@ public class DormAPI {
                     }
             );
 
+            /*
+             * Получить список заселенных на данный момент.
+             *
+             * https://*.example.com/api/resident/active
+             */
+            get("/resident/active", "application/json", (request, response) -> {
+                        if (DomainHTTP.getDorm(request.host()))
+                            return DormGET.getResidentActive(request, response);
+                        else {
+
+                            response.status(404);
+
+                            return HttpStatus.getCode(404).getMessage();
+                        }
+                    }
+            );
+
             path("/report", () -> {
 
                 /*
