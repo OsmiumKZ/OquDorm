@@ -29,6 +29,16 @@ public class DormPUT {
         if (request.queryParams(DataConfig.DB_DORM_REQUEST_STATUS) != null) {
 
             try (Connection connection = DBConnection.Dorm.getDB()) {
+                int status = getStatus(StatementDormSELECT.selectRequestID(), Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ID)));
+                int statusQuery = Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_STATUS));
+
+                if (isValidStatusRequest(status, statusQuery)) {
+
+                    response.status(409);
+
+                    return HttpStatus.getMessage(409);
+                }
+
                 String date = CommonMethods.getDateText(new Date());
                 PreparedStatement statement = connection.prepareStatement(StatementDormUPDATE.updateRequestStatus());
 
@@ -247,11 +257,21 @@ public class DormPUT {
     private static boolean isValidStatusReport(int status, int statusQuery) {
 
         return !(((status != 5) &&
-                (status != 4)) &&
+                (status != 4) &&
+                (status > 0)) &&
                 ((statusQuery == 5) ||
                         ((statusQuery != status) &&
-                                (statusQuery != 0) &&
                                 ((statusQuery + 1 == status) ||
                                         (statusQuery - 1 == status)))));
+    }
+
+    private static boolean isValidStatusRequest(int status, int statusQuery) {
+
+        return !(((statusQuery > 0) &&
+                (statusQuery < 6)) &&
+                (((status == 0) &&
+                        (statusQuery != 2)) ||
+                        (((status == 1) &&
+                                (statusQuery == 4)))));
     }
 }

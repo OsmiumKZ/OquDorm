@@ -68,6 +68,11 @@ public class StatementDormSELECT {
         return "SELECT * FROM `"+ DataConfig.DB_DORM_REPORT +"` WHERE `"+ DataConfig.DB_DORM_REPORT +"`.`"+ DataConfig.DB_DORM_REPORT_ID +"`=?";
     }
 
+    /* Прочитать заявление по ID */
+    public static String selectRequestID(){
+        return "SELECT * FROM `"+ DataConfig.DB_DORM_REQUEST +"` WHERE `"+ DataConfig.DB_DORM_REQUEST +"`.`"+ DataConfig.DB_DORM_REQUEST_ID +"`=?";
+    }
+
     /* Прочитать тех, кто на данный момент живет в общежитии */
     public static String selectResidentActive(){
         return "SELECT * FROM `" + DataConfig.DB_DORM_RESIDENT + "` WHERE `" + DataConfig.DB_DORM_RESIDENT + "`.`" + DataConfig.DB_DORM_RESIDENT_CHECK_OUT + "`>=?";
