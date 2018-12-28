@@ -32,22 +32,22 @@ public class DormPUT {
                 int status = getStatus(StatementDormSELECT.selectRequestAccount(), Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT_ID)));
                 int statusQuery = Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_STATUS));
 
-                if (isValidStatusRequest(status, statusQuery)) {
+                if (true) {
 
-                    response.status(409);
+                response.status(409);
 
-                    return HttpStatus.getMessage(409);
+                return status + " " + statusQuery;
                 }
 
                 String date = CommonMethods.getDateText(new Date());
                 PreparedStatement statement = connection.prepareStatement(StatementDormUPDATE.updateRequestStatus());
 
-                statement.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_STATUS)));
+                statement.setInt(1, statusQuery);
                 statement.setString(2, date);
                 statement.setInt(3, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT)));
                 statement.executeUpdate();
 
-                if (Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_STATUS)) == DataConfig.DB_DORM_REQUEST_STATUS_CREATE_REPORT) {
+                if (statusQuery == DataConfig.DB_DORM_REQUEST_STATUS_CREATE_REPORT) {
                     statement = connection.prepareStatement(
                             StatementDormINSERT.insertReports(),
                             Statement.RETURN_GENERATED_KEYS
