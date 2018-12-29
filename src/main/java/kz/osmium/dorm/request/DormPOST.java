@@ -147,16 +147,6 @@ public class DormPOST {
 
         ResultSet result = statement.executeQuery();
 
-        if (result.next())
-            return false;
-
-        statement = connection.prepareStatement(StatementDormSELECT.selectResidentAccountActive());
-
-        statement.setString(1, new SimpleDateFormat(DataConfig.GLOBAL_DATE_FORMAT).format(new Date()));
-        statement.setInt(2, account);
-
-        result = statement.executeQuery();
-
         return !result.next();
     }
 }
