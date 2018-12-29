@@ -152,7 +152,8 @@ public class DormPOST {
 
         statement = connection.prepareStatement(StatementDormSELECT.selectResidentAccountActive());
 
-        statement.setInt(1, account);
+        statement.setString(1, new SimpleDateFormat(DataConfig.GLOBAL_DATE_FORMAT).format(new Date()));
+        statement.setInt(2, account);
 
         result = statement.executeQuery();
 
