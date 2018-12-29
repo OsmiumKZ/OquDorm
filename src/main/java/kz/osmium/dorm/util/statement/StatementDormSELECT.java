@@ -78,4 +78,9 @@ public class StatementDormSELECT {
     public static String selectResidentActive() {
         return "SELECT * FROM `" + DataConfig.DB_DORM_RESIDENT + "` WHERE `" + DataConfig.DB_DORM_RESIDENT + "`.`" + DataConfig.DB_DORM_RESIDENT_CHECK_OUT + "`>=?";
     }
+
+    /* Получить тех, кто на данный момент живет в общежитии */
+    public static String selectResidentAccountActiveLast() {
+        return "SELECT * FROM `" + DataConfig.DB_DORM_RESIDENT + "` WHERE `" + DataConfig.DB_DORM_RESIDENT + "`.`" + DataConfig.DB_DORM_RESIDENT_CHECK_OUT + "`>=? AND `" + DataConfig.DB_DORM_RESIDENT + "`.`" + DataConfig.DB_DORM_RESIDENT_ACCOUNT_ID + "`=? ORDER BY `" + DataConfig.DB_DORM_RESIDENT + "`.`" + DataConfig.DB_DORM_RESIDENT_ID + "` DESC LIMIT 1";
+    }
 }

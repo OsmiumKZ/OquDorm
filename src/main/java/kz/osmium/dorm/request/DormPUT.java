@@ -18,6 +18,8 @@ import spark.Request;
 import spark.Response;
 
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -158,10 +160,26 @@ public class DormPUT {
                         email = result.getString(DataConfig.DB_DORM_REQUEST_EMAIL);
                     }
 
+                    DateTime dateTimeDay;
+                    DateTime dateTimeMonth;
                     Gson gson = new GsonBuilder().create();
-                    DateTime dateTime = date.withTime(0, 0, 0, 0);
-                    DateTime dateTimeDay = dateTime.plusDays(1);
-                    DateTime dateTimeMonth = dateTime.plusMonths(1);
+                    statement = connection.prepareStatement(StatementDormSELECT.selectResidentAccountActiveLast());
+
+                    statement.setString(1, CommonMethods.getDateTimeText(date));
+                    statement.setInt(2, accountId);
+
+                    result = statement.executeQuery();
+
+                    if (result.next()) {
+                        DateTime dateTime = new DateTime(new SimpleDateFormat(DataConfig.GLOBAL_DATE_FORMAT)
+                                .parse(result.getString(DataConfig.DB_DORM_RESIDENT_CHECK_OUT)));
+                        dateTimeDay = dateTime;
+                        dateTimeMonth = dateTime.withTime(0, 0, 0, 0).plusMonths(1);
+                    } else {
+                        dateTimeDay = date.withTime(0, 0, 0, 0).plusDays(1);
+                        dateTimeMonth = date.withTime(0, 0, 0, 0).plusMonths(1);
+                    }
+
                     statement = connection.prepareStatement(
                             StatementDormINSERT.insertResident(),
                             Statement.RETURN_GENERATED_KEYS
@@ -226,7 +244,7 @@ public class DormPUT {
                         return new Gson().toJson(map);
                     }
                 }
-            } catch (SQLException | NumberFormatException e) {
+            } catch (SQLException | NumberFormatException | ParseException e) {
 
                 response.status(409);
 
