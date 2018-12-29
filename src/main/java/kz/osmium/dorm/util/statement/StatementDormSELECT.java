@@ -66,7 +66,7 @@ public class StatementDormSELECT {
 
     /* Получить активный отчет студента */
     public static String selectReportAccountActive() {
-        return "SELECT * FROM `" + DataConfig.DB_DORM_REPORT + "` WHERE `" + DataConfig.DB_DORM_REPORT + "`.`" + DataConfig.DB_DORM_REPORT_ACCOUNT_ID + "`=? AND `" + DataConfig.DB_DORM_REPORT + "`.`" + DataConfig.DB_DORM_REPORT_STATUS + "`=4 AND `" + DataConfig.DB_DORM_REPORT + "`.`" + DataConfig.DB_DORM_REPORT_STATUS + "`=5";
+        return "SELECT * FROM `" + DataConfig.DB_DORM_REPORT + "` WHERE `" + DataConfig.DB_DORM_REPORT + "`.`" + DataConfig.DB_DORM_REPORT_ACCOUNT_ID + "`=? AND `" + DataConfig.DB_DORM_REPORT + "`.`" + DataConfig.DB_DORM_REPORT_STATUS + "`!=4 AND `" + DataConfig.DB_DORM_REPORT + "`.`" + DataConfig.DB_DORM_REPORT_STATUS + "`!=5";
     }
 
     /* Получить отчет по ID */
