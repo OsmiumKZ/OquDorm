@@ -258,7 +258,7 @@ public class DormPUT {
 
         return !(((status != 5) &&
                 (status != 4) &&
-                (statusQuery > 0)) &&
+                (statusQuery > -1)) &&
                 ((statusQuery == 5) ||
                         ((statusQuery != status) &&
                                 ((statusQuery + 1 == status) ||
