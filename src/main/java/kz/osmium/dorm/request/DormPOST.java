@@ -173,8 +173,8 @@ public class DormPOST {
         ResultSet resul = statement.executeQuery();
 
         if (resul.next())
-            return true;
+            return false;
 
-        return false;
+        return true;
     }
 }
