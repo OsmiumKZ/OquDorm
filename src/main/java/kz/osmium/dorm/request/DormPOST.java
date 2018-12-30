@@ -30,6 +30,18 @@ public class DormPOST {
 
                 if (isReportAndResident(Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT)))) {
                     String date = new SimpleDateFormat(DataConfig.GLOBAL_DATE_FORMAT).format(new Date());
+
+                    if (isCheckRoom(
+                            Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT)),
+                            Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ROOM)),
+                            date
+                    )){
+
+                        response.status(409);
+
+                        return HttpStatus.getMessage(409);
+                    }
+
                     PreparedStatement statement = connection.prepareStatement(StatementDormSELECT.selectRequestAccount());
 
                     statement.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_DORM_REQUEST_ACCOUNT)));
@@ -148,5 +160,21 @@ public class DormPOST {
         ResultSet result = statement.executeQuery();
 
         return !result.next();
+    }
+
+    private static boolean isCheckRoom(int account, int room, String date) throws SQLException{
+        Connection connection = DBConnection.Dorm.getDB();
+        PreparedStatement statement = connection.prepareStatement(StatementDormSELECT.selectCheckRoom());
+
+        statement.setInt(1, account);
+        statement.setInt(2, room);
+        statement.setString(3, date);
+
+        ResultSet resul = statement.executeQuery();
+
+        if (resul.next())
+            return true;
+
+        return false;
     }
 }
