@@ -39,7 +39,7 @@ public class DormPOST {
 
                         response.status(409);
 
-                        return HttpStatus.getMessage(409);
+                        return HttpStatus.getMessage(409) + " 1";
                     }
 
                     PreparedStatement statement = connection.prepareStatement(StatementDormSELECT.selectRequestAccount());
@@ -135,13 +135,13 @@ public class DormPOST {
 
                     response.status(409);
 
-                    return HttpStatus.getMessage(409);
+                    return HttpStatus.getMessage(409) + " 2";
                 }
             } catch (SQLException | NumberFormatException e) {
 
                 response.status(409);
 
-                return e.getMessage();
+                return e.getMessage() + " 3";
             }
         } else {
 
