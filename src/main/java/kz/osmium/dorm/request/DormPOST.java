@@ -166,9 +166,10 @@ public class DormPOST {
         Connection connection = DBConnection.Dorm.getDB();
         PreparedStatement statement = connection.prepareStatement(StatementDormSELECT.selectCheckRoom());
 
-        statement.setInt(1, account);
-        statement.setInt(2, room);
-        statement.setString(3, date);
+        statement.setInt(1, room);
+        statement.setInt(2, account);
+        statement.setInt(3, room);
+        statement.setString(4, date);
 
         ResultSet resul = statement.executeQuery();
 
