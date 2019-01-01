@@ -152,29 +152,33 @@ public class DormPOST {
     }
 
     private static boolean isReportAndResident(int account) throws SQLException, NumberFormatException {
-        Connection connection = DBConnection.Dorm.getDB();
-        PreparedStatement statement = connection.prepareStatement(StatementDormSELECT.selectReportAccountActive());
 
-        statement.setInt(1, account);
+        try ( Connection connection = DBConnection.Dorm.getDB()){
+            PreparedStatement statement = connection.prepareStatement(StatementDormSELECT.selectReportAccountActive());
 
-        ResultSet result = statement.executeQuery();
+            statement.setInt(1, account);
 
-        return !result.next();
+            ResultSet result = statement.executeQuery();
+
+            return !result.next();
+        }
     }
 
     private static boolean isCheckRoom(int account, int room, String date) throws SQLException{
-        Connection connection = DBConnection.Dorm.getDB();
-        PreparedStatement statement = connection.prepareStatement(StatementDormSELECT.selectCheckRoom());
 
-        statement.setInt(1, room);
-        statement.setInt(2, account);
-        statement.setInt(3, room);
-        statement.setString(4, date);
+        try (Connection connection = DBConnection.Dorm.getDB()){
+            PreparedStatement statement = connection.prepareStatement(StatementDormSELECT.selectCheckRoom());
 
-        ResultSet resul = statement.executeQuery();
+            statement.setInt(1, room);
+            statement.setInt(2, account);
+            statement.setInt(3, room);
+            statement.setString(4, date);
 
-        if (resul.next())
-            return false;
+            ResultSet resul = statement.executeQuery();
+
+            if (resul.next())
+                return false;
+        }
 
         return true;
     }

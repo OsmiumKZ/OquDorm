@@ -259,17 +259,19 @@ public class DormPUT {
     }
 
     private static int getStatus(String sql, int id) throws SQLException, NumberFormatException {
-        Connection connection = DBConnection.Dorm.getDB();
-        PreparedStatement statement = connection.prepareStatement(sql);
 
-        statement.setInt(1, id);
+        try (Connection connection = DBConnection.Dorm.getDB()) {
+            PreparedStatement statement = connection.prepareStatement(sql);
 
-        ResultSet result = statement.executeQuery();
+            statement.setInt(1, id);
 
-        if (result.next())
-            return result.getInt(4);
-        else
-            throw new SQLDataException();
+            ResultSet result = statement.executeQuery();
+
+            if (result.next())
+                return result.getInt(4);
+            else
+                throw new SQLDataException();
+        }
     }
 
     private static boolean isValidStatusReport(int status, int statusQuery) {
