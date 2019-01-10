@@ -1,6 +1,6 @@
 package kz.osmium.account.util.statement;
 
-public class StatementAccountSELECT {
+public class StatementKEUSELECT {
 
     public static String selectAuth() {
         return "SELECT `accounts`.`id`, `accounts`.`name_f_id`, `accounts`.`name_l_id`, `accounts`.`patronymic_id`, `accounts`.`gender_id`, `accounts`.`uin`, \n" +
@@ -36,5 +36,12 @@ public class StatementAccountSELECT {
                 "INNER JOIN `name` AS `name_name_l` ON `name_l`.`name_id` = `name_name_l`.`id` \n" +
                 "INNER JOIN `name` AS `name_patronymic` ON `patronymic`.`name_id` = `name_patronymic`.`id` \n" +
                 "WHERE `accounts`.id=?";
+    }
+
+    public static String selectValidateAccount() {
+        return "SELECT * \n" +
+                "FROM `accounts` \n" +
+                "INNER JOIN `accounts` AS `accounts_two` ON `accounts_two`.gender_id = `accounts`.gender_id \n" +
+                "WHERE `accounts`.id=? AND `accounts_two`.id=?";
     }
 }

@@ -5,7 +5,7 @@ import kz.osmium.account.util.gson.Account;
 import kz.osmium.account.util.gson.AccountShort;
 import kz.osmium.util.DBConnection;
 import kz.osmium.account.util.gson.Auth;
-import kz.osmium.account.util.statement.StatementAccountSELECT;
+import kz.osmium.account.util.statement.StatementKEUSELECT;
 import kz.osmium.util.DataConfig;
 import org.eclipse.jetty.http.HttpStatus;
 import spark.Request;
@@ -23,7 +23,7 @@ public class AccountGET {
         if (request.queryParams(DataConfig.DB_ACCOUNT_AUTH_UIN) != null) {
 
             try (Connection connection = DBConnection.KEU.getDB()) {
-                PreparedStatement preparedStatement = connection.prepareStatement(StatementAccountSELECT.selectAuth());
+                PreparedStatement preparedStatement = connection.prepareStatement(StatementKEUSELECT.selectAuth());
 
                 preparedStatement.setLong(1, Long.parseLong(request.queryParams(DataConfig.DB_ACCOUNT_AUTH_UIN)));
 
@@ -58,7 +58,7 @@ public class AccountGET {
     public static String getAccount(Request request, Response response) {
 
         try (Connection connection = DBConnection.KEU.getDB()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(StatementAccountSELECT.selectAccount());
+            PreparedStatement preparedStatement = connection.prepareStatement(StatementKEUSELECT.selectAccount());
 
             preparedStatement.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_ACCOUNT_ID)));
 
@@ -92,7 +92,7 @@ public class AccountGET {
     public static AccountShort getAccountShortInfo(int idAccount) throws SQLException {
 
         try (Connection connection = DBConnection.KEU.getDB()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(StatementAccountSELECT.selectAccount());
+            PreparedStatement preparedStatement = connection.prepareStatement(StatementKEUSELECT.selectAccount());
 
             preparedStatement.setInt(1, idAccount);
 
