@@ -32,10 +32,10 @@ public class AccountGET {
                 if (resultSet.next()) {
                     Auth account = new Auth(
                             resultSet.getInt(DataConfig.DB_ACCOUNT_AUTH_ID),
-                            resultSet.getString(DataConfig.DB_ACCOUNT_AUTH_NAME_F),
-                            resultSet.getString(DataConfig.DB_ACCOUNT_AUTH_NAME_L),
-                            resultSet.getString(DataConfig.DB_ACCOUNT_AUTH_PATRONYMIC),
-                            resultSet.getString(DataConfig.DB_ACCOUNT_AUTH_GENDER)
+                            resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" + DataConfig.DB_ACCOUNT_AUTH_NAME_F),
+                            resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" + DataConfig.DB_ACCOUNT_AUTH_NAME_L),
+                            resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" + DataConfig.DB_ACCOUNT_AUTH_PATRONYMIC),
+                            resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" + DataConfig.DB_ACCOUNT_AUTH_GENDER)
                     );
 
                     response.status(200);
