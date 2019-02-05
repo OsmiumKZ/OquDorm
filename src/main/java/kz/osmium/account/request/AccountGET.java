@@ -7,6 +7,7 @@ import kz.osmium.util.DBConnection;
 import kz.osmium.account.util.gson.Auth;
 import kz.osmium.account.util.statement.StatementKEUSELECT;
 import kz.osmium.util.DataConfig;
+import kz.osmium.util.token.Token;
 import org.eclipse.jetty.http.HttpStatus;
 import spark.Request;
 import spark.Response;
@@ -35,7 +36,8 @@ public class AccountGET {
                             resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" + DataConfig.DB_ACCOUNT_AUTH_NAME_F),
                             resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" + DataConfig.DB_ACCOUNT_AUTH_NAME_L),
                             resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" + DataConfig.DB_ACCOUNT_AUTH_PATRONYMIC),
-                            resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" + DataConfig.DB_ACCOUNT_AUTH_GENDER)
+                            resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" + DataConfig.DB_ACCOUNT_AUTH_GENDER),
+                            Token.getTokenUser()
                     );
 
                     response.status(200);
@@ -53,6 +55,24 @@ public class AccountGET {
         response.status(204);
 
         return HttpStatus.getCode(204).getMessage();
+    }
+
+    public static String getAdmin(Request request, Response response){
+        String login = "admin";
+        String password = "admin";
+        String loginParams = "login";
+        String passwordParams = "password";
+
+        if (request.queryParams(loginParams).equals(login) &&
+                request.queryParams(passwordParams).equals(password)) {
+            response.status(HttpStatus.OK_200);
+
+            return Token.getTokenAdmin();
+        }
+
+        response.status(HttpStatus.UNAUTHORIZED_401);
+
+        return HttpStatus.getCode(HttpStatus.UNAUTHORIZED_401).getMessage();
     }
 
     public static String getAccount(Request request, Response response) {

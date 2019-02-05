@@ -30,12 +30,15 @@ public class Auth {
     private final String patronymic;
     @SerializedName(DataConfig.DB_ACCOUNT_AUTH_GENDER)
     private final String gender;
+    @SerializedName(DataConfig.DB_ACCOUNT_AUTH_GENDER)
+    private final String token;
 
-    public Auth(int id, String nameF, String nameL, String patronymic, String gender) {
+    public Auth(int id, String nameF, String nameL, String patronymic, String gender, String token) {
         this.id = id;
         this.nameF = nameF;
         this.nameL = nameL;
         this.patronymic = patronymic;
         this.gender = gender;
+        this.token = token;
     }
 }

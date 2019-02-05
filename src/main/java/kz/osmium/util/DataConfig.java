@@ -2,6 +2,7 @@ package kz.osmium.util;
 
 public class DataConfig {
     public static final String GLOBAL_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    public static final String GLOBAL_TOKEN = "token";
 
     public static final String DB_DORM_DORM = "dorms";
     public static final String DB_DORM_DORM_ID = "id";
