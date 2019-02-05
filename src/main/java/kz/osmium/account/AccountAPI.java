@@ -20,29 +20,31 @@ public class AccountAPI {
     private static void getAPI() {
 
         path("/api", () -> {
-            get("/auth", "application/json", (request, response) -> {
-                        if (DomainHTTP.getDorm(request.host()))
-                            return AccountGET.getAuth(request, response);
-                        else {
+            path("/auth", () -> {
+                get(null, "application/json", (request, response) -> {
+                            if (DomainHTTP.getDorm(request.host()))
+                                return AccountGET.getAuth(request, response);
+                            else {
 
-                            response.status(404);
+                                response.status(404);
 
-                            return HttpStatus.getCode(404).getMessage();
+                                return HttpStatus.getCode(404).getMessage();
+                            }
                         }
-                    }
-            );
+                );
 
-            get("/auth/admin", "application/json", (request, response) -> {
-                        if (DomainHTTP.getDorm(request.host()))
-                            return AccountGET.getAdmin(request, response);
-                        else {
+                get("/admin", "application/json", (request, response) -> {
+                            if (DomainHTTP.getDorm(request.host()))
+                                return AccountGET.getAdmin(request, response);
+                            else {
 
-                            response.status(404);
+                                response.status(404);
 
-                            return HttpStatus.getCode(404).getMessage();
+                                return HttpStatus.getCode(404).getMessage();
+                            }
                         }
-                    }
-            );
+                );
+            });
 
             get("/account", "application/json", (request, response) -> {
                         if (DomainHTTP.getDorm(request.host()))

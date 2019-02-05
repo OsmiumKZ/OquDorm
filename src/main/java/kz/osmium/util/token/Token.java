@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class Token {
     private static String TOKEN_ADMIN;
-    private static String TOKEN_USER = "Error";
+    private static String TOKEN_USER;
     private static final int MAX_AMOUNT = 40;
 
     public static void updateToken() {
