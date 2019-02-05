@@ -1,6 +1,7 @@
 package kz.osmium;
 
 import kz.osmium.util.MethodsHTTP;
+import kz.osmium.util.token.Token;
 
 import static spark.Spark.*;
 
@@ -31,6 +32,8 @@ public class Main {
     private static void config() {
 
         after("/api/*", (req, res) -> res.type("application/json"));
+
+        Token.updateToken();
     }
 
     /**

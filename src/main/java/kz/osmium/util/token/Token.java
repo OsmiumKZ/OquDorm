@@ -11,7 +11,7 @@ public class Token {
     private static String TOKEN_USER;
     private static final int MAX_AMOUNT = 40;
 
-    public void updateToken(){
+    public static void updateToken(){
         TOKEN_ADMIN = KeyGen.generate(MAX_AMOUNT);
         TOKEN_USER = KeyGen.generate(MAX_AMOUNT);
     }
