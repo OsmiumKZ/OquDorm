@@ -21,7 +21,7 @@ public class AccountAPI {
 
         path("/api", () -> {
             path("/auth", () -> {
-                get(null, "application/json", (request, response) -> {
+                get("/user", "application/json", (request, response) -> {
                             if (DomainHTTP.getDorm(request.host()))
                                 return AccountGET.getAuth(request, response);
                             else {
