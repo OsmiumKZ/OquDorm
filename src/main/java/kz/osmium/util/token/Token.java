@@ -8,17 +8,17 @@ import java.util.Map;
 
 public class Token {
     private static String TOKEN_ADMIN;
-    private static String TOKEN_USER;
+    private static String TOKEN_USER = "Error";
     private static final int MAX_AMOUNT = 40;
 
-    public static void updateToken(){
+    public static void updateToken() {
         TOKEN_ADMIN = KeyGen.generate(MAX_AMOUNT);
         TOKEN_USER = KeyGen.generate(MAX_AMOUNT);
     }
 
     public static String getTokenAdmin() {
         Map<String, String> map = new HashMap<>();
-        map.put(DataConfig.GLOBAL_TOKEN,TOKEN_ADMIN);
+        map.put(DataConfig.GLOBAL_TOKEN, TOKEN_ADMIN);
 
         return new Gson().toJson(map);
     }
