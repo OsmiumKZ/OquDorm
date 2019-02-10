@@ -121,7 +121,7 @@ public class DormGET {
 
             response.status(400);
 
-            return HttpStatus.getCode(400).getMessage();
+            return e.getMessage();
         }
     }
 
