@@ -76,7 +76,7 @@ public class DormAPI {
                          * https://*.example.com/api/request
                          * & account = <Integer>
                          */
-                        get("application/json", (request, response) -> {
+                        get("user", "application/json", (request, response) -> {
                                     if (DomainHTTP.getDorm(request.host())) {
                                         if (Token.checkToken(request.headers("token"), RuleToken.USER)) {
 
