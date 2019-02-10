@@ -25,6 +25,15 @@ public class DataConfig {
     public static final String DB_DORM_NAME_ONE = "name";
     public static final String DB_DORM_NAME_GENITIVE = "name_genitive";
     public static final String DB_DORM_NAME_DATIVE = "name_dative";
+    public static final String DB_DORM_NAME_RU = "name_ru";
+    public static final String DB_DORM_NAME_RU_GENITIVE = "name_ru_genitive";
+    public static final String DB_DORM_NAME_RU_DATIVE = "name_ru_dative";
+    public static final String DB_DORM_NAME_KZ = "name_kz";
+    public static final String DB_DORM_NAME_KZ_GENITIVE = "name_kz_genitive";
+    public static final String DB_DORM_NAME_KZ_DATIVE = "name_kz_dative";
+    public static final String DB_DORM_NAME_EN = "name_en";
+    public static final String DB_DORM_NAME_EN_GENITIVE = "name_en_genitive";
+    public static final String DB_DORM_NAME_EN_DATIVE = "name_en_dative";
 
     public static final String DB_DORM_REPORT = "reports";
     public static final String DB_DORM_REPORT_ID = "id";

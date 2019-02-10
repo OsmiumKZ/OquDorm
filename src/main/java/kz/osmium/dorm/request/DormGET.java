@@ -74,9 +74,9 @@ public class DormGET {
                         .add(
                                 new Name(
                                         result.getInt(DataConfig.DB_DORM_NAME_ID),
-                                        result.getString(DataConfig.DB_DORM_NAME_ONE),
-                                        result.getString(DataConfig.DB_DORM_NAME_GENITIVE),
-                                        result.getString(DataConfig.DB_DORM_NAME_DATIVE)
+                                        result.getString(DataConfig.DB_DORM_NAME_RU),
+                                        result.getString(DataConfig.DB_DORM_NAME_RU_GENITIVE),
+                                        result.getString(DataConfig.DB_DORM_NAME_RU_DATIVE)
                                 )
                         );
 
@@ -121,7 +121,7 @@ public class DormGET {
 
             response.status(400);
 
-            return e.getMessage();
+            return HttpStatus.getCode(400).getMessage();
         }
     }
 
