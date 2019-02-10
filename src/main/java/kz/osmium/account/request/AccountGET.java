@@ -91,11 +91,11 @@ public class AccountGET {
 
             if (resultSet.next()) {
                 Account account = new Account(
-                        resultSet.getInt(DataConfig.DB_ACCOUNT_ID),
-                        resultSet.getString(DataConfig.DB_ACCOUNT_NAME_F),
-                        resultSet.getString(DataConfig.DB_ACCOUNT_NAME_L),
-                        resultSet.getString(DataConfig.DB_ACCOUNT_PATRONYMIC),
-                        resultSet.getString(DataConfig.DB_ACCOUNT_GENDER)
+                        resultSet.getInt(DataConfig.DB_ACCOUNT_NAME_RU + "_" +DataConfig.DB_ACCOUNT_ID),
+                        resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" +DataConfig.DB_ACCOUNT_NAME_F),
+                        resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" +DataConfig.DB_ACCOUNT_NAME_L),
+                        resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" +DataConfig.DB_ACCOUNT_PATRONYMIC),
+                        resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" +DataConfig.DB_ACCOUNT_GENDER)
                 );
 
                 response.status(200);
