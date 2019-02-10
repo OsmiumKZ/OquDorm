@@ -39,10 +39,18 @@ public class Token {
     }
 
     private static boolean checkAdmin(String token) {
-        return token.equals(TOKEN_ADMIN);
+
+        if (token != null)
+            return token.equals(TOKEN_ADMIN);
+
+        return false;
     }
 
     private static boolean checkUser(String token) {
-        return checkAdmin(token) || token.equals(TOKEN_USER);
+
+        if (token != null)
+            return checkAdmin(token) || token.equals(TOKEN_USER);
+
+        return false;
     }
 }
