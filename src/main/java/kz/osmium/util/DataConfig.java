@@ -86,6 +86,7 @@ public class DataConfig {
     public static final String DB_DORM_ROOM_SHELF_AMOUNT = "shelf_amount";
     public static final String DB_DORM_ROOM_WIFI = "wifi";
 
+    public static final String DB_ACCOUNT = "account";
     public static final String DB_ACCOUNT_ID = "id";
     public static final String DB_ACCOUNT_NAME_F = "name_f";
     public static final String DB_ACCOUNT_NAME_L = "name_l";

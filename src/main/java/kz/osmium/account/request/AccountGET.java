@@ -80,7 +80,7 @@ public class AccountGET {
         try (Connection connection = DBConnection.KEU.getDB()) {
             PreparedStatement preparedStatement = connection.prepareStatement(StatementKEUSELECT.selectAccount());
 
-            preparedStatement.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_ACCOUNT_ID)));
+            preparedStatement.setInt(1, Integer.parseInt(request.queryParams(DataConfig.DB_ACCOUNT)));
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
