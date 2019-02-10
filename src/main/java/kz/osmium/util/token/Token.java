@@ -26,4 +26,23 @@ public class Token {
     public static String getTokenUser() {
         return TOKEN_USER;
     }
+
+    public static boolean checkToken(String token, RuleToken ruleToken) {
+        switch (ruleToken) {
+            case ADMIN:
+                return checkAdmin(token);
+            case USER:
+                return checkUser(token);
+            default:
+                return false;
+        }
+    }
+
+    private static boolean checkAdmin(String token) {
+        return token.equals(TOKEN_ADMIN);
+    }
+
+    private static boolean checkUser(String token) {
+        return checkAdmin(token) || token.equals(TOKEN_USER);
+    }
 }

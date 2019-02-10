@@ -2,6 +2,8 @@ package kz.osmium.account;
 
 import kz.osmium.account.request.AccountGET;
 import kz.osmium.util.DomainHTTP;
+import kz.osmium.util.token.RuleToken;
+import kz.osmium.util.token.Token;
 import org.eclipse.jetty.http.HttpStatus;
 
 import static spark.Spark.get;
@@ -47,9 +49,16 @@ public class AccountAPI {
             });
 
             get("/account", "application/json", (request, response) -> {
-                        if (DomainHTTP.getDorm(request.host()))
-                            return AccountGET.getAccount(request, response);
-                        else {
+                        if (DomainHTTP.getDorm(request.host())) {
+                            if (Token.checkToken(request.headers("token"), RuleToken.ADMIN)) {
+                                return AccountGET.getAccount(request, response);
+                            } else {
+
+                                response.status(401);
+
+                                return HttpStatus.getCode(401).getMessage();
+                            }
+                        } else {
 
                             response.status(404);
 

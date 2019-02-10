@@ -4,6 +4,8 @@ import kz.osmium.dorm.request.DormGET;
 import kz.osmium.dorm.request.DormPOST;
 import kz.osmium.dorm.request.DormPUT;
 import kz.osmium.util.DomainHTTP;
+import kz.osmium.util.token.RuleToken;
+import kz.osmium.util.token.Token;
 import org.eclipse.jetty.http.HttpStatus;
 
 import static spark.Spark.*;
@@ -30,9 +32,17 @@ public class DormAPI {
              * https://*.example.com/api/db
              */
             get("/db", "application/json", (request, response) -> {
-                        if (DomainHTTP.getDorm(request.host()))
-                            return DormGET.getDB(response);
-                        else {
+                        if (DomainHTTP.getDorm(request.host())) {
+                            if (Token.checkToken(request.headers("token"), RuleToken.USER)) {
+
+                                return DormGET.getDB(response);
+                            } else {
+
+                                response.status(401);
+
+                                return HttpStatus.getCode(401).getMessage();
+                            }
+                        } else {
 
                             response.status(404);
 
@@ -49,9 +59,17 @@ public class DormAPI {
                          * https://*.example.com/api/request/list
                          */
                         get("/list", "application/json", (request, response) -> {
-                                    if (DomainHTTP.getDorm(request.host()))
-                                        return DormGET.getRequestList(request, response);
-                                    else {
+                                    if (DomainHTTP.getDorm(request.host())) {
+                                        if (Token.checkToken(request.headers("token"), RuleToken.ADMIN)) {
+
+                                            return DormGET.getRequestList(request, response);
+                                        } else {
+
+                                            response.status(401);
+
+                                            return HttpStatus.getCode(401).getMessage();
+                                        }
+                                    } else {
 
                                         response.status(404);
 
@@ -59,7 +77,6 @@ public class DormAPI {
                                     }
                                 }
                         );
-
                         /*
                          * Получение заявления для студента.
                          *
@@ -67,9 +84,17 @@ public class DormAPI {
                          * & account = <Integer>
                          */
                         get("application/json", (request, response) -> {
-                                    if (DomainHTTP.getDorm(request.host()))
-                                        return DormGET.getRequestAccount(request, response);
-                                    else {
+                                    if (DomainHTTP.getDorm(request.host())) {
+                                        if (Token.checkToken(request.headers("token"), RuleToken.USER)) {
+
+                                            return DormGET.getRequestAccount(request, response);
+                                        } else {
+
+                                            response.status(401);
+
+                                            return HttpStatus.getCode(401).getMessage();
+                                        }
+                                    } else {
 
                                         response.status(404);
 
@@ -86,9 +111,17 @@ public class DormAPI {
              * https://*.example.com/api/resident
              */
             get("/resident", "application/json", (request, response) -> {
-                        if (DomainHTTP.getDorm(request.host()))
-                            return DormGET.getResident(request, response);
-                        else {
+                        if (DomainHTTP.getDorm(request.host())) {
+                            if (Token.checkToken(request.headers("token"), RuleToken.ADMIN)) {
+
+                                return DormGET.getResident(request, response);
+                            } else {
+
+                                response.status(401);
+
+                                return HttpStatus.getCode(401).getMessage();
+                            }
+                        } else {
 
                             response.status(404);
 
@@ -103,9 +136,17 @@ public class DormAPI {
              * https://*.example.com/api/resident/active
              */
             get("/resident/active", "application/json", (request, response) -> {
-                        if (DomainHTTP.getDorm(request.host()))
-                            return DormGET.getResidentActive(request, response);
-                        else {
+                        if (DomainHTTP.getDorm(request.host())) {
+                            if (Token.checkToken(request.headers("token"), RuleToken.ADMIN)) {
+
+                                return DormGET.getResidentActive(request, response);
+                            } else {
+
+                                response.status(401);
+
+                                return HttpStatus.getCode(401).getMessage();
+                            }
+                        } else {
 
                             response.status(404);
 
@@ -122,9 +163,17 @@ public class DormAPI {
                  * https://*.example.com/api/report/all
                  */
                 get("/all", "application/json", (request, response) -> {
-                            if (DomainHTTP.getDorm(request.host()))
-                                return DormGET.getReportAll(request, response);
-                            else {
+                            if (DomainHTTP.getDorm(request.host())) {
+                                if (Token.checkToken(request.headers("token"), RuleToken.ADMIN)) {
+
+                                    return DormGET.getReportAll(request, response);
+                                } else {
+
+                                    response.status(401);
+
+                                    return HttpStatus.getCode(401).getMessage();
+                                }
+                            } else {
 
                                 response.status(404);
 
@@ -139,9 +188,17 @@ public class DormAPI {
                  * https://*.example.com/api/report/active
                  */
                 get("/active", "application/json", (request, response) -> {
-                            if (DomainHTTP.getDorm(request.host()))
-                                return DormGET.getReportActive(request, response);
-                            else {
+                            if (DomainHTTP.getDorm(request.host())) {
+                                if (Token.checkToken(request.headers("token"), RuleToken.ADMIN)) {
+
+                                    return DormGET.getReportActive(request, response);
+                                } else {
+
+                                    response.status(401);
+
+                                    return HttpStatus.getCode(401).getMessage();
+                                }
+                            } else {
 
                                 response.status(404);
 
@@ -157,9 +214,17 @@ public class DormAPI {
                  * & account = <Integer>
                  */
                 get("application/json", (request, response) -> {
-                            if (DomainHTTP.getDorm(request.host()))
-                                return DormGET.getReportAccount(request, response);
-                            else {
+                            if (DomainHTTP.getDorm(request.host())) {
+                                if (Token.checkToken(request.headers("token"), RuleToken.USER)) {
+
+                                    return DormGET.getReportAccount(request, response);
+                                } else {
+
+                                    response.status(401);
+
+                                    return HttpStatus.getCode(401).getMessage();
+                                }
+                            } else {
 
                                 response.status(404);
 
@@ -187,9 +252,17 @@ public class DormAPI {
          */
         path("/api", () ->
                 post("/request", "application/json", (request, response) -> {
-                            if (DomainHTTP.getDorm(request.host()))
-                                return DormPOST.postRequest(request, response);
-                            else {
+                            if (DomainHTTP.getDorm(request.host())) {
+                                if (Token.checkToken(request.headers("token"), RuleToken.USER)) {
+
+                                    return DormPOST.postRequest(request, response);
+                                } else {
+
+                                    response.status(401);
+
+                                    return HttpStatus.getCode(401).getMessage();
+                                }
+                            } else {
 
                                 response.status(404);
 
@@ -214,9 +287,17 @@ public class DormAPI {
                      * & status = <Integer>
                      */
                     put("/request", "application/json", (request, response) -> {
-                                if (DomainHTTP.getDorm(request.host()))
-                                    return DormPUT.putRequestStatus(request, response);
-                                else {
+                                if (DomainHTTP.getDorm(request.host())) {
+                                    if (Token.checkToken(request.headers("token"), RuleToken.USER)) {
+
+                                        return DormPUT.putRequestStatus(request, response);
+                                    } else {
+
+                                        response.status(401);
+
+                                        return HttpStatus.getCode(401).getMessage();
+                                    }
+                                } else {
 
                                     response.status(404);
 
@@ -233,9 +314,17 @@ public class DormAPI {
                      * & status = <Integer>
                      */
                     put("/report", "application/json", (request, response) -> {
-                                if (DomainHTTP.getDorm(request.host()))
-                                    return DormPUT.putReportStatus(request, response);
-                                else {
+                                if (DomainHTTP.getDorm(request.host())) {
+                                    if (Token.checkToken(request.headers("token"), RuleToken.USER)) {
+
+                                        return DormPUT.putReportStatus(request, response);
+                                    } else {
+
+                                        response.status(401);
+
+                                        return HttpStatus.getCode(401).getMessage();
+                                    }
+                                } else {
 
                                     response.status(404);
 
