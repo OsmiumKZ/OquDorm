@@ -110,7 +110,7 @@ public class AccountGET {
 
             response.status(400);
 
-            return HttpStatus.getCode(400).getMessage();
+            return e.getMessage();
         }
     }
 
