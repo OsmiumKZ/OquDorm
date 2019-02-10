@@ -63,11 +63,16 @@ public class AccountGET {
         String loginParams = "login";
         String passwordParams = "password";
 
-        if (request.queryParams(loginParams).equals(login) &&
-                request.queryParams(passwordParams).equals(password)) {
-            response.status(HttpStatus.OK_200);
+        if (request.queryParams(loginParams) != null &&
+                request.queryParams(passwordParams) != null){
 
-            return Token.getTokenAdmin();
+            if (request.queryParams(loginParams).equals(login) &&
+                    request.queryParams(passwordParams).equals(password)) {
+
+                response.status(HttpStatus.OK_200);
+
+                return Token.getTokenAdmin();
+            }
         }
 
         response.status(HttpStatus.UNAUTHORIZED_401);
