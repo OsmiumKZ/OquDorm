@@ -91,7 +91,7 @@ public class AccountGET {
 
             if (resultSet.next()) {
                 Account account = new Account(
-                        resultSet.getInt(DataConfig.DB_ACCOUNT_NAME_RU + "_" +DataConfig.DB_ACCOUNT_ID),
+                        resultSet.getInt(DataConfig.DB_ACCOUNT_ID),
                         resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" +DataConfig.DB_ACCOUNT_NAME_F),
                         resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" +DataConfig.DB_ACCOUNT_NAME_L),
                         resultSet.getString(DataConfig.DB_ACCOUNT_NAME_RU + "_" +DataConfig.DB_ACCOUNT_PATRONYMIC),
@@ -110,7 +110,7 @@ public class AccountGET {
 
             response.status(400);
 
-            return e.getMessage();
+            return HttpStatus.getCode(400).getMessage();
         }
     }
 
