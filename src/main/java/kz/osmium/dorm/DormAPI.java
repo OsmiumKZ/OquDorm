@@ -33,15 +33,8 @@ public class DormAPI {
              */
             get("/db", "application/json", (request, response) -> {
                         if (DomainHTTP.getDorm(request.host())) {
-                            if (Token.checkToken(request.headers("token"), RuleToken.USER)) {
 
                                 return DormGET.getDB(response);
-                            } else {
-
-                                response.status(401);
-
-                                return HttpStatus.getCode(401).getMessage();
-                            }
                         } else {
 
                             response.status(404);
