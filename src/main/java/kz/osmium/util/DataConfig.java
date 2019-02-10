@@ -22,9 +22,9 @@ public class DataConfig {
 
     public static final String DB_DORM_NAME = "names";
     public static final String DB_DORM_NAME_ID = "id";
-    public static final String DB_DORM_NAME_RU = "name";
-    public static final String DB_DORM_NAME_RU_GENITIVE = "name_genitive";
-    public static final String DB_DORM_NAME_RU_DATIVE = "name_dative";
+    public static final String DB_DORM_NAME_ONE = "name";
+    public static final String DB_DORM_NAME_GENITIVE = "name_genitive";
+    public static final String DB_DORM_NAME_DATIVE = "name_dative";
 
     public static final String DB_DORM_REPORT = "reports";
     public static final String DB_DORM_REPORT_ID = "id";

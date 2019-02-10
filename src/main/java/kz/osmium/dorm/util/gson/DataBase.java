@@ -21,7 +21,7 @@ public class DataBase {
     private List<Kitchen> kitchens = new ArrayList<>();
 
     /* Объект названий */
-    @SerializedName(DataConfig.DB_DORM_NAME)
+    @SerializedName(DataConfig.DB_DORM_NAME_ONE)
     private List<Name> names = new ArrayList<>();
 
     /* Объект уборных */

@@ -10,21 +10,21 @@ public class Name {
     private final int id;
 
     /* Название на расском в именительном падиже */
-    @SerializedName(DataConfig.DB_DORM_NAME_RU)
-    private final String nameRu;
+    @SerializedName(DataConfig.DB_DORM_NAME_ONE)
+    private final String name;
 
     /* Название на расском в радительном падиже */
-    @SerializedName(DataConfig.DB_DORM_NAME_RU_GENITIVE)
-    private final String nameRuGenitive;
+    @SerializedName(DataConfig.DB_DORM_NAME_GENITIVE)
+    private final String nameGenitive;
 
     /* Название на расском в дательном падиже */
-    @SerializedName(DataConfig.DB_DORM_NAME_RU_DATIVE)
-    private final String nameRuDative;
+    @SerializedName(DataConfig.DB_DORM_NAME_DATIVE)
+    private final String nameDative;
 
-    public Name(int id, String nameRu, String nameRuGenitive, String nameRuDative) {
+    public Name(int id, String name, String nameGenitive, String nameDative) {
         this.id = id;
-        this.nameRu = nameRu;
-        this.nameRuGenitive = nameRuGenitive;
-        this.nameRuDative = nameRuDative;
+        this.name = name;
+        this.nameGenitive = nameGenitive;
+        this.nameDative = nameDative;
     }
 }
