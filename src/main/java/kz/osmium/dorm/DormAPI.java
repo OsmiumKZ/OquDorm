@@ -70,13 +70,14 @@ public class DormAPI {
                                     }
                                 }
                         );
+
                         /*
                          * Получение заявления для студента.
                          *
                          * https://*.example.com/api/request
                          * & account = <Integer>
                          */
-                        get("user", "application/json", (request, response) -> {
+                        get("application/json", (request, response) -> {
                                     if (DomainHTTP.getDorm(request.host())) {
                                         if (Token.checkToken(request.headers("token"), RuleToken.USER)) {
 
