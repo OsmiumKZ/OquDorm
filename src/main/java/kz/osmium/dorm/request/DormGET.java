@@ -76,13 +76,7 @@ public class DormGET {
                                         result.getInt(DataConfig.DB_DORM_NAME_ID),
                                         result.getString(DataConfig.DB_DORM_NAME_RU),
                                         result.getString(DataConfig.DB_DORM_NAME_RU_GENITIVE),
-                                        result.getString(DataConfig.DB_DORM_NAME_RU_DATIVE),
-                                        result.getString(DataConfig.DB_DORM_NAME_KZ),
-                                        result.getString(DataConfig.DB_DORM_NAME_KZ_GENITIVE),
-                                        result.getString(DataConfig.DB_DORM_NAME_KZ_DATIVE),
-                                        result.getString(DataConfig.DB_DORM_NAME_EN),
-                                        result.getString(DataConfig.DB_DORM_NAME_EN_GENITIVE),
-                                        result.getString(DataConfig.DB_DORM_NAME_EN_DATIVE)
+                                        result.getString(DataConfig.DB_DORM_NAME_RU_DATIVE)
                                 )
                         );
 

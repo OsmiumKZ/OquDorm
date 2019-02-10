@@ -15,46 +15,16 @@ public class Name {
 
     /* Название на расском в радительном падиже */
     @SerializedName(DataConfig.DB_DORM_NAME_RU_GENITIVE)
-    private final String nameRuGenetive;
+    private final String nameRuGenitive;
 
     /* Название на расском в дательном падиже */
     @SerializedName(DataConfig.DB_DORM_NAME_RU_DATIVE)
     private final String nameRuDative;
 
-    /* Название на казахском в именительном падиже */
-    @SerializedName(DataConfig.DB_DORM_NAME_KZ)
-    private final String nameKz;
-
-    /* Название на казахском в радительном падиже */
-    @SerializedName(DataConfig.DB_DORM_NAME_KZ_GENITIVE)
-    private final String nameKzGenetive;
-
-    /* Название на казахском в дательном падиже */
-    @SerializedName(DataConfig.DB_DORM_NAME_KZ_DATIVE)
-    private final String nameKzDative;
-
-    /* Название на английском в именительном падиже */
-    @SerializedName(DataConfig.DB_DORM_NAME_EN)
-    private final String nameEn;
-
-    /* Название на английском в радительном падиже */
-    @SerializedName(DataConfig.DB_DORM_NAME_EN_GENITIVE)
-    private final String nameEnGenetive;
-
-    /* Название на английском в дательном падиже */
-    @SerializedName(DataConfig.DB_DORM_NAME_EN_DATIVE)
-    private final String nameEnDative;
-
-    public Name(int id, String nameRu, String nameRuGenetive, String nameRuDative, String nameKz, String nameKzGenetive, String nameKzDative, String nameEn, String nameEnGenetive, String nameEnDative) {
+    public Name(int id, String nameRu, String nameRuGenitive, String nameRuDative) {
         this.id = id;
         this.nameRu = nameRu;
-        this.nameRuGenetive = nameRuGenetive;
+        this.nameRuGenitive = nameRuGenitive;
         this.nameRuDative = nameRuDative;
-        this.nameKz = nameKz;
-        this.nameKzGenetive = nameKzGenetive;
-        this.nameKzDative = nameKzDative;
-        this.nameEn = nameEn;
-        this.nameEnGenetive = nameEnGenetive;
-        this.nameEnDative = nameEnDative;
     }
 }
