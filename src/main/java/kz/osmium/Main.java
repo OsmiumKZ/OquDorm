@@ -62,6 +62,8 @@ public class Main {
                 });
 
         before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
+
+        before("/api/*", (request, response) -> Token.updateToken());
     }
 
     /**

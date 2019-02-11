@@ -2,6 +2,7 @@ package kz.osmium.util.token;
 
 import com.google.gson.Gson;
 import kz.osmium.util.DataConfig;
+import org.joda.time.DateTime;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,11 +10,15 @@ import java.util.Map;
 public class Token {
     private static String TOKEN_ADMIN;
     private static String TOKEN_USER;
+    private static long DATE = 0L;
     private static final int MAX_AMOUNT = 40;
 
     public static void updateToken() {
-        TOKEN_ADMIN = KeyGen.generate(MAX_AMOUNT);
-        TOKEN_USER = KeyGen.generate(MAX_AMOUNT);
+
+        if (checkDate()){
+            TOKEN_ADMIN = KeyGen.generate(MAX_AMOUNT);
+            TOKEN_USER = KeyGen.generate(MAX_AMOUNT);
+        }
     }
 
     public static String getTokenAdmin() {
@@ -52,5 +57,19 @@ public class Token {
             return checkAdmin(token) || token.equals(TOKEN_USER);
 
         return false;
+    }
+
+    private static boolean checkDate(){
+        DateTime dateTime = new DateTime(System.currentTimeMillis());
+
+        if (dateTime.getMillis() <= DATE){
+
+            return false;
+        } else {
+
+            DATE = dateTime.plusMinutes(1).getMillis();
+
+            return true;
+        }
     }
 }
