@@ -67,7 +67,7 @@ public class Token {
             return false;
         } else {
 
-            DATE = dateTime.plusMinutes(1).getMillis();
+            DATE = dateTime.plusDays(1).getMillis();
 
             return true;
         }
